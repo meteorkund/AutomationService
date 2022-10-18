@@ -82,10 +82,11 @@
 
 
                         <Button
-                                Style="{StaticResource menuButton}"
-                                Grid.Row="1"
-                                VerticalAlignment="Bottom"
-                                Margin="0 0 0 50">
+                            Style="{StaticResource menuButton}"
+                            Command="{Binding ExitToAppCommand}"
+                            Grid.Row="1"
+                            VerticalAlignment="Bottom"
+                            Margin="0 0 0 50">
 
                             <WrapPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial 

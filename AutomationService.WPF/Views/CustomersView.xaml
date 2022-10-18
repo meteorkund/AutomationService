@@ -16,14 +16,26 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <component:LeftMenu Grid.Row="1"
                             Grid.Column="0"
-                            Grid.RowSpan="3"/>
+                            Grid.RowSpan="3"
+                            DataContext="{Binding LeftMenuViewModel}"/>
 
         <component:TopMenu Grid.Row="1"
                            Grid.Column="1"
-                           Margin="20 10 0 0"/>
+                           Margin="20 10 0 0"
+                           DataContext="{Binding TopMenuViewModel}"/>
+
+        <component:CustomerListing Grid.Row="2"
+                                   Grid.Column="1"
+                                   DataContext="{Binding CustomerListingViewModel}"/>
+
+        <component:CustomerDetails Grid.Row="2"
+                                   Grid.Column="2"
+                                   DataContext="{Binding CustomerDetailsViewModel}"/>
+        
     </Grid>
 </UserControl>

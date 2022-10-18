@@ -12,6 +12,9 @@
     </UserControl.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="120"/>
@@ -66,8 +69,8 @@
                 Foreground="DarkSlateGray"
                 VerticalAlignment="Center"/>
 
-        <Button x:Name="EkleButon"
-                Style="{StaticResource addButton}"
+        <Button Style="{StaticResource addButton}"
+                Command="{Binding AddCustomersCommand}"
                 Grid.Column="3"
                 Margin="0,0,50,0"
                 HorizontalAlignment="Right">

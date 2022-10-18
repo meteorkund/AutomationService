@@ -19,7 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\smile.png" />
+    <Resource Include="Assets\smile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Stores\" />
   </ItemGroup>
 
 </Project>
