@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AutomationService.Domain\AutomationService.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

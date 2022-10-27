@@ -60,7 +60,7 @@
                     <TextBlock 
                             DockPanel.Dock="Top"
                             Margin="0 25 0 10"
-                            Text="Otomasyon"
+                            Text="Personel"
                             Foreground="#FFD2CCE0"
                             FontSize="24"
                             FontFamily="Lucida Calligraphy"

@@ -19,6 +19,7 @@
                 ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                 RowStyle="{DynamicResource DataGridRowStyle1}"
                 ItemsSource="{Binding CustomerListingItemViewModels}"
+                SelectedItem="{Binding SelectedCustomerListingItemViewModel}"
                 AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ÜLKE" IsReadOnly="True" Width="auto" Binding="{Binding Country}" />

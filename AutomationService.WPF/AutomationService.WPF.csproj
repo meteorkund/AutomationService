@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\bgAddControl.jpg" />
     <None Remove="Assets\smile.png" />
   </ItemGroup>
 
@@ -15,17 +16,20 @@
     <PackageReference Include="LoadingSpinner.WPF" Version="1.0.0" />
     <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="SimpleModal.WPF" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\smile.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <ProjectReference Include="..\AutomationService.Domain\AutomationService.Domain.csproj" />
+    <ProjectReference Include="..\AutomationService.EF\AutomationService.EF.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Stores\" />
+    <Resource Include="Assets\bgAddControl.jpg" />
+    <Resource Include="Assets\smile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

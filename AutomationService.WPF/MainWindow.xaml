@@ -3,11 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AutomationService.WPF" xmlns:views="clr-namespace:AutomationService.WPF.Views"
+        xmlns:local="clr-namespace:AutomationService.WPF"
+        xmlns:views="clr-namespace:AutomationService.WPF.Views"
+        xmlns:vms="clr-namespace:AutomationService.WPF.ViewModels"
+        xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="Otomasyon Servis" 
         MinHeight="768" MinWidth="1280">
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vms:AddCustomerViewModel}">
+            <views:AddBreakdownView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vms:EditCustomerViewModel}">
+            <views:EditBreakdownView/>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
-        <views:CustomersView />
+
+        <custom:Modal Panel.ZIndex="1" IsOpen="{Binding IsModalOpen}">
+            <ContentControl Content="{Binding CurrentModalViewModel}"/>
+        </custom:Modal>
+
+        <views:CustomersView DataContext="{Binding CustomersViewModel}"/>
     </Grid>
 </Window>
