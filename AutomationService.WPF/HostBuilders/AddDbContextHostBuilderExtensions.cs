@@ -16,7 +16,7 @@ namespace AutomationService.WPF.HostBuilders
         {
             hostBuilder.ConfigureServices((context, services) =>
             {
-                string connectionString = "Server=localhost\\SQLEXPRESS;Database=AutomationServiceDB;Trusted_Connection=True;";
+                string connectionString = "Server=YAZILIM-ORKUN\\SQLEXPRESS;Database=AutomationServiceDB; User Id=sa; Password=1q2w3e4r; Encrypt=False; Trusted_Connection=True;";
 
                 services.AddSingleton<DbContextOptions>(new DbContextOptionsBuilder().UseSqlServer(connectionString).Options);
                 services.AddSingleton<AutomationServiceDBContextFactory>();

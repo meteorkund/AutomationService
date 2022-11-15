@@ -9,18 +9,10 @@ namespace AutomationService.Domain.Models
 {
     public class Customer :BaseEntity
     {
-        public Customer(string companyName, string country, Breakdown breakdown, Employee employee)
-        {
-            CompanyName = companyName;
-            Country = country;
-            Breakdown = breakdown;
-            Employee = employee;
-        }
-
-        public string CompanyName { get;  }
-        public string Country { get;  }
-        public Breakdown Breakdown { get; }
-        public Employee Employee { get; }
+        public string CompanyName { get; set; }
+        public string Country { get; set; }
+        public  ICollection<Breakdown> Breakdowns { get; set; }
+        public ICollection<Employee> Employees { get; set; }
 
 
     }

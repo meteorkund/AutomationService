@@ -11,6 +11,6 @@ namespace AutomationService.Domain.Models
     {
 
         public string NameSurname { get; set; }
-        public ICollection<Customer> Customer { get; set; } 
+        public ICollection<Breakdown> Customer { get; set; } 
     }
 }

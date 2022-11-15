@@ -70,7 +70,7 @@
                 VerticalAlignment="Center"/>
 
         <Button Style="{StaticResource addButton}"
-                Command="{Binding AddCustomerCommand}"
+                Command="{Binding AddBreakdownCommand}"
                 Grid.Column="3"
                 HorizontalAlignment="Right">
             <StackPanel Orientation="Horizontal">

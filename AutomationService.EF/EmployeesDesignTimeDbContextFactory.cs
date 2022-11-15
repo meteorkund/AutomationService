@@ -13,7 +13,7 @@ namespace AutomationService.EF
         public AutomationServiceDBContext CreateDbContext(string[] args)
         {
             return new AutomationServiceDBContext(new DbContextOptionsBuilder()
-                .UseSqlServer("Server=localhost\\SQLEXPRESS;Database=AutomationServiceDB;Trusted_Connection=True;")
+                .UseSqlServer("Server=YAZILIM-ORKUN\\SQLEXPRESS;Database=AutomationServiceDB; User Id=sa; Password=1q2w3e4r; Encrypt=False; Trusted_Connection=True;")
                 .Options);
         }
     }

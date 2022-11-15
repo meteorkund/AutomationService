@@ -12,13 +12,13 @@ namespace AutomationService.WPF.ViewModels
 {
     public class TopMenuViewModel :ViewModelBase
     {
-        public ICommand AddCustomerCommand { get; }
+        public ICommand AddBreakdownCommand { get; }
         readonly AutomationServiceDBContextFactory _contextFactory;
 
-        public TopMenuViewModel(CustomerStore customerStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory)
+        public TopMenuViewModel(BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
-            AddCustomerCommand = new OpenAddCustomerCommand(customerStore, modalNavigationStore, contextFactory);
+            AddBreakdownCommand = new OpenAddCustomerCommand(breakdownStore, modalNavigationStore, contextFactory);
         }
     }
 }

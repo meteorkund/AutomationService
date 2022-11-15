@@ -11,7 +11,7 @@ namespace AutomationService.EF.DTOs
     {
         public string NameSurname { get; set; }
 
-        public ICollection<CustomerDTO> Customers { get; set; }
+        public ICollection<CustomerDTO> CustomersDTO { get; set; }
     }
 }
 

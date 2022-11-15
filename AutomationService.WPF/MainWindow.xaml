@@ -12,11 +12,11 @@
         MinHeight="768" MinWidth="1280">
     
     <Window.Resources>
-        <DataTemplate DataType="{x:Type vms:AddCustomerViewModel}">
+        <DataTemplate DataType="{x:Type vms:AddBreakdownViewModel}">
             <views:AddBreakdownView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type vms:EditCustomerViewModel}">
+        <DataTemplate DataType="{x:Type vms:EditBreakdownViewModel}">
             <views:EditBreakdownView/>
         </DataTemplate>
     </Window.Resources>
@@ -27,6 +27,6 @@
             <ContentControl Content="{Binding CurrentModalViewModel}"/>
         </custom:Modal>
 
-        <views:CustomersView DataContext="{Binding CustomersViewModel}"/>
+        <views:BreakdownsView DataContext="{Binding BreakdownsViewModel}"/>
     </Grid>
 </Window>

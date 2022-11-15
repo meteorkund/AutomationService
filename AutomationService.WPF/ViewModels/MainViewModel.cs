@@ -11,14 +11,14 @@ namespace AutomationService.WPF.ViewModels
     {
         readonly ModalNavigationStore _modalNavigationStore;
         public ViewModelBase CurrentModalViewModel => _modalNavigationStore.CurrentViewModel;
-        public CustomersViewModel CustomersViewModel { get; }
+        public BreakdownsViewModel BreakdownsViewModel { get; }
 
         public bool IsModalOpen => _modalNavigationStore.IsOpen;
 
-        public MainViewModel(ModalNavigationStore modalNavigationStore, CustomersViewModel customersViewModel)
+        public MainViewModel(ModalNavigationStore modalNavigationStore, BreakdownsViewModel customersViewModel)
         {
             _modalNavigationStore = modalNavigationStore;
-            CustomersViewModel = customersViewModel;
+            BreakdownsViewModel = customersViewModel;
 
             _modalNavigationStore.CurrentViewModelChanged += _modalNavigationStore_CurrentViewModelChanged;
 
