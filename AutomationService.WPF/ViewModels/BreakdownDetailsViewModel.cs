@@ -1,5 +1,8 @@
 ﻿using AutomationService.Domain.Models;
+using AutomationService.EF;
 using AutomationService.WPF.Stores;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +15,7 @@ namespace AutomationService.WPF.ViewModels
     public class BreakdownDetailsViewModel : ViewModelBase
     {
         readonly SelectedBreakdownStore _selectedBreakdownStore;
+        readonly AutomationServiceDBContextFactory _contextFactory;
         private Breakdown SelectedBreakdown => _selectedBreakdownStore.SelectedBreakdown;
 
 
@@ -30,7 +34,7 @@ namespace AutomationService.WPF.ViewModels
         public string CauseDisplay => SelectedBreakdown?.Cause;
         public string ServiceDisplay => SelectedBreakdown?.Service;
 
-        public string FileName => SelectedBreakdown?.BreakdownFiles.Select(f => f.FileName).First();    
+
 
 
         public BreakdownDetailsViewModel(SelectedBreakdownStore selectedBreakdownStore)
