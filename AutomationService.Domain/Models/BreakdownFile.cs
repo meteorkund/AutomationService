@@ -9,6 +9,7 @@ namespace AutomationService.Domain.Models
 {
     public class BreakdownFile : BaseEntity
     {
+        public int BreakdownId { get; set; }
         public string FileName { get; set; }
         public string FileExtension { get; set; }
         public string Path { get; set; }

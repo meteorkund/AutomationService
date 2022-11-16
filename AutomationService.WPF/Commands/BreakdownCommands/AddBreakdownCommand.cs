@@ -2,7 +2,7 @@
 using AutomationService.Domain.Models.Common;
 using AutomationService.EF;
 using AutomationService.WPF.Stores;
-using AutomationService.WPF.ViewModels;
+using AutomationService.WPF.ViewModels.BreakdownViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -50,13 +50,25 @@ namespace AutomationService.WPF.Commands
 
             Breakdown breakdown = new Breakdown
             {
-                Id = 1,
+                Id = lastBreakdownId + 1,
+                Status = true,
+
                 Department = formViewModel.Department,
                 Sector = formViewModel.Sector,
+
+                IsElectrical = formViewModel.IsElectrical,
+                IsMechanical = formViewModel.IsMechanical,
+
+                Cause = formViewModel.Cause,
+                Service = formViewModel.Service,
+
+                Customer = new Customer { Id = 2, CompanyName = formViewModel.CompanyName, Country = formViewModel.Country }
+
+
             };
-                
-    
-                
+
+
+
 
             try
             {

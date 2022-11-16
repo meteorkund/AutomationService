@@ -27,8 +27,12 @@ namespace AutomationService.EF.Commands.BreakdownCommands
                 {
                     IsElectrical = breakdown.IsElectrical,
                     IsMechanical = breakdown.IsMechanical,
+
                     Cause = breakdown.Cause,
+                    Service = breakdown.Service,
+
                     CustomerId = breakdown.Customer.Id,
+
                     Department = breakdown.Department,
                     Sector = breakdown.Sector,
 

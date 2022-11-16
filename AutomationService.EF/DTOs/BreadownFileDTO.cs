@@ -9,6 +9,8 @@ namespace AutomationService.EF.DTOs
 {
     public class BreadownFileDTO : BaseDTO
     {
+        public int BreakdownId { get; set; }
+
         public string FileName { get; set; }
         public string FileExtension { get; set; }
         public string Path { get; set; }

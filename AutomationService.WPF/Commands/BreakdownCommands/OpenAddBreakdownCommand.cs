@@ -1,6 +1,6 @@
 ﻿using AutomationService.EF;
 using AutomationService.WPF.Stores;
-using AutomationService.WPF.ViewModels;
+using AutomationService.WPF.ViewModels.BreakdownViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

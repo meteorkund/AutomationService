@@ -7,8 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\CustomerComands\" />
-    <Folder Include="Commands\FileCommands\" />
+    <Compile Remove="Commands\CustomerComands\**" />
+    <Compile Remove="Commands\FileCommands\**" />
+    <EmbeddedResource Remove="Commands\CustomerComands\**" />
+    <EmbeddedResource Remove="Commands\FileCommands\**" />
+    <None Remove="Commands\CustomerComands\**" />
+    <None Remove="Commands\FileCommands\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\BreakdownFileCommands\" />
   </ItemGroup>
 
 </Project>

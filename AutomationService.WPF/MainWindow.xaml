@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutomationService.WPF"
         xmlns:views="clr-namespace:AutomationService.WPF.Views"
-        xmlns:vms="clr-namespace:AutomationService.WPF.ViewModels"
+        xmlns:vms="clr-namespace:AutomationService.WPF.ViewModels.BreakdownViewModels"
         xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
         Title="Otomasyon Servis" 

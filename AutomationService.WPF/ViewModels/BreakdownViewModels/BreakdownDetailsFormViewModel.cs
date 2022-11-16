@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace AutomationService.WPF.ViewModels
+namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 {
     public class BreakdownDetailsFormViewModel : ViewModelBase
     {
@@ -17,7 +17,9 @@ namespace AutomationService.WPF.ViewModels
         public string Country
         {
             get { return _country; }
-            set { _country = value;
+            set
+            {
+                _country = value;
                 OnPropertyChanged(nameof(Country));
                 OnPropertyChanged(nameof(CanSubmit));
             }
@@ -28,7 +30,9 @@ namespace AutomationService.WPF.ViewModels
         public string CompanyName
         {
             get { return _companyName; }
-            set { _companyName = value;
+            set
+            {
+                _companyName = value;
                 OnPropertyChanged(nameof(CompanyName));
                 OnPropertyChanged(nameof(CanSubmit));
             }
@@ -39,7 +43,9 @@ namespace AutomationService.WPF.ViewModels
         public string CreatorName
         {
             get { return _creatorName; }
-            set { _creatorName = value;
+            set
+            {
+                _creatorName = value;
                 OnPropertyChanged(nameof(CreatorName));
             }
         }
@@ -49,7 +55,9 @@ namespace AutomationService.WPF.ViewModels
         public bool IsElectrical
         {
             get { return _isElectrical; }
-            set { _isElectrical = value;
+            set
+            {
+                _isElectrical = value;
                 OnPropertyChanged(nameof(IsElectrical));
             }
         }
@@ -59,7 +67,9 @@ namespace AutomationService.WPF.ViewModels
         public bool IsMechanical
         {
             get { return _isMechanical; }
-            set { _isMechanical = value;
+            set
+            {
+                _isMechanical = value;
                 OnPropertyChanged(nameof(IsMechanical));
             }
         }
@@ -97,7 +107,9 @@ namespace AutomationService.WPF.ViewModels
         public string Cause
         {
             get { return _cause; }
-            set { _cause = value;
+            set
+            {
+                _cause = value;
                 OnPropertyChanged(nameof(Cause));
             }
         }
@@ -107,7 +119,9 @@ namespace AutomationService.WPF.ViewModels
         public string Service
         {
             get { return _service; }
-            set { _service = value;
+            set
+            {
+                _service = value;
                 OnPropertyChanged(nameof(Service));
             }
         }

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace AutomationService.WPF.ViewModels
+namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 {
     public class BreakdownsViewModel : ViewModelBase
     {
@@ -16,7 +16,6 @@ namespace AutomationService.WPF.ViewModels
 
         readonly AutomationServiceDBContextFactory _contextFactory;
 
-        public ICommand LoadBreakdownsCommand { get; }
 
         public TopMenuViewModel TopMenuViewModel { get; }
         public LeftMenuViewModel LeftMenuViewModel { get; }

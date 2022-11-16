@@ -18,21 +18,12 @@ public partial class App : Application
     {
         _host = Host.CreateDefaultBuilder()
            .AddDbContext()
+           .AddViewModels()
+           .AddStores()
+           .AddQueries()
+           .AddCommands()
            .ConfigureServices((context, services) =>
            {
-
-               services.AddSingleton<IGetAllBreakdownsQuery, GetAllBreakdownsQuery>();
-               services.AddSingleton<ICreateBreakdownCommand, CreateBreakdownCommand>();
-               services.AddSingleton<IUpdateBreakdownCommand, UpdateBreakdownCommand>();
-               services.AddSingleton<IDeleteBreakdownCommand, DeleteBreakdownCommand>();
-
-               services.AddSingleton<ModalNavigationStore>();
-               services.AddSingleton<BreakdownStore>();
-               services.AddSingleton<SelectedBreakdownStore>();
-
-               services.AddTransient<BreakdownsViewModel>();
-               services.AddSingleton<MainViewModel>();
-
                services.AddSingleton<MainWindow>((services) => new MainWindow
                {
                    DataContext = services.GetRequiredService<MainViewModel>()

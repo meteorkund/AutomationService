@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace AutomationService.WPF.ViewModels
+namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 {
     public class EditBreakdownViewModel : ViewModelBase
     {

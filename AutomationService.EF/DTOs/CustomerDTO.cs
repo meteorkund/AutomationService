@@ -12,7 +12,6 @@ namespace AutomationService.EF.DTOs
         public string CompanyName { get; set; }
         public string Country { get; set; }
 
-
         public ICollection<BreakdownDTO> Breakdowns { get; set; }
         public ICollection<EmployeeDTO> Employees { get; set; }
     }

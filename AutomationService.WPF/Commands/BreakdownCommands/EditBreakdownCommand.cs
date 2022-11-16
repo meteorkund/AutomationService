@@ -1,7 +1,7 @@
 ﻿using AutomationService.Domain.Models;
 using AutomationService.Domain.Models.Common;
 using AutomationService.WPF.Stores;
-using AutomationService.WPF.ViewModels;
+using AutomationService.WPF.ViewModels.BreakdownViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,8 +34,18 @@ public class EditBreakdownCommand : AsyncCommandBase
         Breakdown breakdown = new Breakdown
         {
             Id = _editBreakdownViewModel.BreakdownId,
+            Status = true,
+
             Department = formViewModel.Department,
-            Sector = formViewModel.Sector
+            Sector = formViewModel.Sector,
+
+            IsElectrical = formViewModel.IsElectrical,
+            IsMechanical = formViewModel.IsMechanical,
+
+            Cause = formViewModel.Cause,
+            Service = formViewModel.Service,
+
+            Customer = new Customer { Id = 2, CompanyName = formViewModel.CompanyName, Country = formViewModel.Country },
 
         };
 

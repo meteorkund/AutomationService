@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationService.WPF.ViewModels
+namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 {
     public class BreakdownDetailsViewModel : ViewModelBase
     {
@@ -28,8 +28,8 @@ namespace AutomationService.WPF.ViewModels
         public string DepartmentDisplay => SelectedBreakdown?.Department;
         public string SectorDisplay => SelectedBreakdown?.Sector;
 
-        public string IsElectricalDisplay => (SelectedBreakdown?.IsElectrical ?? false) ? "EVET" : "HAYIR";
-        public string IsMechanicalDisplay => (SelectedBreakdown?.IsMechanical ?? false) ? "EVET" : "HAYIR";
+        public string IsElectricalDisplay => SelectedBreakdown?.IsElectrical ?? false ? "EVET" : "HAYIR";
+        public string IsMechanicalDisplay => SelectedBreakdown?.IsMechanical ?? false ? "EVET" : "HAYIR";
 
         public string CauseDisplay => SelectedBreakdown?.Cause;
         public string ServiceDisplay => SelectedBreakdown?.Service;
