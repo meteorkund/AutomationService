@@ -1,6 +1,7 @@
 ﻿using AutomationService.Domain.Models;
 using AutomationService.WPF.Commands.BreakdownFileCommands;
 using AutomationService.WPF.Stores;
+using AutomationService.WPF.ViewModels.BreakdownViewModels;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,7 @@ public class BreakdownFileListingViewModel : ViewModelBase
 
     public ICommand LoadBreakdownFilesCommand { get; }
 
+    public BreakdownFileListingItemViewModel BreakdownFileListingItemViewModel { get; set; }
 
     string filePath = "xx";
     public BreakdownFileListingViewModel(BreakdownFileStore breakdownFileStore)
@@ -29,12 +31,21 @@ public class BreakdownFileListingViewModel : ViewModelBase
 
         LoadBreakdownFilesCommand = new LoadBreakdownFilesCommand(this, breakdownFileStore);
 
-
         _breakdownFileStore.BreakdownFilesLoaded += BreakdownFileStore_BreakdownFilesLoaded;
-
 
     }
 
+    private BreakdownFileListingItemViewModel _selectedBreakdownFile;
+
+    public BreakdownFileListingItemViewModel SelectedBreakdownFile
+    {
+        get { return _selectedBreakdownFile; }
+        set
+        {
+            _selectedBreakdownFile = value;
+            OnPropertyChanged(nameof(SelectedBreakdownFile));
+        }
+    }
 
     public static BreakdownFileListingViewModel LoadViewModel(BreakdownFileStore breakdownFileStore)
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutomationService.WPF.Stores;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,20 +11,17 @@ namespace AutomationService.WPF.Commands.BreakdownFileCommands
 {
     public class OpenBreakdownFileCommand : AsyncCommandBase
     {
-        string _filePath;
-
-        public OpenBreakdownFileCommand(string filePath)
+        readonly SelectedBreakdownFileStore _selectedBreakdownFileStore;
+        public OpenBreakdownFileCommand(SelectedBreakdownFileStore selectedBreakdownFileStore)
         {
-            _filePath= filePath;
-
+            _selectedBreakdownFileStore= selectedBreakdownFileStore;
         }
         public override async Task ExecuteAsync(object parameter)
         {
             try
-            {               
+            {              
                 
-                await Task.Delay(1000);
-                MessageBox.Show(_filePath);
+                MessageBox.Show(_selectedBreakdownFileStore.SelectedBreakdownFile?.FileName);
                 //Process.Start(filePath);
             }
             catch

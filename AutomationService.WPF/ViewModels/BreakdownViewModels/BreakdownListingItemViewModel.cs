@@ -21,6 +21,8 @@ public class BreakdownListingItemViewModel : ViewModelBase
     public string Sector => Breakdown.Sector;
 
 
+
+
     public ICommand EditCommand { get; }
     public ICommand DeleteCommand { get; }
 
