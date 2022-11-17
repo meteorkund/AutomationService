@@ -71,7 +71,7 @@
 
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto" MinWidth="100"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
@@ -197,6 +197,24 @@
                                 Text="{Binding IsMechanicalDisplay}"/>
                     </Grid>
 
+                    <Grid Grid.Row="4" Grid.Column="1" Margin="0 20 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="labelSag"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Style="{StaticResource columnHeader}"
+                                Grid.Column="0"
+                                FontWeight="Bold"
+                                Text="ARIZAYI GİDEREN KİŞİ"/>
+
+                        <TextBlock Style="{StaticResource dataBox}"
+                                Grid.Column="1"
+                                Margin="20 0 0 0"
+                                Text="METE ORKUN DEMİR"/>
+                                <!--Text="{Binding BreakdownSolver}"/>-->
+                    </Grid>
+
 
 
                     <!--#endregion-->
@@ -261,15 +279,15 @@
                                       CellStyle="{DynamicResource DataGridCellStyle1}"
                                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                                       RowStyle="{DynamicResource DataGridRowStyle1}"
-                                      ItemsSource="{Binding BreakdownFilesItemViewModels}"
+                                      ItemsSource="{Binding BreakdownFileListingItemViewModels}"
                                       AutoGenerateColumns="False">
 
                                 <DataGrid.Columns>
 
-                                    <DataGridTextColumn Header="NO" IsReadOnly="True" Binding="{Binding DosyaNo}" ElementStyle="{StaticResource Centering}" />
+                                    <DataGridTextColumn Header="NO" IsReadOnly="True" Binding="{Binding BreakdownFileId}" ElementStyle="{StaticResource Centering}" />
 
                                     <DataGridTextColumn Header="DOSYA ADI" Width="auto" IsReadOnly="True" Binding="{Binding FileName}" />
-                                    <DataGridTextColumn Header="UZANTISI" Width="auto" IsReadOnly="True" Binding="{Binding FileExtension}" />
+                                    <DataGridTextColumn Header="TÜRÜ" Width="auto" IsReadOnly="True" Binding="{Binding FileExtension}" />
 
                                     <DataGridTemplateColumn Header="Seçenekler"
                                             IsReadOnly="True">

@@ -2,6 +2,7 @@
 using AutomationService.Domain.Models.Common;
 using AutomationService.WPF.Commands;
 using AutomationService.WPF.Stores;
+using AutomationService.WPF.ViewModels.BreakdownFileViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +17,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
     {
         readonly SelectedBreakdownStore _selectedBreakdownStore;
         readonly ObservableCollection<BreakdownListingItemViewModel> _breakdownListingItemViewModels;
-        readonly BreakdownStore _BreakdownStore;
+        readonly BreakdownStore _breakdownStore;
         readonly ModalNavigationStore _modalNavigationStore;
 
         public IEnumerable<BreakdownListingItemViewModel> BreakdownListingItemViewModels => _breakdownListingItemViewModels;
@@ -67,16 +68,19 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         {
             _selectedBreakdownStore = selectedBreakdownStore;
             _modalNavigationStore = modalNavigationStore;
-            _BreakdownStore = breakdownStore;
+            _breakdownStore = breakdownStore;
+
             _breakdownListingItemViewModels = new ObservableCollection<BreakdownListingItemViewModel>();
 
             LoadBreakdownsCommand = new LoadBreakdownsCommand(this, breakdownStore);
 
-            _BreakdownStore.BreakdownsLoaded += BreakdownStore_CustomersLoaded;
-            _BreakdownStore.BreakdownAdded += BreakdownStore_CustomerAdded;
-            _BreakdownStore.BreakdownUpdated += BreakdownStore_CustomerUpdated;
-            _BreakdownStore.BreakdownDeleted += BreakdownStore_CustomerDeleted;
+            _breakdownStore.BreakdownsLoaded += BreakdownStore_BreakdownsLoaded;
+            _breakdownStore.BreakdownAdded += BreakdownStore_BreakdownAdded;
+            _breakdownStore.BreakdownUpdated += BreakdownStore_BreakdownUpdated;
+            _breakdownStore.BreakdownDeleted += BreakdownStore_BreakdownDeleted;
+
         }
+
 
         public static BreakdownListingViewModel LoadViewModel(BreakdownStore breakdownStore, SelectedBreakdownStore selectedBreakdownStore, ModalNavigationStore modalNavigationStore)
         {
@@ -90,38 +94,41 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
         protected override void Dispose()
         {
-            _BreakdownStore.BreakdownsLoaded -= BreakdownStore_CustomersLoaded;
-            _BreakdownStore.BreakdownAdded -= BreakdownStore_CustomerAdded;
-            _BreakdownStore.BreakdownUpdated -= BreakdownStore_CustomerUpdated;
-            _BreakdownStore.BreakdownDeleted -= BreakdownStore_CustomerDeleted;
+            _breakdownStore.BreakdownsLoaded -= BreakdownStore_BreakdownsLoaded;
+            _breakdownStore.BreakdownAdded -= BreakdownStore_BreakdownAdded;
+            _breakdownStore.BreakdownUpdated -= BreakdownStore_BreakdownUpdated;
+            _breakdownStore.BreakdownDeleted -= BreakdownStore_BreakdownDeleted;
 
             base.Dispose();
         }
 
 
-        private void BreakdownStore_CustomersLoaded()
+
+
+
+        private void BreakdownStore_BreakdownsLoaded()
         {
             _breakdownListingItemViewModels.Clear();
-            foreach (Breakdown employee in _BreakdownStore.Breakdowns)
+            foreach (Breakdown breakdown in _breakdownStore.Breakdowns)
             {
-                AddCustomer(employee);
+                AddBreakdown(breakdown);
             }
         }
-        private void BreakdownStore_CustomerAdded(Breakdown employee)
+        private void BreakdownStore_BreakdownAdded(Breakdown breakdown)
         {
-            AddCustomer(employee);
+            AddBreakdown(breakdown);
         }
 
-        private void BreakdownStore_CustomerUpdated(Breakdown employee)
+        private void BreakdownStore_BreakdownUpdated(Breakdown breakdown)
         {
-            BreakdownListingItemViewModel employeeViewModel = _breakdownListingItemViewModels.FirstOrDefault(e => e.Breakdown.Id == employee.Id);
+            BreakdownListingItemViewModel breakdownViewModel = _breakdownListingItemViewModels.FirstOrDefault(e => e.Breakdown.Id == breakdown.Id);
 
-            if (employeeViewModel != null)
-                employeeViewModel.Update(employee);
+            if (breakdownViewModel != null)
+                breakdownViewModel.Update(breakdown);
         }
 
 
-        private void BreakdownStore_CustomerDeleted(int id)
+        private void BreakdownStore_BreakdownDeleted(int id)
         {
             BreakdownListingItemViewModel itemViewModel = _breakdownListingItemViewModels.FirstOrDefault(e => e.Breakdown?.Id == id);
 
@@ -132,9 +139,9 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
 
 
-        private void AddCustomer(Breakdown employee)
+        private void AddBreakdown(Breakdown breakdown)
         {
-            BreakdownListingItemViewModel itemViewModel = new BreakdownListingItemViewModel(employee, _BreakdownStore, _modalNavigationStore);
+            BreakdownListingItemViewModel itemViewModel = new BreakdownListingItemViewModel(breakdown, _breakdownStore, _modalNavigationStore);
             _breakdownListingItemViewModels.Add(itemViewModel);
         }
     }

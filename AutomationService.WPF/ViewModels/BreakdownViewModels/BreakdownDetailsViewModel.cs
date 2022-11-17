@@ -1,6 +1,7 @@
 ﻿using AutomationService.Domain.Models;
 using AutomationService.EF;
 using AutomationService.WPF.Stores;
+using AutomationService.WPF.ViewModels.BreakdownFileViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
@@ -9,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 {
@@ -17,6 +19,8 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         readonly SelectedBreakdownStore _selectedBreakdownStore;
         readonly AutomationServiceDBContextFactory _contextFactory;
         private Breakdown SelectedBreakdown => _selectedBreakdownStore.SelectedBreakdown;
+
+        readonly BreakdownFileListingViewModel _breakdownFileListingViewModel;
 
 
         public bool HasSelectedBreakdown => SelectedBreakdown != null;
@@ -34,12 +38,16 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         public string CauseDisplay => SelectedBreakdown?.Cause;
         public string ServiceDisplay => SelectedBreakdown?.Service;
 
+        public IEnumerable<BreakdownFileListingItemViewModel> BreakdownFileListingItemViewModels => _breakdownFileListingViewModel.BreakdownFileListingItemViewModels;
 
+        public BreakdownFileListingViewModel BreakdownFileListingViewModel { get; set; }
 
-
-        public BreakdownDetailsViewModel(SelectedBreakdownStore selectedBreakdownStore)
+        public BreakdownDetailsViewModel(SelectedBreakdownStore selectedBreakdownStore, BreakdownFileStore breakdownFileStore)
         {
             _selectedBreakdownStore = selectedBreakdownStore;
+
+            BreakdownFileListingViewModel = BreakdownFileListingViewModel.LoadViewModel(breakdownFileStore);
+            _breakdownFileListingViewModel = new BreakdownFileListingViewModel(breakdownFileStore);
 
             _selectedBreakdownStore.SelectedBreakdownChanged += SelectedBreakdownStore_SelectedCustomerChanged;
 
