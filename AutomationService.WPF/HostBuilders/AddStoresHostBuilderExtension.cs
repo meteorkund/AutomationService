@@ -18,6 +18,9 @@ namespace AutomationService.WPF.HostBuilders
                 services.AddSingleton<ModalNavigationStore>();
                 services.AddSingleton<BreakdownStore>();
                 services.AddSingleton<BreakdownFileStore>();
+                services.AddSingleton<EmployeeStore>();
+
+
                 services.AddSingleton<SelectedBreakdownStore>();
 
             });

@@ -13,7 +13,6 @@ namespace AutomationService.WPF.Commands
     {
         readonly BreakdownListingViewModel _breakdownListingViewModel;
         readonly BreakdownStore _breakdownStore;
-        readonly BreakdownFileStore _breakdownFileStore;
 
 
         public LoadBreakdownsCommand(BreakdownListingViewModel customerListingViewModel, BreakdownStore breakdownStore)

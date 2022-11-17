@@ -18,7 +18,7 @@ namespace AutomationService.WPF.ViewModels
         public TopMenuViewModel(BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
-            AddBreakdownCommand = new OpenAddCustomerCommand(breakdownStore, modalNavigationStore, contextFactory);
+            AddBreakdownCommand = new OpenAddBreakdownCommand(breakdownStore, modalNavigationStore, contextFactory);
         }
     }
 }

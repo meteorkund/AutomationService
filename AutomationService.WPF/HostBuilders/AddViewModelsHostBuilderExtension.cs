@@ -2,6 +2,7 @@
 using AutomationService.WPF.ViewModels;
 using AutomationService.WPF.ViewModels.BreakdownFileViewModels;
 using AutomationService.WPF.ViewModels.BreakdownViewModels;
+using AutomationService.WPF.ViewModels.EmployeeViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -23,9 +24,18 @@ namespace AutomationService.WPF.HostBuilders
 
                 services.AddTransient<BreakdownListingViewModel>(CreateBreakdownListingViewModel);
                 services.AddTransient<BreakdownFileListingViewModel>(CreateBreakdownFileListingViewModel);
+                services.AddTransient<EmployeeListingViewModel>(CreateEmployeeListingViewModel);
             });
 
             return hostBuilder;
+        }
+
+        private static EmployeeListingViewModel CreateEmployeeListingViewModel(IServiceProvider services)
+        {
+            return EmployeeListingViewModel.LoadViewModel
+                (
+                services.GetRequiredService<EmployeeStore>()
+                );
         }
 
         private static BreakdownFileListingViewModel CreateBreakdownFileListingViewModel(IServiceProvider services)

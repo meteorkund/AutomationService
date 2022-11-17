@@ -56,28 +56,29 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="auto"/>
+
 
 
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" MinWidth="350"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
 
-                    <Grid Grid.Row="0">
+                    <Grid Grid.Row="0" Grid.ColumnSpan="2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" MinWidth="100"/>
+                            <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
                         <Border Grid.Column="0" 
                                 Background="Green"
                                 VerticalAlignment="Top"
+                                HorizontalAlignment="Left"
                                 Width="20"
                                 Height="20"
                                 Margin="0 7 20 0" 
@@ -98,6 +99,7 @@
 
                         <TextBlock FontSize="22"                                  
                                    Grid.Column="1"
+                                   HorizontalAlignment="Left"
                                    Style="{StaticResource textBlockHeader}">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0} / {1}">
@@ -156,6 +158,25 @@
                     </Grid>
 
 
+                    <Grid Grid.Row="4" Grid.Column="0" Margin="0 20 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="labelSol"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Style="{StaticResource columnHeader}"
+                                Grid.Column="0"
+                                FontWeight="Bold"
+                                Text="ARIZAYI GİDEREN KİŞİ"/>
+
+                        <TextBlock Style="{StaticResource dataBox}"
+                                Grid.Column="1"
+                                Margin="20 0 0 0"
+                                Text="METE ORKUN DEMİR"/>
+                        <!--Text="{Binding BreakdownSolver}"/>-->
+                    </Grid>
+
+
                     <!--#endregion-->
 
 
@@ -197,6 +218,8 @@
                                 Text="{Binding IsMechanicalDisplay}"/>
                     </Grid>
 
+
+
                     <Grid Grid.Row="4" Grid.Column="1" Margin="0 20 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" SharedSizeGroup="labelSag"/>
@@ -206,13 +229,13 @@
                         <TextBlock Style="{StaticResource columnHeader}"
                                 Grid.Column="0"
                                 FontWeight="Bold"
-                                Text="ARIZAYI GİDEREN KİŞİ"/>
+                                Text="ARIZA KAPATMA TARİH"/>
 
                         <TextBlock Style="{StaticResource dataBox}"
                                 Grid.Column="1"
                                 Margin="20 0 0 0"
-                                Text="METE ORKUN DEMİR"/>
-                                <!--Text="{Binding BreakdownSolver}"/>-->
+                                Text="17.11.2022"/>
+                        <!--Text="{Binding BreakdownSolver}"/>-->
                     </Grid>
 
 
@@ -263,72 +286,25 @@
 
                     <!--#endregion-->
 
-                    <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 40 0 0" VerticalAlignment="Bottom">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
+                    <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 40 0 0" MaxWidth="600">
+                        
                         <Border Grid.Row="0"
                                 BorderBrush="Gray" 
                                 BorderThickness="1"
                                 CornerRadius="5"
                                 SnapsToDevicePixels="True">
 
-                            <DataGrid Style="{DynamicResource DataGridStyle1}"
-                                      CellStyle="{DynamicResource DataGridCellStyle1}"
-                                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                      RowStyle="{DynamicResource DataGridRowStyle1}"
-                                      ItemsSource="{Binding BreakdownFileListingItemViewModels}"
-                                      AutoGenerateColumns="False">
+                            <Grid>
+                                <local:BreakdownFileListing DataContext="{Binding BreakdownFileListingViewModel}"/>
+                            </Grid>
 
-                                <DataGrid.Columns>
-
-                                    <DataGridTextColumn Header="NO" IsReadOnly="True" Binding="{Binding BreakdownFileId}" ElementStyle="{StaticResource Centering}" />
-
-                                    <DataGridTextColumn Header="DOSYA ADI" Width="auto" IsReadOnly="True" Binding="{Binding FileName}" />
-                                    <DataGridTextColumn Header="TÜRÜ" Width="auto" IsReadOnly="True" Binding="{Binding FileExtension}" />
-
-                                    <DataGridTemplateColumn Header="Seçenekler"
-                                            IsReadOnly="True">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-
-
-                                                    <Button 
-                                            Style="{StaticResource gridRemoveButton}"
-                                            Command="{Binding DeleteFileCommand}"
-                                            Margin="5 0 0 0">
-                                                        <Button.Content>
-                                                            <WrapPanel>
-                                                                <Icon:PackIconMaterial 
-                                                        Kind="DeleteOutline"
-                                                        Style="{StaticResource gridButtonIcon}"/>
-                                                                <custom:LoadingSpinner
-                                                        Diameter="14"
-                                                        IsLoading="{Binding IsDeletingFile}"
-                                                        Thickness="2"
-                                                        Margin="7 0 0 0"/>
-                                                            </WrapPanel>
-                                                        </Button.Content>
-
-
-                                                    </Button>
-
-
-
-
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-
-                                    </DataGridTemplateColumn>
-
-
-                                </DataGrid.Columns>
-                            </DataGrid>
                         </Border>
+
+
+                    </Grid>
+
+                    <Grid Grid.Row="8" Grid.Column="1">
+
                         <Button Grid.Row="1" 
                                 Content="Dosya Ekle"
                                 Margin="0 10 0 0"

@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace AutomationService.WPF.Commands
 {
-    public class OpenAddCustomerCommand : CommandBase
+    public class OpenAddBreakdownCommand : CommandBase
     {
         readonly ModalNavigationStore _modalNavigationStore;
         readonly BreakdownStore _breakdownStore;
         readonly AutomationServiceDBContextFactory _contextFactory;
 
-        public OpenAddCustomerCommand(BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory)
+        public OpenAddBreakdownCommand(BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory)
         {
             _breakdownStore = breakdownStore;
             _modalNavigationStore = modalNavigationStore;
