@@ -15,8 +15,4 @@
     <None Remove="Commands\FileCommands\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commands\BreakdownFileCommands\" />
-  </ItemGroup>
-
 </Project>

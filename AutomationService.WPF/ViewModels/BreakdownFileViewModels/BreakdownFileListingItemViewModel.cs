@@ -18,16 +18,17 @@ namespace AutomationService.WPF.ViewModels.BreakdownFileViewModels
         public BreakdownFile BreakdownFile { get; private set; }
 
         public ICommand OpenSelectedFileCommand { get; }
-        public ICommand DeleteFileCommand { get; }
+        public ICommand DeleteSelectedFileCommand { get; }
 
 
         readonly SelectedBreakdownFileStore _selectedBreakdownFileStore;
-        public BreakdownFileListingItemViewModel(BreakdownFile breakdownFile, SelectedBreakdownFileStore selectedBreakdownFileStore)
+        public BreakdownFileListingItemViewModel(BreakdownFile breakdownFile, SelectedBreakdownFileStore selectedBreakdownFileStore, BreakdownFileStore breakdownFileStore)
         {
             BreakdownFile = breakdownFile;
             _selectedBreakdownFileStore= selectedBreakdownFileStore;
 
             OpenSelectedFileCommand = new OpenBreakdownFileCommand(selectedBreakdownFileStore);
+            DeleteSelectedFileCommand = new DeleteBreakdownFileCommand(this, breakdownFileStore);
         }
 
 

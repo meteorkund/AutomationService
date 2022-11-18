@@ -20,6 +20,6 @@ namespace AutomationService.EF.DTOs
         public string? Cause { get; set; }
 
         public CustomerDTO Customer { get; set; }
-        public ICollection<BreadownFileDTO>? BreadownFiles { get; set; }
+        public ICollection<BreakdownFileDTO>? BreadownFiles { get; set; }
     }
 }

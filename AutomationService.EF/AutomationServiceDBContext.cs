@@ -12,7 +12,7 @@ namespace AutomationService.EF
 
         public DbSet<CustomerDTO> Customers { get; set; }
         public DbSet<BreakdownDTO> Breakdowns { get; set; }
-        public DbSet<BreadownFileDTO> BreadownFiles { get; set; }
+        public DbSet<BreakdownFileDTO> BreadownFiles { get; set; }
         public DbSet<EmployeeDTO> Employees { get; set; }
 
 

@@ -44,7 +44,8 @@ namespace AutomationService.WPF.HostBuilders
             return BreakdownFileListingViewModel.LoadViewModel
                 (
                 services.GetRequiredService<BreakdownFileStore>(),
-                services.GetRequiredService<SelectedBreakdownFileStore>()
+                services.GetRequiredService<SelectedBreakdownFileStore>(),
+                services.GetRequiredService<SelectedBreakdownStore>()
                 );
         }
 

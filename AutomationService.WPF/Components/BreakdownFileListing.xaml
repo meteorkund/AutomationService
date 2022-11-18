@@ -13,7 +13,7 @@
               CellStyle="{DynamicResource DataGridCellStyle1}"
               ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
               RowStyle="{DynamicResource DataGridRowStyle1}"
-              ItemsSource="{Binding BreakdownFileListingItemViewModels}"
+              ItemsSource="{Binding GroupedByBreakdownFiles}"
               SelectedItem="{Binding SelectedBreakdownFile}"
               AutoGenerateColumns="False">
 
@@ -48,7 +48,7 @@
                             </Button>
 
                             <Button Style="{StaticResource gridRemoveButton}"
-                                    Command="{Binding DeleteFileCommand}"
+                                    Command="{Binding DeleteSelectedFileCommand}"
                                     Margin="5 0 5 0">
                                 <Button.Content>
                                     <WrapPanel>

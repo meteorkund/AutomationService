@@ -44,9 +44,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         public string CauseDisplay => SelectedBreakdown?.Cause;
         public string ServiceDisplay => SelectedBreakdown?.Service;
 
-        string filePath = "C:\\Users\\YAZILIM\\Desktop\\logo vs\\smile.jpg";
 
-        public IEnumerable<BreakdownFileListingItemViewModel> BreakdownFileListingItemViewModels => _breakdownFileListingViewModel.BreakdownFileListingItemViewModels;
 
         public BreakdownFileListingViewModel BreakdownFileListingViewModel { get; set; }
 
@@ -55,10 +53,10 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
             _selectedBreakdownStore = selectedBreakdownStore;
             _selectedBreakdownFileStore = selectedBreakdownFileStore;
 
-            BreakdownFileListingViewModel = BreakdownFileListingViewModel.LoadViewModel(breakdownFileStore, selectedBreakdownFileStore);
+            BreakdownFileListingViewModel = BreakdownFileListingViewModel.LoadViewModel(breakdownFileStore, selectedBreakdownFileStore, selectedBreakdownStore);
 
 
-            _breakdownFileListingViewModel = new BreakdownFileListingViewModel(breakdownFileStore, selectedBreakdownFileStore);
+            _breakdownFileListingViewModel = new BreakdownFileListingViewModel(breakdownFileStore, selectedBreakdownFileStore,selectedBreakdownStore);
 
             _selectedBreakdownStore.SelectedBreakdownChanged += SelectedBreakdownStore_SelectedCustomerChanged;
 

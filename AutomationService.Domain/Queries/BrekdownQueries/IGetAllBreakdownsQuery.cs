@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationService.Domain.Queries.BrekdownQueries
+namespace AutomationService.Domain.Queries.BrekdownQueries;
+
+public interface IGetAllBreakdownsQuery
 {
-    public interface IGetAllBreakdownsQuery
-    {
-        Task<IEnumerable<Breakdown>> GetAllBreakdowns();
-    }
+    Task<IEnumerable<Breakdown>> GetAllBreakdowns();
 }

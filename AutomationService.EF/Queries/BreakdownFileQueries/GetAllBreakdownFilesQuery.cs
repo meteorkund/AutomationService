@@ -23,7 +23,7 @@ namespace AutomationService.EF.Queries.BreakdownFileQueries
         {
             using (AutomationServiceDBContext context = _contextFactory.Create())
             {
-                IEnumerable<BreadownFileDTO> breadownFileDTOs = await context.BreadownFiles.ToListAsync();
+                IEnumerable<BreakdownFileDTO> breadownFileDTOs = await context.BreadownFiles.ToListAsync();
 
                 return breadownFileDTOs.Select(e => new BreakdownFile
                 {

@@ -1,5 +1,7 @@
 ﻿using AutomationService.Domain.Commands.BreakdownCommands;
+using AutomationService.Domain.Commands.BreakdownFileCommands;
 using AutomationService.EF.Commands.BreakdownCommands;
+using AutomationService.EF.Commands.BreakdownFileCommands;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -19,6 +21,8 @@ namespace AutomationService.WPF.HostBuilders
                 services.AddSingleton<ICreateBreakdownCommand, CreateBreakdownCommand>();
                 services.AddSingleton<IUpdateBreakdownCommand, UpdateBreakdownCommand>();
                 services.AddSingleton<IDeleteBreakdownCommand, DeleteBreakdownCommand>();
+
+                services.AddSingleton<IDeleteBreakdownFileCommand, DeleteBreakdownFileCommand>();
             });
 
             return hostBuilder;
