@@ -15,10 +15,10 @@ namespace AutomationService.WPF.ViewModels
         public ICommand AddBreakdownCommand { get; }
         readonly AutomationServiceDBContextFactory _contextFactory;
 
-        public TopMenuViewModel(BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory)
+        public TopMenuViewModel(BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory, BreakdownSolverStore breakdownSolverStore)
         {
             _contextFactory = contextFactory;
-            AddBreakdownCommand = new OpenAddBreakdownCommand(breakdownStore, modalNavigationStore, contextFactory);
+            AddBreakdownCommand = new OpenAddBreakdownCommand(breakdownStore, modalNavigationStore, contextFactory, breakdownSolverStore);
         }
     }
 }

@@ -16,13 +16,13 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         public int BreakdownId { get; }
         public BreakdownDetailsFormViewModel BreakdownDetailsFormViewModel { get; }
 
-        public EditBreakdownViewModel(Breakdown breakdown, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore)
+        public EditBreakdownViewModel(Breakdown breakdown, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, BreakdownSolverStore breakdownSolverStore)
         {
             BreakdownId = breakdown.Id;
 
             ICommand submitCommand = new EditBreakdownCommand(this, breakdownStore, modalNavigationStore);
             ICommand cancelCommand = new CloseModalCommand(modalNavigationStore);
-            BreakdownDetailsFormViewModel = new BreakdownDetailsFormViewModel(submitCommand, cancelCommand)
+            BreakdownDetailsFormViewModel = new BreakdownDetailsFormViewModel(submitCommand, cancelCommand, breakdownSolverStore)
             {
                 Department = breakdown.Department,
                 Sector = breakdown.Sector,

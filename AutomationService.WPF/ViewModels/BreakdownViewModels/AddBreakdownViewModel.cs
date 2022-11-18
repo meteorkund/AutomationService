@@ -14,11 +14,11 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
     {
         public BreakdownDetailsFormViewModel BreakdownDetailsFormViewModel { get; }
 
-        public AddBreakdownViewModel(BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory)
+        public AddBreakdownViewModel(BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory, BreakdownSolverStore breakdownSolverStore)
         {
             ICommand submitCommand = new AddBreakdownCommand(this, breakdownStore, modalNavigationStore, contextFactory);
             ICommand cancelCommand = new CloseModalCommand(modalNavigationStore);
-            BreakdownDetailsFormViewModel = new BreakdownDetailsFormViewModel(submitCommand, cancelCommand);
+            BreakdownDetailsFormViewModel = BreakdownDetailsFormViewModel.LoadComboboxItems(submitCommand, cancelCommand, breakdownSolverStore);
         }
     }
 }

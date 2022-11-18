@@ -12,6 +12,8 @@ namespace AutomationService.WPF.Commands
     public class OpenEditBreakdownCommand : CommandBase
     {
         readonly BreakdownStore _breakdownStore;
+        readonly BreakdownSolverStore _breakdownSolverStore;
+
         readonly ModalNavigationStore _modalNavigationStore;
         readonly BreakdownListingItemViewModel _breakdownListingItemViewModel;
 
@@ -27,7 +29,7 @@ namespace AutomationService.WPF.Commands
         {
             Breakdown breakdown = _breakdownListingItemViewModel.Breakdown;
 
-            EditBreakdownViewModel editCustomerViewModel = new EditBreakdownViewModel(breakdown, _breakdownStore, _modalNavigationStore);
+            EditBreakdownViewModel editCustomerViewModel = new EditBreakdownViewModel(breakdown, _breakdownStore, _modalNavigationStore,_breakdownSolverStore);
             _modalNavigationStore.CurrentViewModel = editCustomerViewModel;
         }
     }

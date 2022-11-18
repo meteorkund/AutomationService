@@ -1,4 +1,7 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using AutomationService.WPF.Commands.ComboBoxItemsCommand;
+using AutomationService.WPF.Stores;
+using AutomationService.WPF.ViewModels.BreakdownSolverViewModels;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +14,12 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
     public class BreakdownDetailsFormViewModel : ViewModelBase
     {
 
+        readonly BreakdownSolverStore _breakdownSolverStore;
+
+        readonly BreakdownSolverListingViewModel _breakdownSolverListingViewModel;
+        public IEnumerable<BreakdownSolverListingItemViewModel> BreakdownSolverListingItemViewModels => _breakdownSolverListingViewModel.BreakdownSolverListingItemViewModels;
+
+        #region PROPERTIES
 
         private string _country;
 
@@ -142,6 +151,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
                 OnPropertyChanged(nameof(HasErrorMessage));
             }
         }
+        #endregion
 
         public bool HasErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
 
@@ -151,12 +161,29 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         public ICommand SubmitCommand { get; }
         public ICommand CancelCommand { get; }
 
+        public ICommand LoadComboBoxItemsCommand { get; }
+
         public static RelayCommand UploadPhotoCommand { get; set; }
 
-        public BreakdownDetailsFormViewModel(ICommand submitCommand, ICommand cancelCommand)
+        public BreakdownSolverListingViewModel BreakdownSolverListingViewModel { get; }
+
+        public BreakdownDetailsFormViewModel(ICommand submitCommand, ICommand cancelCommand, BreakdownSolverStore breakdownSolverStore)
         {
             SubmitCommand = submitCommand;
             CancelCommand = cancelCommand;
+            _breakdownSolverStore = breakdownSolverStore;
+
+            LoadComboBoxItemsCommand = new LoadComboBoxItemsCommand(this, breakdownSolverStore);
+
+            _breakdownSolverListingViewModel = new BreakdownSolverListingViewModel(this, breakdownSolverStore);
+        }
+
+        public static BreakdownDetailsFormViewModel LoadComboboxItems(ICommand submitCommand, ICommand cancelCommand, BreakdownSolverStore breakdownSolverStore)
+        {
+            BreakdownDetailsFormViewModel viewModel = new BreakdownDetailsFormViewModel(submitCommand, cancelCommand, breakdownSolverStore);
+            viewModel.LoadComboBoxItemsCommand.Execute(null);
+            return viewModel;
+
         }
 
     }

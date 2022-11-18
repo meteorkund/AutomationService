@@ -1,5 +1,4 @@
-﻿using AutomationService.Domain.Models.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace AutomationService.Domain.Models
 {
-    public class Employee
+    public class BreakdownSolver
     {
+        public BreakdownSolver(int id, string nameSurname)
+        {
+            Id = id;
+            NameSurname = nameSurname;
+        }
+
         public int Id { get; set; }
         public string NameSurname { get; set; }
-        public ICollection<Breakdown> Customer { get; set; } 
     }
 }

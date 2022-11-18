@@ -1,16 +1,14 @@
-﻿using AutomationService.Domain.Models.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationService.Domain.Models
+namespace AutomationService.EF.DTOs
 {
-    public class Employee
+    public class BreakdownSolverDTO
     {
         public int Id { get; set; }
         public string NameSurname { get; set; }
-        public ICollection<Breakdown> Customer { get; set; } 
     }
 }

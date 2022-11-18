@@ -231,7 +231,7 @@
 
 
 
-                    <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 40 0 0">
+                    <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 10 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" SharedSizeGroup="label"/>
                             <ColumnDefinition Width="*" MaxWidth="200"/>
@@ -250,6 +250,31 @@
                             Grid.Column="1"
                             Margin="20 0 0 0"
                             Text="{Binding CreatorName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <Grid Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 10 0 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="label"/>
+                            <ColumnDefinition Width="*" MaxWidth="200"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Style="{StaticResource VacationTextBlock}"
+                            Grid.Column="0"
+                            FontWeight="Bold"
+                            Text="ARIZAYI ÇÖZEN" VerticalAlignment="Center"/>
+
+                        <ComboBox Grid.Column="1"
+                                  Margin="20 0 0 0"
+                                  
+                                  ItemsSource="{Binding BreakdownSolverListingItemViewModels}"
+                                  SelectedItem="{Binding SelectedBreakdownSolverItem,Mode=TwoWay}"
+                                  SelectedValue="{Binding SelectedBreakdownSolverValue}"
+                                  SelectedIndex="{Binding SelectedIndexCommon}"
+                                  
+                                  DisplayMemberPath="BreakdownSolver.NameSurname"
+                                  SelectedValuePath="BreakdownSolver.Id"
+                                  IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
 
 

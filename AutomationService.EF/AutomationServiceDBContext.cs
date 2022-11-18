@@ -14,6 +14,7 @@ namespace AutomationService.EF
         public DbSet<BreakdownDTO> Breakdowns { get; set; }
         public DbSet<BreakdownFileDTO> BreadownFiles { get; set; }
         public DbSet<EmployeeDTO> Employees { get; set; }
+        public DbSet<BreakdownSolverDTO> BreakdownSolvers { get; set; }
 
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
