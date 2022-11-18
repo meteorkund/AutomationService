@@ -16,13 +16,13 @@ namespace AutomationService.WPF.Commands.BreakdownFileCommands
         {
             _selectedBreakdownFileStore= selectedBreakdownFileStore;
         }
+
+        string filePath => _selectedBreakdownFileStore?.SelectedBreakdownFile?.Path;
         public override async Task ExecuteAsync(object parameter)
         {
             try
-            {              
-                
-                MessageBox.Show(_selectedBreakdownFileStore.SelectedBreakdownFile?.FileName);
-                //Process.Start(filePath);
+            {
+                Process.Start("explorer.exe", filePath);
             }
             catch
             {

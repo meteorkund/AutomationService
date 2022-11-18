@@ -23,7 +23,6 @@
 
             <DataGridTextColumn Header="DOSYA ADI" Width="auto" IsReadOnly="True" Binding="{Binding FileName}" />
             <DataGridTextColumn Header="TÜRÜ" Width="*" IsReadOnly="True" Binding="{Binding FileExtension}" />
-            <DataGridTextColumn Header="YOLU" Width="*" IsReadOnly="True" Binding="{Binding FilePath}" />
 
             <DataGridTemplateColumn Header="Seçenekler"
                                             IsReadOnly="True"

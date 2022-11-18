@@ -22,6 +22,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
     public class BreakdownDetailsViewModel : ViewModelBase
     {
         readonly SelectedBreakdownStore _selectedBreakdownStore;
+        readonly SelectedBreakdownFileStore _selectedBreakdownFileStore;
         readonly AutomationServiceDBContextFactory _contextFactory;
         private Breakdown SelectedBreakdown => _selectedBreakdownStore.SelectedBreakdown;
 
@@ -49,20 +50,21 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
         public BreakdownFileListingViewModel BreakdownFileListingViewModel { get; set; }
 
-        public BreakdownDetailsViewModel(SelectedBreakdownStore selectedBreakdownStore, BreakdownFileStore breakdownFileStore)
+        public BreakdownDetailsViewModel(SelectedBreakdownStore selectedBreakdownStore, BreakdownFileStore breakdownFileStore, SelectedBreakdownFileStore selectedBreakdownFileStore)
         {
             _selectedBreakdownStore = selectedBreakdownStore;
+            _selectedBreakdownFileStore = selectedBreakdownFileStore;
 
-            BreakdownFileListingViewModel = BreakdownFileListingViewModel.LoadViewModel(breakdownFileStore);
+            BreakdownFileListingViewModel = BreakdownFileListingViewModel.LoadViewModel(breakdownFileStore, selectedBreakdownFileStore);
 
 
-            _breakdownFileListingViewModel = new BreakdownFileListingViewModel(breakdownFileStore);
+            _breakdownFileListingViewModel = new BreakdownFileListingViewModel(breakdownFileStore, selectedBreakdownFileStore);
 
             _selectedBreakdownStore.SelectedBreakdownChanged += SelectedBreakdownStore_SelectedCustomerChanged;
 
 
         }
-
+         public ICommand AddFileCommand { get; }
         protected override void Dispose()
         {
             _selectedBreakdownStore.SelectedBreakdownChanged -= SelectedBreakdownStore_SelectedCustomerChanged;

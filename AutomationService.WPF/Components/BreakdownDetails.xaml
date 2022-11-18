@@ -309,7 +309,7 @@
                                 Content="Dosya Ekle"
                                 Margin="0 10 0 0"
                                 HorizontalAlignment="Right"
-                                Command="{Binding addFileCommand}"
+                                Command="{Binding AddFileCommand}"
                                 Style="{StaticResource addButton}" />
 
                     </Grid>

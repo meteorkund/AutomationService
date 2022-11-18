@@ -17,6 +17,7 @@ namespace AutomationService.WPF.Stores
             _breakdownFileStore = breakdownFileStore;
         }
 
+
         public BreakdownFile SelectedBreakdownFile
         {
             get

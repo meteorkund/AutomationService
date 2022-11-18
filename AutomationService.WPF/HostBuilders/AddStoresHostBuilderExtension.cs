@@ -22,6 +22,7 @@ namespace AutomationService.WPF.HostBuilders
 
 
                 services.AddSingleton<SelectedBreakdownStore>();
+                services.AddSingleton<SelectedBreakdownFileStore>();
 
             });
 

@@ -16,20 +16,23 @@ public class BreakdownFileListingViewModel : ViewModelBase
     readonly ObservableCollection<BreakdownFileListingItemViewModel> _breakdownFileListingItemViewModels;
     public IEnumerable<BreakdownFileListingItemViewModel> BreakdownFileListingItemViewModels => _breakdownFileListingItemViewModels;
     readonly BreakdownFileStore _breakdownFileStore;
-
+    readonly SelectedBreakdownFileStore _selectedBreakdownFileStore;
+    readonly BreakdownFile _breakdownFile;
     public ICommand LoadBreakdownFilesCommand { get; }
 
-    public BreakdownFileListingItemViewModel BreakdownFileListingItemViewModel { get; set; }
+    readonly BreakdownFileListingItemViewModel _breakdownFileListingItemViewModel;
 
-    string filePath = "xx";
-    public BreakdownFileListingViewModel(BreakdownFileStore breakdownFileStore)
+    public BreakdownFileListingViewModel(BreakdownFileStore breakdownFileStore,SelectedBreakdownFileStore selectedBreakdownFileStore)
     {
         _breakdownFileStore = breakdownFileStore;
+        _selectedBreakdownFileStore = selectedBreakdownFileStore;
 
 
         _breakdownFileListingItemViewModels = new ObservableCollection<BreakdownFileListingItemViewModel>();
 
         LoadBreakdownFilesCommand = new LoadBreakdownFilesCommand(this, breakdownFileStore);
+
+        _breakdownFileListingItemViewModel = new BreakdownFileListingItemViewModel(_breakdownFile, selectedBreakdownFileStore);
 
         _breakdownFileStore.BreakdownFilesLoaded += BreakdownFileStore_BreakdownFilesLoaded;
 
@@ -43,13 +46,14 @@ public class BreakdownFileListingViewModel : ViewModelBase
         set
         {
             _selectedBreakdownFile = value;
+            _selectedBreakdownFileStore.SelectedBreakdownFile = value?.BreakdownFile;
             OnPropertyChanged(nameof(SelectedBreakdownFile));
         }
     }
 
-    public static BreakdownFileListingViewModel LoadViewModel(BreakdownFileStore breakdownFileStore)
+    public static BreakdownFileListingViewModel LoadViewModel(BreakdownFileStore breakdownFileStore, SelectedBreakdownFileStore selectedBreakdownFileStore)
     {
-        BreakdownFileListingViewModel viewModel = new BreakdownFileListingViewModel(breakdownFileStore);
+        BreakdownFileListingViewModel viewModel = new BreakdownFileListingViewModel(breakdownFileStore, selectedBreakdownFileStore);
 
         viewModel.LoadBreakdownFilesCommand.Execute(null);
 
@@ -67,7 +71,7 @@ public class BreakdownFileListingViewModel : ViewModelBase
 
     private void AddBreakdownFile(BreakdownFile breakdownFile)
     {
-        BreakdownFileListingItemViewModel itemViewModel = new BreakdownFileListingItemViewModel(breakdownFile);
+        BreakdownFileListingItemViewModel itemViewModel = new BreakdownFileListingItemViewModel(breakdownFile, _selectedBreakdownFileStore);
         _breakdownFileListingItemViewModels.Add(itemViewModel);
     }
 

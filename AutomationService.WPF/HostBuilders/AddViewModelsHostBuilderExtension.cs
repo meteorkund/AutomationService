@@ -1,4 +1,5 @@
-﻿using AutomationService.WPF.Stores;
+﻿using AutomationService.WPF.Commands;
+using AutomationService.WPF.Stores;
 using AutomationService.WPF.ViewModels;
 using AutomationService.WPF.ViewModels.BreakdownFileViewModels;
 using AutomationService.WPF.ViewModels.BreakdownViewModels;
@@ -20,7 +21,7 @@ namespace AutomationService.WPF.HostBuilders
             hostBuilder.ConfigureServices((context, services) =>
             {
                 services.AddSingleton<MainViewModel>();
-                services.AddTransient<BreakdownsViewModel>();
+                services.AddSingleton<BreakdownsViewModel>();
 
                 services.AddTransient<BreakdownListingViewModel>(CreateBreakdownListingViewModel);
                 services.AddTransient<BreakdownFileListingViewModel>(CreateBreakdownFileListingViewModel);
@@ -42,7 +43,8 @@ namespace AutomationService.WPF.HostBuilders
         {
             return BreakdownFileListingViewModel.LoadViewModel
                 (
-                services.GetRequiredService<BreakdownFileStore>()
+                services.GetRequiredService<BreakdownFileStore>(),
+                services.GetRequiredService<SelectedBreakdownFileStore>()
                 );
         }
 

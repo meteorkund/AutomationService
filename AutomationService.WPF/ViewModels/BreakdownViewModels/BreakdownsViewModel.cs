@@ -19,12 +19,12 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
         public TopMenuViewModel TopMenuViewModel { get; }
         public LeftMenuViewModel LeftMenuViewModel { get; }
-        public BreakdownsViewModel(BreakdownStore employeeStore, SelectedBreakdownStore selectedBreakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory, BreakdownFileStore breakdownFileStore)
+        public BreakdownsViewModel(BreakdownStore employeeStore, SelectedBreakdownStore selectedBreakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory, BreakdownFileStore breakdownFileStore, SelectedBreakdownFileStore selectedBreakdownFileStore)
         {
             _contextFactory = contextFactory;
 
             BreakdownListingViewModel = BreakdownListingViewModel.LoadViewModel(employeeStore, selectedBreakdownStore, modalNavigationStore);
-            BreakdownDetailsViewModel = new BreakdownDetailsViewModel(selectedBreakdownStore, breakdownFileStore);
+            BreakdownDetailsViewModel = new BreakdownDetailsViewModel(selectedBreakdownStore, breakdownFileStore, selectedBreakdownFileStore);
 
             TopMenuViewModel = new TopMenuViewModel(employeeStore, modalNavigationStore, contextFactory);
             LeftMenuViewModel = new LeftMenuViewModel();
