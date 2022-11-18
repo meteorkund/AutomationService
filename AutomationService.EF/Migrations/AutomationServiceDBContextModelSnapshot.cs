@@ -30,6 +30,9 @@ namespace AutomationService.EF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("BreakdownSolverId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Cause")
                         .HasColumnType("nvarchar(max)");
 
@@ -39,9 +42,11 @@ namespace AutomationService.EF.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Department")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsElectrical")
                         .HasColumnType("bit");
@@ -49,9 +54,8 @@ namespace AutomationService.EF.Migrations
                     b.Property<bool>("IsMechanical")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Sector")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("SectorId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Service")
                         .HasColumnType("nvarchar(max)");
@@ -64,7 +68,15 @@ namespace AutomationService.EF.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BreakdownSolverId");
+
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("SectorId");
 
                     b.ToTable("Breakdowns");
                 });
@@ -138,15 +150,26 @@ namespace AutomationService.EF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("AutomationService.EF.DTOs.DepartmentDTO", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("DepartmentName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("AutomationService.EF.DTOs.EmployeeDTO", b =>
@@ -166,6 +189,23 @@ namespace AutomationService.EF.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("AutomationService.EF.DTOs.SectorDTO", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("SectorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sectors");
+                });
+
             modelBuilder.Entity("CustomerDTOEmployeeDTO", b =>
                 {
                     b.Property<int>("CustomersDTOId")
@@ -183,13 +223,45 @@ namespace AutomationService.EF.Migrations
 
             modelBuilder.Entity("AutomationService.EF.DTOs.BreakdownDTO", b =>
                 {
+                    b.HasOne("AutomationService.EF.DTOs.BreakdownSolverDTO", "BreakdownSolver")
+                        .WithMany()
+                        .HasForeignKey("BreakdownSolverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("AutomationService.EF.DTOs.CustomerDTO", "Customer")
                         .WithMany("Breakdowns")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("AutomationService.EF.DTOs.DepartmentDTO", "Department")
+                        .WithMany("BreakdownDTOs")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AutomationService.EF.DTOs.EmployeeDTO", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AutomationService.EF.DTOs.SectorDTO", "Sector")
+                        .WithMany("BreakdownDTOs")
+                        .HasForeignKey("SectorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BreakdownSolver");
+
                     b.Navigation("Customer");
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Sector");
                 });
 
             modelBuilder.Entity("AutomationService.EF.DTOs.BreakdownFileDTO", b =>
@@ -226,6 +298,16 @@ namespace AutomationService.EF.Migrations
             modelBuilder.Entity("AutomationService.EF.DTOs.CustomerDTO", b =>
                 {
                     b.Navigation("Breakdowns");
+                });
+
+            modelBuilder.Entity("AutomationService.EF.DTOs.DepartmentDTO", b =>
+                {
+                    b.Navigation("BreakdownDTOs");
+                });
+
+            modelBuilder.Entity("AutomationService.EF.DTOs.SectorDTO", b =>
+                {
+                    b.Navigation("BreakdownDTOs");
                 });
 #pragma warning restore 612, 618
         }

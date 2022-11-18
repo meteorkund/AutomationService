@@ -199,13 +199,17 @@
                             FontWeight="Bold"
                             Text="DEPARTMAN" VerticalAlignment="Center"/>
 
-                        <TextBox
-                            Style="{StaticResource TextBoxStyle1}"
-                            KeyboardNavigation.TabIndex="2"
-                            MaxLength="20"
-                            Grid.Column="1"
-                            Margin="20 0 0 0"
-                            Text="{Binding Department, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Column="1"
+                                  Margin="20 0 0 0"
+                                  
+                                  ItemsSource="{Binding DepartmentListingItemViewModels}"
+                                  SelectedItem="{Binding SelectedDepartmentItem,Mode=TwoWay}"
+                                  SelectedValue="{Binding SelectedDepartmentValue}"
+                                  SelectedIndex="{Binding SelectedIndexCommon}"
+                                  
+                                  DisplayMemberPath="Department.DepartmentName"
+                                  SelectedValuePath="Department.Id"
+                                  IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
 
                     <Grid Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Margin="0 10 0 0">
@@ -220,13 +224,17 @@
                             FontWeight="Bold"
                             Text="BÖLÜM" VerticalAlignment="Center"/>
 
-                        <TextBox
-                            Style="{StaticResource TextBoxStyle1}"
-                            KeyboardNavigation.TabIndex="2"
-                            MaxLength="20"
-                            Grid.Column="1"
-                            Margin="20 0 0 0"
-                            Text="{Binding Sector, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Column="1"
+                                  Margin="20 0 0 0"
+                                  
+                                  ItemsSource="{Binding SectorListingItemViewModels}"
+                                  SelectedItem="{Binding SelectedSectorItem,Mode=TwoWay}"
+                                  SelectedValue="{Binding SelectedSectorValue}"
+                                  SelectedIndex="{Binding SelectedIndexCommon}"
+                                  
+                                  DisplayMemberPath="Sector.SectorName"
+                                  SelectedValuePath="Sector.Id"
+                                  IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
 
 
@@ -243,13 +251,17 @@
                             FontWeight="Bold"
                             Text="KAYIT AÇAN" VerticalAlignment="Center"/>
 
-                        <TextBox
-                            Style="{StaticResource TextBoxStyle1}"
-                            KeyboardNavigation.TabIndex="2"
-                            MaxLength="20"
-                            Grid.Column="1"
-                            Margin="20 0 0 0"
-                            Text="{Binding CreatorName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Column="1"
+                                  Margin="20 0 0 0"
+                                  
+                                  ItemsSource="{Binding EmployeeListingItemViewModels}"
+                                  SelectedItem="{Binding SelectedEmployeeSolverItem,Mode=TwoWay}"
+                                  SelectedValue="{Binding SelectedEmployeeValue}"
+                                  SelectedIndex="{Binding SelectedIndexCommon}"
+                                  
+                                  DisplayMemberPath="Employee.NameSurname"
+                                  SelectedValuePath="Employee.Id"
+                                  IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
 
                     <Grid Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 10 0 10">

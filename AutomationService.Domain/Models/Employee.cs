@@ -9,8 +9,14 @@ namespace AutomationService.Domain.Models
 {
     public class Employee
     {
+        public Employee(int id, string nameSurname)
+        {
+            Id = id;
+            NameSurname = nameSurname;
+        }
+
         public int Id { get; set; }
         public string NameSurname { get; set; }
-        public ICollection<Breakdown> Customer { get; set; } 
+        public ICollection<Customer> Customer { get; set; } 
     }
 }

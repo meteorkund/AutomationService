@@ -27,16 +27,15 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         private Breakdown SelectedBreakdown => _selectedBreakdownStore.SelectedBreakdown;
 
         readonly BreakdownFileListingViewModel _breakdownFileListingViewModel;
-        string _filePath;
 
         public bool HasSelectedBreakdown => SelectedBreakdown != null;
 
-        public bool BreakdownStatusDisplay => SelectedBreakdown.Status;
+        public bool BreakdownStatusDisplay => (bool)SelectedBreakdown?.Status;
         public string CompanyNameDisplay => SelectedBreakdown?.Customer.CompanyName ?? "Lütfen bir şirket seçin.";
         public string CountryDisplay => SelectedBreakdown?.Customer.Country;
 
-        public string DepartmentDisplay => SelectedBreakdown?.Department;
-        public string SectorDisplay => SelectedBreakdown?.Sector;
+        public string DepartmentDisplay => SelectedBreakdown?.Department.DepartmentName;
+        public string SectorDisplay => SelectedBreakdown?.Sector.SectorName;
 
         public string IsElectricalDisplay => SelectedBreakdown?.IsElectrical ?? false ? "EVET" : "HAYIR";
         public string IsMechanicalDisplay => SelectedBreakdown?.IsMechanical ?? false ? "EVET" : "HAYIR";
@@ -44,6 +43,11 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         public string CauseDisplay => SelectedBreakdown?.Cause;
         public string ServiceDisplay => SelectedBreakdown?.Service;
 
+        public string CreatorNameDisplay => SelectedBreakdown?.Employee?.NameSurname;
+        public string BreakdownSolverDisplay => SelectedBreakdown?.BreakdownSolver.NameSurname;
+
+        public string CreatedDateDisplay => SelectedBreakdown?.CreatedDate.ToString();
+        public string UpdatedDateDisplay => SelectedBreakdown?.UpdatedDate.ToString();
 
 
         public BreakdownFileListingViewModel BreakdownFileListingViewModel { get; set; }
@@ -81,6 +85,10 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
             OnPropertyChanged(nameof(IsMechanicalDisplay));
             OnPropertyChanged(nameof(CauseDisplay));
             OnPropertyChanged(nameof(ServiceDisplay));
+            OnPropertyChanged(nameof(CreatorNameDisplay));
+
+            OnPropertyChanged(nameof(CreatedDateDisplay));
+            OnPropertyChanged(nameof(UpdatedDateDisplay));
         }
     }
 }

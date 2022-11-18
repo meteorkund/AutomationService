@@ -1,6 +1,9 @@
 ﻿using AutomationService.WPF.Commands.ComboBoxItemsCommand;
 using AutomationService.WPF.Stores;
-using AutomationService.WPF.ViewModels.BreakdownSolverViewModels;
+using AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.BreakdownSolverViewModels;
+using AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.DepartmentViewModels;
+using AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.EmployeeViewModels;
+using AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.SectorViewModels;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -15,9 +18,18 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
     {
 
         readonly BreakdownSolverStore _breakdownSolverStore;
+        readonly DepartmentStore _departmentStore;
+        readonly SectorStore _sectorStore;
+        readonly EmployeeStore _employeeStore;
 
         readonly BreakdownSolverListingViewModel _breakdownSolverListingViewModel;
+        readonly DepartmentListingViewModel _departmentListingViewModel;
+        readonly SectorListingViewModel _sectorListingViewModel;
+        readonly EmployeeListingViewModel _employeeListingViewModel;
         public IEnumerable<BreakdownSolverListingItemViewModel> BreakdownSolverListingItemViewModels => _breakdownSolverListingViewModel.BreakdownSolverListingItemViewModels;
+        public IEnumerable<DepartmentListingItemViewModel> DepartmentListingItemViewModels => _departmentListingViewModel.DepartmentListingItemViewModels;
+        public IEnumerable<SectorListingItemViewModel> SectorListingItemViewModels => _sectorListingViewModel.SectorListingItemViewModels;
+        public IEnumerable<EmployeeListingItemViewModel> EmployeeListingItemViewModels => _employeeListingViewModel.EmployeeListingItemViewModels;
 
         #region PROPERTIES
 
@@ -165,25 +177,115 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
         public static RelayCommand UploadPhotoCommand { get; set; }
 
-        public BreakdownSolverListingViewModel BreakdownSolverListingViewModel { get; }
-
-        public BreakdownDetailsFormViewModel(ICommand submitCommand, ICommand cancelCommand, BreakdownSolverStore breakdownSolverStore)
+        public BreakdownDetailsFormViewModel(ICommand submitCommand, ICommand cancelCommand, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore)
         {
             SubmitCommand = submitCommand;
             CancelCommand = cancelCommand;
-            _breakdownSolverStore = breakdownSolverStore;
 
-            LoadComboBoxItemsCommand = new LoadComboBoxItemsCommand(this, breakdownSolverStore);
+            _breakdownSolverStore = breakdownSolverStore;
+            _departmentStore = departmentStore;
+            _sectorStore = sectorStore;
 
             _breakdownSolverListingViewModel = new BreakdownSolverListingViewModel(this, breakdownSolverStore);
+            _departmentListingViewModel = new DepartmentListingViewModel(this, departmentStore);
+            _sectorListingViewModel = new SectorListingViewModel(this, sectorStore);
+            _employeeListingViewModel = new EmployeeListingViewModel(this, employeeStore);
+
         }
 
-        public static BreakdownDetailsFormViewModel LoadComboboxItems(ICommand submitCommand, ICommand cancelCommand, BreakdownSolverStore breakdownSolverStore)
-        {
-            BreakdownDetailsFormViewModel viewModel = new BreakdownDetailsFormViewModel(submitCommand, cancelCommand, breakdownSolverStore);
-            viewModel.LoadComboBoxItemsCommand.Execute(null);
-            return viewModel;
 
+
+
+
+        private SectorListingItemViewModel _selectedSectorItem;
+
+        public SectorListingItemViewModel SelectedSectorItem
+        {
+            get { return _selectedSectorItem; }
+            set
+            {
+                _selectedSectorItem = value;
+                OnPropertyChanged(nameof(SelectedSectorItem));
+            }
+        }
+
+
+        private DepartmentListingItemViewModel _selectedDepartmentItem;
+        public DepartmentListingItemViewModel SelectedDepartmentItem
+        {
+            get { return _selectedDepartmentItem; }
+            set
+            {
+                _selectedDepartmentItem = value;
+                OnPropertyChanged(nameof(SelectedDepartmentItem));
+            }
+        }
+
+        private BreakdownSolverListingItemViewModel _selectedBreakdownSolverItem;
+        public BreakdownSolverListingItemViewModel SelectedBreakdownSolverItem
+        {
+            get { return _selectedBreakdownSolverItem; }
+            set
+            {
+                _selectedBreakdownSolverItem = value;
+                OnPropertyChanged(nameof(SelectedBreakdownSolverItem));
+            }
+        }
+
+        private EmployeeListingItemViewModel _selectedEmployeeItem;
+
+        public EmployeeListingItemViewModel SelectedEmployeeItem
+        {
+            get { return _selectedEmployeeItem; }
+            set
+            {
+                _selectedEmployeeItem = value;
+                OnPropertyChanged(nameof(SelectedEmployeeItem));
+            }
+        }
+
+
+        private int _selectedSectorValue;
+
+        public int SelectedSectorValue
+        {
+            get { return _selectedSectorValue; }
+            set { _selectedSectorValue = value; }
+        }
+
+        private int _selectedDepartmentValue;
+
+        public int SelectedDepartmentValue
+        {
+            get { return _selectedDepartmentValue; }
+            set { _selectedDepartmentValue = value; }
+        }
+
+        private int _selectedBreakdownSolverValue;
+
+        public int SelectedBreakdownSolverValue
+        {
+            get { return _selectedBreakdownSolverValue; }
+            set { _selectedBreakdownSolverValue = value; }
+        }
+
+        private int _selectedEmployeeValue;
+
+        public int SelectedEmployeeValue
+        {
+            get { return _selectedEmployeeValue; }
+            set { _selectedEmployeeValue = value; }
+        }
+
+
+
+
+        private int _selectedIndexCommon;
+
+        public int SelectedIndexCommon
+        {
+            get { return _selectedIndexCommon; }
+            set { _selectedIndexCommon = value; }
         }
 
     }

@@ -15,11 +15,12 @@ namespace AutomationService.WPF.Commands
         readonly BreakdownStore _breakdownStore;
 
 
-        public LoadBreakdownsCommand(BreakdownListingViewModel customerListingViewModel, BreakdownStore breakdownStore)
+        public LoadBreakdownsCommand(BreakdownListingViewModel breakdownListingViewModel, BreakdownStore breakdownStore)
         {
-            _breakdownListingViewModel = customerListingViewModel;
+            _breakdownListingViewModel = breakdownListingViewModel;
             _breakdownStore = breakdownStore;
         }
+
 
         public override async void Execute(object? parameter)
         {

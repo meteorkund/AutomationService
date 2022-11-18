@@ -12,10 +12,16 @@ namespace AutomationService.WPF.Commands.ComboBoxItemsCommand
     public class LoadComboBoxItemsCommand : CommandBase
     {
         readonly BreakdownSolverStore _breakdownSolverStore;
+        readonly DepartmentStore  _departmentStore;
+        readonly SectorStore _sectorStore;
+        readonly EmployeeStore _employeeStore;
 
-        public LoadComboBoxItemsCommand(BreakdownDetailsFormViewModel breakdownDetailsFormViewModel, BreakdownSolverStore breakdownSolverStore)
+        public LoadComboBoxItemsCommand(BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore)
         {
             _breakdownSolverStore = breakdownSolverStore;
+            _departmentStore = departmentStore;
+            _sectorStore = sectorStore;
+            _employeeStore = employeeStore;
         }
 
         public override async void Execute(object? parameter)
@@ -23,10 +29,13 @@ namespace AutomationService.WPF.Commands.ComboBoxItemsCommand
             try
             {
                 await _breakdownSolverStore.LoadBreakdownSolvers();
+                await _departmentStore.LoadDepartments();
+                await _sectorStore.LoadSectors(); 
+                await _employeeStore.LoadEmployees();
             }
             catch
             {
-                MessageBox.Show("PERSONELLER YÜKLENİRKEN HATAYLA KARŞILAŞILDI!");
+                MessageBox.Show("VERİLER YÜKLENİRKEN HATAYLA KARŞILAŞILDI!");
             }
         }
     }

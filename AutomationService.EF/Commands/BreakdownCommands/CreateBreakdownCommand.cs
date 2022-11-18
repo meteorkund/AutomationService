@@ -25,6 +25,8 @@ namespace AutomationService.EF.Commands.BreakdownCommands
             {
                 BreakdownDTO breakdownDTO = new BreakdownDTO()
                 {
+                    Status = true,
+
                     IsElectrical = breakdown.IsElectrical,
                     IsMechanical = breakdown.IsMechanical,
 
@@ -32,9 +34,9 @@ namespace AutomationService.EF.Commands.BreakdownCommands
                     Service = breakdown.Service,
 
                     CustomerId = breakdown.Customer.Id,
-
-                    Department = breakdown.Department,
-                    Sector = breakdown.Sector,
+                    DepartmentId= breakdown.Department.Id,
+                    SectorId= breakdown.Sector.Id,
+                    
 
                 };
 

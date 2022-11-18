@@ -1,4 +1,4 @@
-﻿using AutomationService.Domain.Models;
+﻿using AutomationService.Domain.Models.Common;
 using AutomationService.Domain.Queries.BreakdownSolverQueries;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace AutomationService.WPF.Stores
         readonly List<BreakdownSolver> _breakdownSolvers;
         public IEnumerable<BreakdownSolver> BreakdownSolvers => _breakdownSolvers;
 
-        public event Action<BreakdownSolver> BreakdownSolversLoaded;
+        public event Action BreakdownSolversLoaded;
 
         public BreakdownSolverStore(IGetAllBreakdownSolverQuery getAllBreakdownSolver)
         {

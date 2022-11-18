@@ -56,6 +56,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="auto"/>
 
@@ -76,7 +77,6 @@
                         </Grid.ColumnDefinitions>
 
                         <Border Grid.Column="0" 
-                                Background="Green"
                                 VerticalAlignment="Top"
                                 HorizontalAlignment="Left"
                                 Width="20"
@@ -86,10 +86,10 @@
                             <Border.Style>
                                 <Style>
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding DurumDisplay}" Value="True">
+                                        <DataTrigger Binding="{Binding BreakdownStatusDisplay}" Value="True">
                                             <Setter Property="Border.Background" Value="Green"/>
                                         </DataTrigger>
-                                        <DataTrigger Binding="{Binding DurumDisplay}" Value="False">
+                                        <DataTrigger Binding="{Binding BreakdownStatusDisplay}" Value="False">
                                             <Setter Property="Border.Background" Value="Red"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -167,14 +167,33 @@
                         <TextBlock Style="{StaticResource columnHeader}"
                                 Grid.Column="0"
                                 FontWeight="Bold"
+                                Text="ARIZA KAYDI AÇAN"/>
+
+                        <TextBlock Style="{StaticResource dataBox}"
+                                   Grid.Column="1"
+                                   Margin="20 0 0 0"
+                                   Text="{Binding CreatorNameDisplay}"/>
+                    </Grid>
+
+
+                    <Grid Grid.Row="5" Grid.Column="0" Margin="0 20 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="labelSol"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Style="{StaticResource columnHeader}"
+                                Grid.Column="0"
+                                FontWeight="Bold"
                                 Text="ARIZAYI GİDEREN KİŞİ"/>
 
                         <TextBlock Style="{StaticResource dataBox}"
                                 Grid.Column="1"
                                 Margin="20 0 0 0"
-                                Text="METE ORKUN DEMİR"/>
-                        <!--Text="{Binding BreakdownSolver}"/>-->
+                               Text="{Binding BreakdownSolverDisplay}"/>
                     </Grid>
+
+
 
 
                     <!--#endregion-->
@@ -219,8 +238,24 @@
                     </Grid>
 
 
-
                     <Grid Grid.Row="4" Grid.Column="1" Margin="0 20 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="labelSag"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Style="{StaticResource columnHeader}"
+                                Grid.Column="0"
+                                FontWeight="Bold"
+                                Text="ARIZA AÇILMA TARİH"/>
+
+                        <TextBlock Style="{StaticResource dataBox}"
+                                Grid.Column="1"
+                                Margin="20 0 0 0"
+                                Text="{Binding CreatedDateDisplay}"/>
+                    </Grid>
+
+                    <Grid Grid.Row="5" Grid.Column="1" Margin="0 20 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" SharedSizeGroup="labelSag"/>
                             <ColumnDefinition Width="auto"/>
@@ -234,17 +269,14 @@
                         <TextBlock Style="{StaticResource dataBox}"
                                 Grid.Column="1"
                                 Margin="20 0 0 0"
-                                Text="17.11.2022"/>
-                        <!--Text="{Binding BreakdownSolver}"/>-->
+                                Text="{Binding UpdatedDateDisplay}"/>
                     </Grid>
-
-
 
                     <!--#endregion-->
 
                     <!--#region ALT DETAY-->
 
-                    <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 40 0 0">
+                    <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 40 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" SharedSizeGroup="labelSol"/>
                             <ColumnDefinition Width="auto"/>
@@ -264,7 +296,7 @@
                                    Text="{Binding CauseDisplay}"/>
                     </Grid>
 
-                    <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 20 0 0">
+                    <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 20 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" SharedSizeGroup="labelSol"/>
                             <ColumnDefinition Width="auto"/>
@@ -286,8 +318,8 @@
 
                     <!--#endregion-->
 
-                    <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 40 0 0" MaxWidth="600">
-                        
+                    <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 40 0 0" MaxWidth="600">
+
                         <Border Grid.Row="0"
                                 BorderBrush="Gray" 
                                 BorderThickness="1"
@@ -303,7 +335,7 @@
 
                     </Grid>
 
-                    <Grid Grid.Row="8" Grid.Column="1">
+                    <Grid Grid.Row="9" Grid.Column="1">
 
                         <Button Grid.Row="1" 
                                 Content="Dosya Ekle"

@@ -26,10 +26,11 @@ namespace AutomationService.EF.Queries.EmployeeQueries
                 IEnumerable<EmployeeDTO> employeeDTOs = await context.Employees.ToListAsync();
 
                 return employeeDTOs.Select(e => new Employee
-                {
-                    Id = e.Id,
-                    NameSurname = e.NameSurname
-                });
+                (
+                    e.Id,
+                    e.NameSurname
+                ));
+
             }
         }
     }

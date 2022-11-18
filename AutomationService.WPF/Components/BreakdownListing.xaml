@@ -32,7 +32,6 @@
                                         <Setter Property="VerticalAlignment" Value="Center"/>
                                         <Setter Property="Height" Value="15"/>
                                         <Setter Property="Width" Value="15"/>
-                                        <Setter Property="Background" Value="Green"/>
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate>

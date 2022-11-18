@@ -16,9 +16,12 @@ namespace AutomationService.WPF.HostBuilders
             hostBuilder.ConfigureServices((context, services) =>
             {
                 services.AddSingleton<ModalNavigationStore>();
+
                 services.AddSingleton<BreakdownStore>();
                 services.AddSingleton<BreakdownFileStore>();
                 services.AddSingleton<EmployeeStore>();
+                services.AddSingleton<DepartmentStore>();
+                services.AddSingleton<SectorStore>();
                 services.AddSingleton<BreakdownSolverStore>();
 
 

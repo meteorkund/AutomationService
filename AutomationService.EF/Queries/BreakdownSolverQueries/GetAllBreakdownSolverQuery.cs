@@ -1,4 +1,4 @@
-﻿using AutomationService.Domain.Models;
+﻿using AutomationService.Domain.Models.Common;
 using AutomationService.Domain.Queries.BreakdownSolverQueries;
 using AutomationService.EF.DTOs;
 using Microsoft.EntityFrameworkCore;

@@ -1,6 +1,7 @@
 ﻿using AutomationService.Domain.Models;
 using AutomationService.WPF.Commands.EmployeeCommands;
 using AutomationService.WPF.Stores;
+using AutomationService.WPF.ViewModels.BreakdownViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace AutomationService.WPF.ViewModels.EmployeeViewModels
+namespace AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.EmployeeViewModels
 {
     public class EmployeeListingViewModel : ViewModelBase
     {
@@ -20,7 +21,7 @@ namespace AutomationService.WPF.ViewModels.EmployeeViewModels
 
         public ICommand LoadEmployeesCommand { get; }
 
-        public EmployeeListingViewModel(EmployeeStore employeeStore)
+        public EmployeeListingViewModel(BreakdownDetailsFormViewModel breakdownDetailsFormViewModel, EmployeeStore employeeStore)
         {
             _employeeStore = employeeStore;
 
@@ -28,15 +29,9 @@ namespace AutomationService.WPF.ViewModels.EmployeeViewModels
 
             LoadEmployeesCommand = new LoadEmployeesCommand(this, employeeStore);
 
-            _employeeStore.EmployeesLoaded += EmployeeStore_EmployeesLoaded;
+            EmployeeStore_EmployeesLoaded();
         }
 
-        public static EmployeeListingViewModel LoadViewModel(EmployeeStore employeeStore)
-        {
-            EmployeeListingViewModel viewModel = new EmployeeListingViewModel(employeeStore);
-            viewModel.LoadEmployeesCommand.Execute(null);
-            return viewModel;
-        }
 
         private void EmployeeStore_EmployeesLoaded()
         {

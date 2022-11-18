@@ -19,8 +19,6 @@
 
         <DataGrid.Columns>
 
-            <DataGridTextColumn Header="NO" Width="auto" IsReadOnly="True"  Binding="{Binding BreakdownFileId}" ElementStyle="{StaticResource Centering}" />
-
             <DataGridTextColumn Header="DOSYA ADI" Width="auto" IsReadOnly="True" Binding="{Binding FileName}" />
             <DataGridTextColumn Header="TÜRÜ" Width="*" IsReadOnly="True" Binding="{Binding FileExtension}" />
 

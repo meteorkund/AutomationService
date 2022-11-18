@@ -1,4 +1,4 @@
-﻿using AutomationService.Domain.Models;
+﻿using AutomationService.Domain.Models.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;

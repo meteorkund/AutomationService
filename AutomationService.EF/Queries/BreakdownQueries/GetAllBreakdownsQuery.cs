@@ -1,4 +1,5 @@
 ﻿using AutomationService.Domain.Models;
+using AutomationService.Domain.Models.Common;
 using AutomationService.Domain.Queries.BrekdownQueries;
 using AutomationService.EF.DTOs;
 using Microsoft.EntityFrameworkCore;
@@ -25,21 +26,32 @@ namespace AutomationService.EF.Queries.BreakdownQueries
             {
                 IEnumerable<BreakdownDTO> breakdownDTOs = await context.Breakdowns
                     .Include(c => c.Customer)
-                    .Include(f => f.BreadownFiles)
+                    .Include(d => d.Department)
+                    .Include(s => s.Sector)
+                    .Include(e => e.BreakdownSolver)
                     .ToListAsync();
 
                 return breakdownDTOs.Select(e => new Breakdown
                 {
                     Id = e.Id,
+                    Status = e.Status,
 
-                    Department = e.Department,
-                    Sector = e.Sector,
                     IsElectrical = e.IsElectrical,
                     IsMechanical = e.IsMechanical,
+
                     Cause = e.Cause,
                     Service = e.Service,
 
-                    Customer = new Customer { CompanyName = e.Customer.CompanyName, Country = e.Customer.Country }
+                    CreatedDate = e.CreatedDate,
+                    UpdatedDate = e.UpdatedDate,
+
+                    Department = new Department(e.Department.Id, e.Department.DepartmentName),
+                    Sector = new Sector(e.Sector.Id, e.Sector.SectorName),
+                    Customer = new Customer(e.Customer.Id, e.Customer.CompanyName, e.Customer.Country),
+                    BreakdownSolver = new BreakdownSolver(e.BreakdownSolver.Id, e.BreakdownSolver.NameSurname)
+
+
+
 
                 });
 

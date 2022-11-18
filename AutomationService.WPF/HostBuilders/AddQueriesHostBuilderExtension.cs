@@ -1,7 +1,9 @@
-﻿using AutomationService.Domain.Queries.BreakdownFileQueries;
+﻿using AutomationService.Domain.Queries;
+using AutomationService.Domain.Queries.BreakdownFileQueries;
 using AutomationService.Domain.Queries.BreakdownSolverQueries;
 using AutomationService.Domain.Queries.BrekdownQueries;
 using AutomationService.Domain.Queries.EmployeeQueries;
+using AutomationService.EF.Queries;
 using AutomationService.EF.Queries.BreakdownFileQueries;
 using AutomationService.EF.Queries.BreakdownQueries;
 using AutomationService.EF.Queries.BreakdownSolverQueries;
@@ -27,6 +29,8 @@ namespace AutomationService.WPF.HostBuilders
                 services.AddSingleton<IGetAllEmployeesQuery, GetAllEmployeesQuery>();
 
                 services.AddSingleton<IGetAllBreakdownSolverQuery, GetAllBreakdownSolverQuery>();
+                services.AddSingleton<IGetAllDepartmentsQuery, GetAllDepartmentsQuery>();
+                services.AddSingleton<IGetAllSectorsQuery, GetAllSectorsQuery>();
             });
 
             return hostBuilder;

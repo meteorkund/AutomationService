@@ -13,6 +13,9 @@ namespace AutomationService.WPF.Commands
     {
         readonly BreakdownStore _breakdownStore;
         readonly BreakdownSolverStore _breakdownSolverStore;
+        readonly DepartmentStore _departmentStore;
+        readonly SectorStore _sectorStore;
+        readonly EmployeeStore _employeeStore;
 
         readonly ModalNavigationStore _modalNavigationStore;
         readonly BreakdownListingItemViewModel _breakdownListingItemViewModel;
@@ -29,7 +32,7 @@ namespace AutomationService.WPF.Commands
         {
             Breakdown breakdown = _breakdownListingItemViewModel.Breakdown;
 
-            EditBreakdownViewModel editCustomerViewModel = new EditBreakdownViewModel(breakdown, _breakdownStore, _modalNavigationStore,_breakdownSolverStore);
+            EditBreakdownViewModel editCustomerViewModel = new EditBreakdownViewModel(breakdown, _breakdownStore, _modalNavigationStore, _breakdownSolverStore, _departmentStore, _sectorStore, _employeeStore);
             _modalNavigationStore.CurrentViewModel = editCustomerViewModel;
         }
     }

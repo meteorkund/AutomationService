@@ -1,5 +1,5 @@
 ﻿using AutomationService.WPF.Stores;
-using AutomationService.WPF.ViewModels.EmployeeViewModels;
+using AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.EmployeeViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -2,9 +2,8 @@
 using AutomationService.WPF.Stores;
 using AutomationService.WPF.ViewModels;
 using AutomationService.WPF.ViewModels.BreakdownFileViewModels;
-using AutomationService.WPF.ViewModels.BreakdownSolverViewModels;
 using AutomationService.WPF.ViewModels.BreakdownViewModels;
-using AutomationService.WPF.ViewModels.EmployeeViewModels;
+using AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.EmployeeViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -23,37 +22,16 @@ namespace AutomationService.WPF.HostBuilders
             hostBuilder.ConfigureServices((context, services) =>
             {
                 services.AddSingleton<MainViewModel>();
-                services.AddSingleton<BreakdownsViewModel>();
+                services.AddTransient<BreakdownsViewModel>();
 
                 services.AddTransient<BreakdownListingViewModel>(CreateBreakdownListingViewModel);
                 services.AddTransient<BreakdownFileListingViewModel>(CreateBreakdownFileListingViewModel);
-                services.AddTransient<EmployeeListingViewModel>(CreateEmployeeListingViewModel);
 
-                services.AddTransient<BreakdownDetailsFormViewModel>(CreateBreakdownDetailsFormViewModel);
             });
 
             return hostBuilder;
         }
 
-
-
-        private static BreakdownDetailsFormViewModel CreateBreakdownDetailsFormViewModel(IServiceProvider services)
-        {
-            return BreakdownDetailsFormViewModel.LoadComboboxItems
-                (
-                services.GetRequiredService<ICommand>(),
-                services.GetRequiredService<ICommand>(),
-                services.GetRequiredService<BreakdownSolverStore>()
-                );
-        }
-
-        private static EmployeeListingViewModel CreateEmployeeListingViewModel(IServiceProvider services)
-        {
-            return EmployeeListingViewModel.LoadViewModel
-                (
-                services.GetRequiredService<EmployeeStore>()
-                );
-        }
 
         private static BreakdownFileListingViewModel CreateBreakdownFileListingViewModel(IServiceProvider services)
         {
@@ -71,7 +49,11 @@ namespace AutomationService.WPF.HostBuilders
                 (
             services.GetRequiredService<BreakdownStore>(),
             services.GetRequiredService<SelectedBreakdownStore>(),
-            services.GetRequiredService<ModalNavigationStore>()
+            services.GetRequiredService<ModalNavigationStore>(),
+            services.GetRequiredService<BreakdownSolverStore>(),
+            services.GetRequiredService<DepartmentStore>(),
+            services.GetRequiredService<SectorStore>(),
+            services.GetRequiredService<EmployeeStore>()
                 );
 
         }

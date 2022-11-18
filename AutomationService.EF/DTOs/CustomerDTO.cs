@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace AutomationService.EF.DTOs
 {
-    public class CustomerDTO : BaseDTO
+    public class CustomerDTO
     {
+        public int Id { get; set; }
         public string CompanyName { get; set; }
         public string Country { get; set; }
 

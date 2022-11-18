@@ -36,8 +36,13 @@ public class EditBreakdownCommand : AsyncCommandBase
             Id = _editBreakdownViewModel.BreakdownId,
             Status = true,
 
-            Department = formViewModel.Department,
-            Sector = formViewModel.Sector,
+            Department = new Department(
+                formViewModel.SelectedDepartmentItem.DepartmentId,
+                formViewModel.SelectedDepartmentItem.DepartmentName),
+
+            Sector = new Sector(
+                formViewModel.SelectedSectorItem.SectorId,
+                formViewModel.SelectedSectorItem.SectorName),
 
             IsElectrical = formViewModel.IsElectrical,
             IsMechanical = formViewModel.IsMechanical,
@@ -45,7 +50,7 @@ public class EditBreakdownCommand : AsyncCommandBase
             Cause = formViewModel.Cause,
             Service = formViewModel.Service,
 
-            Customer = new Customer { Id = 2, CompanyName = formViewModel.CompanyName, Country = formViewModel.Country },
+            Customer = new Customer(2, formViewModel.CompanyName, formViewModel.Country)
 
         };
 

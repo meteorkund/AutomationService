@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationService.WPF.ViewModels.EmployeeViewModels
+namespace AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.EmployeeViewModels
 {
     public class EmployeeListingItemViewModel : ViewModelBase
     {

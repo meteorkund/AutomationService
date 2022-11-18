@@ -17,8 +17,8 @@ public class BreakdownListingItemViewModel : ViewModelBase
     public bool Status => Breakdown.Status;
     public string CompanyName => Breakdown.Customer.CompanyName;
     public string Country => Breakdown.Customer.Country;
-    public string Department => Breakdown.Department;
-    public string Sector => Breakdown.Sector;
+    public string Department => Breakdown.Department.DepartmentName;
+    public string Sector => Breakdown.Sector.SectorName;
 
 
 

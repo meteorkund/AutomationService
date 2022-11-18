@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationService.Domain.Models
+namespace AutomationService.Domain.Models.Common
 {
     public class BreakdownSolver
     {
