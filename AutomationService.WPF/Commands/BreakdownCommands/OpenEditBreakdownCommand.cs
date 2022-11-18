@@ -20,11 +20,16 @@ namespace AutomationService.WPF.Commands
         readonly ModalNavigationStore _modalNavigationStore;
         readonly BreakdownListingItemViewModel _breakdownListingItemViewModel;
 
-        public OpenEditBreakdownCommand(BreakdownListingItemViewModel employeeListingItemViewModel, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore)
+        public OpenEditBreakdownCommand(BreakdownListingItemViewModel employeeListingItemViewModel, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore)
         {
             _breakdownListingItemViewModel = employeeListingItemViewModel;
             _breakdownStore = breakdownStore;
             _modalNavigationStore = modalNavigationStore;
+
+            _breakdownSolverStore= breakdownSolverStore;
+            _departmentStore= departmentStore;
+            _sectorStore= sectorStore;
+            _employeeStore= employeeStore;
 
         }
 

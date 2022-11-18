@@ -21,6 +21,9 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
         readonly BreakdownStore _breakdownStore;
         readonly BreakdownSolverStore _breakdownSolverStore;
+        readonly DepartmentStore _departmentStore;
+        readonly SectorStore _sectorStore;
+        readonly EmployeeStore _employeeStore;
 
         readonly ModalNavigationStore _modalNavigationStore;
 
@@ -76,11 +79,14 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
             _breakdownStore = breakdownStore;
             _breakdownSolverStore = breakdownSolverStore;
+            _departmentStore = departmentStore;
+            _sectorStore = sectorStore;
+            _employeeStore = employeeStore;
 
             _breakdownListingItemViewModels = new ObservableCollection<BreakdownListingItemViewModel>();
 
             LoadBreakdownsCommand = new LoadBreakdownsCommand(this, breakdownStore);
-            LoadComboBoxItemsCommand = new LoadComboBoxItemsCommand(breakdownSolverStore, departmentStore,sectorStore, employeeStore);
+            LoadComboBoxItemsCommand = new LoadComboBoxItemsCommand(breakdownSolverStore, departmentStore, sectorStore, employeeStore);
 
             _breakdownStore.BreakdownsLoaded += BreakdownStore_BreakdownsLoaded;
             _breakdownStore.BreakdownAdded += BreakdownStore_BreakdownAdded;
@@ -150,7 +156,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
         private void AddBreakdown(Breakdown breakdown)
         {
-            BreakdownListingItemViewModel itemViewModel = new BreakdownListingItemViewModel(breakdown, _breakdownStore, _modalNavigationStore);
+            BreakdownListingItemViewModel itemViewModel = new BreakdownListingItemViewModel(breakdown, _breakdownStore, _modalNavigationStore, _breakdownSolverStore, _departmentStore, _sectorStore, _employeeStore);
             _breakdownListingItemViewModels.Add(itemViewModel);
         }
     }

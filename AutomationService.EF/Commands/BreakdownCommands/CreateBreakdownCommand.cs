@@ -27,16 +27,17 @@ namespace AutomationService.EF.Commands.BreakdownCommands
                 {
                     Status = true,
 
+                    DepartmentId = breakdown.Department.Id,
+                    SectorId = breakdown.Sector.Id,
+                    EmployeeId = breakdown.Employee.Id,
+                    CustomerId = breakdown.Customer.Id,
+                    BreakdownSolverId= breakdown.BreakdownSolver.Id,
+
                     IsElectrical = breakdown.IsElectrical,
                     IsMechanical = breakdown.IsMechanical,
 
                     Cause = breakdown.Cause,
                     Service = breakdown.Service,
-
-                    CustomerId = breakdown.Customer.Id,
-                    DepartmentId= breakdown.Department.Id,
-                    SectorId= breakdown.Sector.Id,
-                    
 
                 };
 

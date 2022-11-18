@@ -269,6 +269,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
             set { _selectedBreakdownSolverValue = value; }
         }
 
+
         private int _selectedEmployeeValue;
 
         public int SelectedEmployeeValue
@@ -281,7 +282,6 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
 
         private int _selectedIndexCommon;
-
         public int SelectedIndexCommon
         {
             get { return _selectedIndexCommon; }

@@ -63,10 +63,13 @@ namespace AutomationService.WPF.Commands
                     formViewModel.SelectedSectorItem.SectorId,
                     formViewModel.SelectedSectorItem.SectorName),
 
-                 //Employee = new Employee(
-                 //    formViewModel.SelectedEmployeeItem.EmployeeId,
-                 //    formViewModel.SelectedEmployeeItem.EmployeeName),
-                     
+                Employee = new Employee(
+                     formViewModel.SelectedEmployeeItem.EmployeeId,
+                     formViewModel.SelectedEmployeeItem.NameSurname),
+
+                BreakdownSolver = new(
+                    formViewModel.SelectedBreakdownSolverItem.BreakdownSolverId,
+                    formViewModel.SelectedBreakdownSolverItem.NameSurname),
 
                 IsElectrical = formViewModel.IsElectrical,
                 IsMechanical = formViewModel.IsMechanical,

@@ -20,8 +20,11 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         {
             BreakdownId = breakdown.Id;
 
+
             ICommand submitCommand = new EditBreakdownCommand(this, breakdownStore, modalNavigationStore);
             ICommand cancelCommand = new CloseModalCommand(modalNavigationStore);
+
+
             BreakdownDetailsFormViewModel = new BreakdownDetailsFormViewModel(submitCommand, cancelCommand, breakdownSolverStore, departmentStore, sectorStore, employeeStore)
             {
                 CompanyName = breakdown.Customer.CompanyName,
@@ -31,11 +34,10 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
                 Cause = breakdown.Cause,
                 Service = breakdown.Service,
 
-                CreatorName = breakdown.Employee.NameSurname,
-
                 SelectedBreakdownSolverValue = breakdown.BreakdownSolver.Id,
                 SelectedDepartmentValue = breakdown.Department.Id,
                 SelectedSectorValue = breakdown.Sector.Id,
+                SelectedEmployeeValue= breakdown.Employee.Id,
             };
         }
     }

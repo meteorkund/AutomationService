@@ -29,6 +29,7 @@ namespace AutomationService.EF.Queries.BreakdownQueries
                     .Include(d => d.Department)
                     .Include(s => s.Sector)
                     .Include(e => e.BreakdownSolver)
+                    .Include(e => e.Employee)
                     .ToListAsync();
 
                 return breakdownDTOs.Select(e => new Breakdown
@@ -48,7 +49,8 @@ namespace AutomationService.EF.Queries.BreakdownQueries
                     Department = new Department(e.Department.Id, e.Department.DepartmentName),
                     Sector = new Sector(e.Sector.Id, e.Sector.SectorName),
                     Customer = new Customer(e.Customer.Id, e.Customer.CompanyName, e.Customer.Country),
-                    BreakdownSolver = new BreakdownSolver(e.BreakdownSolver.Id, e.BreakdownSolver.NameSurname)
+                    BreakdownSolver = new BreakdownSolver(e.BreakdownSolver.Id, e.BreakdownSolver.NameSurname),
+                    Employee = new Employee(e.Employee.Id, e.Employee.NameSurname)
 
 
 

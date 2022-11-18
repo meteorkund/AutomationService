@@ -86,6 +86,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
             OnPropertyChanged(nameof(CauseDisplay));
             OnPropertyChanged(nameof(ServiceDisplay));
             OnPropertyChanged(nameof(CreatorNameDisplay));
+            OnPropertyChanged(nameof(BreakdownSolverDisplay));
 
             OnPropertyChanged(nameof(CreatedDateDisplay));
             OnPropertyChanged(nameof(UpdatedDateDisplay));

@@ -203,12 +203,12 @@
                                   Margin="20 0 0 0"
                                   
                                   ItemsSource="{Binding DepartmentListingItemViewModels}"
-                                  SelectedItem="{Binding SelectedDepartmentItem,Mode=TwoWay}"
+                                  SelectedItem="{Binding SelectedDepartmentItem,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   SelectedValue="{Binding SelectedDepartmentValue}"
                                   SelectedIndex="{Binding SelectedIndexCommon}"
                                   
-                                  DisplayMemberPath="Department.DepartmentName"
-                                  SelectedValuePath="Department.Id"
+                                  SelectedValuePath="Id"
+                                  DisplayMemberPath="DepartmentName"
                                   IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
 
@@ -228,12 +228,12 @@
                                   Margin="20 0 0 0"
                                   
                                   ItemsSource="{Binding SectorListingItemViewModels}"
-                                  SelectedItem="{Binding SelectedSectorItem,Mode=TwoWay}"
+                                  SelectedItem="{Binding SelectedSectorItem,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   SelectedValue="{Binding SelectedSectorValue}"
                                   SelectedIndex="{Binding SelectedIndexCommon}"
                                   
-                                  DisplayMemberPath="Sector.SectorName"
-                                  SelectedValuePath="Sector.Id"
+                                  SelectedValuePath="Id"
+                                  DisplayMemberPath="SectorName"
                                   IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
 
@@ -255,12 +255,12 @@
                                   Margin="20 0 0 0"
                                   
                                   ItemsSource="{Binding EmployeeListingItemViewModels}"
-                                  SelectedItem="{Binding SelectedEmployeeSolverItem,Mode=TwoWay}"
+                                  SelectedItem="{Binding SelectedEmployeeItem,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   SelectedValue="{Binding SelectedEmployeeValue}"
                                   SelectedIndex="{Binding SelectedIndexCommon}"
                                   
-                                  DisplayMemberPath="Employee.NameSurname"
-                                  SelectedValuePath="Employee.Id"
+                                  SelectedValuePath="Id"
+                                  DisplayMemberPath="NameSurname"
                                   IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
 
@@ -280,12 +280,12 @@
                                   Margin="20 0 0 0"
                                   
                                   ItemsSource="{Binding BreakdownSolverListingItemViewModels}"
-                                  SelectedItem="{Binding SelectedBreakdownSolverItem,Mode=TwoWay}"
+                                  SelectedItem="{Binding SelectedBreakdownSolverItem,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   SelectedValue="{Binding SelectedBreakdownSolverValue}"
                                   SelectedIndex="{Binding SelectedIndexCommon}"
                                   
-                                  DisplayMemberPath="BreakdownSolver.NameSurname"
-                                  SelectedValuePath="BreakdownSolver.Id"
+                                  SelectedValuePath="Id"
+                                  DisplayMemberPath="NameSurname"
                                   IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
 

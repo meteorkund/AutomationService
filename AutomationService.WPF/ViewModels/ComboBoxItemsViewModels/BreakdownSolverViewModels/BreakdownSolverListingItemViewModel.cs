@@ -12,7 +12,7 @@ namespace AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.BreakdownSolv
         public BreakdownSolver BreakdownSolver { get; private set; }
 
         public int BreakdownSolverId => BreakdownSolver.Id;
-        public string BreakdownSolverNameSurname => BreakdownSolver.NameSurname;
+        public string NameSurname => BreakdownSolver.NameSurname;
 
         public BreakdownSolverListingItemViewModel(BreakdownSolver breakdownSolver)
         {

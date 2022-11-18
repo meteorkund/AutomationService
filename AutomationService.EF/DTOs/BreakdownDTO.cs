@@ -26,7 +26,7 @@ namespace AutomationService.EF.DTOs
         public CustomerDTO Customer { get; set; }
         public DepartmentDTO Department { get; set; }
         public SectorDTO Sector { get; set; }
-        public BreakdownSolverDTO BreakdownSolver { get; set; }
+        public BreakdownSolverDTO? BreakdownSolver { get; set; }
 
 
         public ICollection<BreakdownFileDTO>? BreadownFiles { get; set; }
