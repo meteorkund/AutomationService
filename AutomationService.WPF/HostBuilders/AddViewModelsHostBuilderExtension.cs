@@ -25,8 +25,8 @@ namespace AutomationService.WPF.HostBuilders
                 services.AddSingleton<MainViewModel>();
                 services.AddTransient<BreakdownsViewModel>();
 
-                services.AddTransient<BreakdownListingViewModel>(CreateBreakdownListingViewModel);
-                services.AddTransient<BreakdownFileListingViewModel>(CreateBreakdownFileListingViewModel);
+                services.AddSingleton<BreakdownListingViewModel>(CreateBreakdownListingViewModel);
+                services.AddSingleton<BreakdownFileListingViewModel>(CreateBreakdownFileListingViewModel);
 
             });
 
