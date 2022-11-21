@@ -22,6 +22,8 @@ namespace AutomationService.WPF.HostBuilders
                 services.AddSingleton<IUpdateBreakdownCommand, UpdateBreakdownCommand>();
                 services.AddSingleton<IDeleteBreakdownCommand, DeleteBreakdownCommand>();
 
+                services.AddSingleton<ICreateBreakdownFileCommand, CreateBreakdownFileCommand>();
+                services.AddSingleton<IUpdateBreakdownFileCommand, UpdateBreakdownFileCommand>();
                 services.AddSingleton<IDeleteBreakdownFileCommand, DeleteBreakdownFileCommand>();
             });
 

@@ -25,11 +25,11 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         readonly BreakdownSolverListingViewModel _breakdownSolverListingViewModel;
         readonly DepartmentListingViewModel _departmentListingViewModel;
         readonly SectorListingViewModel _sectorListingViewModel;
-        readonly EmployeeListingViewModel _employeeListingViewModel;
+        readonly EmployeeListingViewModel _breakdownListingViewModel;
         public IEnumerable<BreakdownSolverListingItemViewModel> BreakdownSolverListingItemViewModels => _breakdownSolverListingViewModel.BreakdownSolverListingItemViewModels;
         public IEnumerable<DepartmentListingItemViewModel> DepartmentListingItemViewModels => _departmentListingViewModel.DepartmentListingItemViewModels;
         public IEnumerable<SectorListingItemViewModel> SectorListingItemViewModels => _sectorListingViewModel.SectorListingItemViewModels;
-        public IEnumerable<EmployeeListingItemViewModel> EmployeeListingItemViewModels => _employeeListingViewModel.EmployeeListingItemViewModels;
+        public IEnumerable<EmployeeListingItemViewModel> EmployeeListingItemViewModels => _breakdownListingViewModel.EmployeeListingItemViewModels;
 
         #region PROPERTIES
 
@@ -189,7 +189,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
             _breakdownSolverListingViewModel = new BreakdownSolverListingViewModel(this, breakdownSolverStore);
             _departmentListingViewModel = new DepartmentListingViewModel(this, departmentStore);
             _sectorListingViewModel = new SectorListingViewModel(this, sectorStore);
-            _employeeListingViewModel = new EmployeeListingViewModel(this, employeeStore);
+            _breakdownListingViewModel = new EmployeeListingViewModel(this, employeeStore);
 
         }
 

@@ -52,21 +52,23 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
         public BreakdownFileListingViewModel BreakdownFileListingViewModel { get; set; }
 
-        public BreakdownDetailsViewModel(SelectedBreakdownStore selectedBreakdownStore, BreakdownFileStore breakdownFileStore, SelectedBreakdownFileStore selectedBreakdownFileStore)
+        public ICommand AddFileCommand { get; }
+
+        public BreakdownDetailsViewModel(SelectedBreakdownStore selectedBreakdownStore, BreakdownFileStore breakdownFileStore, SelectedBreakdownFileStore selectedBreakdownFileStore, AutomationServiceDBContextFactory contextFactory)
         {
             _selectedBreakdownStore = selectedBreakdownStore;
             _selectedBreakdownFileStore = selectedBreakdownFileStore;
 
             BreakdownFileListingViewModel = BreakdownFileListingViewModel.LoadViewModel(breakdownFileStore, selectedBreakdownFileStore, selectedBreakdownStore);
 
+            AddFileCommand = new AddBreakdownFilesCommand(breakdownFileStore, contextFactory, selectedBreakdownStore);
 
-            _breakdownFileListingViewModel = new BreakdownFileListingViewModel(breakdownFileStore, selectedBreakdownFileStore,selectedBreakdownStore);
+            _breakdownFileListingViewModel = new BreakdownFileListingViewModel(breakdownFileStore, selectedBreakdownFileStore, selectedBreakdownStore);
 
             _selectedBreakdownStore.SelectedBreakdownChanged += SelectedBreakdownStore_SelectedCustomerChanged;
 
 
         }
-         public ICommand AddFileCommand { get; }
         protected override void Dispose()
         {
             _selectedBreakdownStore.SelectedBreakdownChanged -= SelectedBreakdownStore_SelectedCustomerChanged;

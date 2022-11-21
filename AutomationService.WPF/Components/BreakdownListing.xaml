@@ -18,7 +18,7 @@
                 CellStyle="{DynamicResource DataGridCellStyle1}"
                 ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                 RowStyle="{DynamicResource DataGridRowStyle1}"
-                ItemsSource="{Binding BreakdownListingItemViewModels}"
+                ItemsSource="{Binding EmployeeCollection}"
                 SelectedItem="{Binding SelectedBreakdownListingItemViewModel}"
                 AutoGenerateColumns="False">
                 <DataGrid.Columns>

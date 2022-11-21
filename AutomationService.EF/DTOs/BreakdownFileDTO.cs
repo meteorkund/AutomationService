@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace AutomationService.EF.DTOs
 {
-    public class BreakdownFileDTO : BaseDTO
+    public class BreakdownFileDTO
     {
+        public Guid Id { get; set; }
         public int BreakdownId { get; set; }
 
         public string FileName { get; set; }
@@ -16,5 +17,6 @@ namespace AutomationService.EF.DTOs
         public string Path { get; set; }
 
         public BreakdownDTO Breakdown { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

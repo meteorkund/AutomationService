@@ -18,7 +18,7 @@ namespace AutomationService.EF.Commands.BreakdownFileCommands
             _contextFactory = contextFactory;
         }
 
-        public async Task DeleteBreakdownFile(int id)
+        public async Task DeleteBreakdownFile(Guid id)
         {
             using (AutomationServiceDBContext context = _contextFactory.Create())
             {

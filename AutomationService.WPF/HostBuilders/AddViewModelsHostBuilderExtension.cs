@@ -1,4 +1,5 @@
-﻿using AutomationService.WPF.Commands;
+﻿using AutomationService.EF;
+using AutomationService.WPF.Commands;
 using AutomationService.WPF.Stores;
 using AutomationService.WPF.ViewModels;
 using AutomationService.WPF.ViewModels.BreakdownFileViewModels;
@@ -53,7 +54,8 @@ namespace AutomationService.WPF.HostBuilders
             services.GetRequiredService<BreakdownSolverStore>(),
             services.GetRequiredService<DepartmentStore>(),
             services.GetRequiredService<SectorStore>(),
-            services.GetRequiredService<EmployeeStore>()
+            services.GetRequiredService<EmployeeStore>(),
+            services.GetRequiredService<AutomationServiceDBContextFactory>()
                 );
 
         }

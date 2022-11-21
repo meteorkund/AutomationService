@@ -6,10 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationService.Domain.Queries
+namespace AutomationService.Domain.Queries;
+
+public interface IGetAllDepartmentsQuery
 {
-    public interface IGetAllDepartmentsQuery
-    {
-        Task<IEnumerable<Department>> GetAllDepartments();
-    }
+    Task<IEnumerable<Department>> GetAllDepartments();
 }

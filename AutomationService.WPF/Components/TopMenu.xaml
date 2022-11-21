@@ -19,6 +19,8 @@
             <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -51,8 +53,8 @@
                 FontFamily="Segoe UI"
                 HorizontalAlignment="Left"/>
 
-        <TextBox 
-                x:Name="textBoxSearch"
+        <TextBox x:Name="textBoxSearch"
+                Text="{Binding TextToFilter, UpdateSourceTrigger=PropertyChanged}"
                 Style="{StaticResource searchTextbox}"
                 Grid.Column="2"
                 Width="300"
@@ -68,10 +70,42 @@
                 HorizontalAlignment="Right"
                 Foreground="DarkSlateGray"
                 VerticalAlignment="Center"/>
+        <Grid Grid.Column="3" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <ComboBox Width="170" Height="30" Grid.Row="0" Margin="20 0 0 0"           
+                  FontSize="15"
+                  FontWeight="SemiBold"
+                  FontFamily="Segoe UI"
+                  IsEnabled="{Binding IsVisibleCBox}"
+                  Text="{Binding SelectedDepartmentName, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                            
+                  ItemsSource="{Binding DepartmentListingItemViewModels}"
+                  SelectedItem="{Binding SelectedDepartment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+
+                  DisplayMemberPath="DepartmentName"
+                  IsSynchronizedWithCurrentItem="True">
+            </ComboBox>
+
+            <CheckBox Grid.Row="1" IsChecked="{Binding IsCheckedAllDepartment,UpdateSourceTrigger=PropertyChanged}" Content="TÜM DEPARTMANLAR" Margin="20 10 0 0" FontSize="15" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+
+        </Grid>
+
+        <Grid Grid.Column="4">
+
+            <CheckBox IsChecked="{Binding IsCheckedRadioOpen,UpdateSourceTrigger=PropertyChanged}" Content="AÇIK" Margin="10 0 0 0" FontSize="15" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+
+            <CheckBox IsChecked="{Binding IsCheckedRadioSolved,UpdateSourceTrigger=PropertyChanged}" Content="KAPALI" Margin="10 20 0 0" FontSize="15" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+
+        </Grid>
 
         <Button Style="{StaticResource addButton}"
                 Command="{Binding AddBreakdownCommand}"
-                Grid.Column="3"
+                Grid.Column="5"
+                Margin="0 0 30 0"
                 HorizontalAlignment="Right">
             <StackPanel Orientation="Horizontal">
                 <Icon:PackIconMaterial 

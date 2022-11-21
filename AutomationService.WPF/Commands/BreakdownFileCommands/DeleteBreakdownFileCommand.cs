@@ -39,7 +39,6 @@ namespace AutomationService.WPF.Commands.BreakdownFileCommands
 
                 try
                 {
-                    await Task.Delay(2000);
                     await _breakdownFileStore.DeleteSelectedFile(breakdownFile.Id);
 
                     if (File.Exists(filePath))

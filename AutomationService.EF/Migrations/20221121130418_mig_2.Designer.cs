@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomationService.EF.Migrations
 {
     [DbContext(typeof(AutomationServiceDBContext))]
-    [Migration("20221118121841_mig_3")]
-    partial class mig3
+    [Migration("20221121130418_mig_2")]
+    partial class mig2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,9 @@ namespace AutomationService.EF.Migrations
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsElectrical")
                         .HasColumnType("bit");
 
@@ -74,6 +77,8 @@ namespace AutomationService.EF.Migrations
 
                     b.HasIndex("DepartmentId");
 
+                    b.HasIndex("EmployeeId");
+
                     b.HasIndex("SectorId");
 
                     b.ToTable("Breakdowns");
@@ -81,11 +86,9 @@ namespace AutomationService.EF.Migrations
 
             modelBuilder.Entity("AutomationService.EF.DTOs.BreakdownFileDTO", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("BreakdownId")
                         .HasColumnType("int");
@@ -104,9 +107,6 @@ namespace AutomationService.EF.Migrations
                     b.Property<string>("Path")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -147,12 +147,6 @@ namespace AutomationService.EF.Migrations
                     b.Property<string>("Country")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -228,7 +222,7 @@ namespace AutomationService.EF.Migrations
             modelBuilder.Entity("AutomationService.EF.DTOs.BreakdownDTO", b =>
                 {
                     b.HasOne("AutomationService.EF.DTOs.BreakdownSolverDTO", "BreakdownSolver")
-                        .WithMany()
+                        .WithMany("Breakdowns")
                         .HasForeignKey("BreakdownSolverId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -245,6 +239,12 @@ namespace AutomationService.EF.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("AutomationService.EF.DTOs.EmployeeDTO", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("AutomationService.EF.DTOs.SectorDTO", "Sector")
                         .WithMany("BreakdownDTOs")
                         .HasForeignKey("SectorId")
@@ -256,6 +256,8 @@ namespace AutomationService.EF.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("Department");
+
+                    b.Navigation("Employee");
 
                     b.Navigation("Sector");
                 });
@@ -289,6 +291,11 @@ namespace AutomationService.EF.Migrations
             modelBuilder.Entity("AutomationService.EF.DTOs.BreakdownDTO", b =>
                 {
                     b.Navigation("BreadownFiles");
+                });
+
+            modelBuilder.Entity("AutomationService.EF.DTOs.BreakdownSolverDTO", b =>
+                {
+                    b.Navigation("Breakdowns");
                 });
 
             modelBuilder.Entity("AutomationService.EF.DTOs.CustomerDTO", b =>

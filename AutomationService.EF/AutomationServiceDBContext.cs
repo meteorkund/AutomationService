@@ -25,6 +25,7 @@ namespace AutomationService.EF
 
             var datas = ChangeTracker
                  .Entries<BaseDTO>();
+            
 
             foreach (var data in datas)
             {
@@ -32,6 +33,18 @@ namespace AutomationService.EF
                 {
                     EntityState.Added => data.Entity.CreatedDate = DateTime.Now,
                     EntityState.Modified => data.Entity.UpdatedDate = DateTime.Now,
+                    _ => DateTime.Now
+                };
+            }
+
+            var breakdownFiles= ChangeTracker
+                .Entries<BreakdownFileDTO>();
+
+            foreach (var breakdownFile in breakdownFiles)
+            {
+                _ = breakdownFile.State switch
+                {
+                    EntityState.Added => breakdownFile.Entity.CreatedDate = DateTime.Now,
                     _ => DateTime.Now
                 };
             }

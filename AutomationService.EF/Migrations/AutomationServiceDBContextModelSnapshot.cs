@@ -83,11 +83,9 @@ namespace AutomationService.EF.Migrations
 
             modelBuilder.Entity("AutomationService.EF.DTOs.BreakdownFileDTO", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("BreakdownId")
                         .HasColumnType("int");
@@ -106,9 +104,6 @@ namespace AutomationService.EF.Migrations
                     b.Property<string>("Path")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -224,7 +219,7 @@ namespace AutomationService.EF.Migrations
             modelBuilder.Entity("AutomationService.EF.DTOs.BreakdownDTO", b =>
                 {
                     b.HasOne("AutomationService.EF.DTOs.BreakdownSolverDTO", "BreakdownSolver")
-                        .WithMany()
+                        .WithMany("Breakdowns")
                         .HasForeignKey("BreakdownSolverId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -293,6 +288,11 @@ namespace AutomationService.EF.Migrations
             modelBuilder.Entity("AutomationService.EF.DTOs.BreakdownDTO", b =>
                 {
                     b.Navigation("BreadownFiles");
+                });
+
+            modelBuilder.Entity("AutomationService.EF.DTOs.BreakdownSolverDTO", b =>
+                {
+                    b.Navigation("Breakdowns");
                 });
 
             modelBuilder.Entity("AutomationService.EF.DTOs.CustomerDTO", b =>

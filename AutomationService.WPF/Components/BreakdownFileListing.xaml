@@ -20,7 +20,8 @@
         <DataGrid.Columns>
 
             <DataGridTextColumn Header="DOSYA ADI" Width="auto" IsReadOnly="True" Binding="{Binding FileName}" />
-            <DataGridTextColumn Header="TÜRÜ" Width="*" IsReadOnly="True" Binding="{Binding FileExtension}" />
+            <DataGridTextColumn Header="TÜRÜ" Width="auto" IsReadOnly="True" Binding="{Binding FileExtension}" />
+            <DataGridTextColumn Header="TARİH/SAAT" Width="*" IsReadOnly="True" Binding="{Binding CreatedDateTime}" />
 
             <DataGridTemplateColumn Header="Seçenekler"
                                             IsReadOnly="True"
@@ -45,6 +46,20 @@
 
                             </Button>
 
+                            <Button Style="{StaticResource gridEditButton}"
+                                    Command="{Binding RenameBreakdownFileCommand}"
+                                    Margin="5 0 0 0">
+                                <Button.Content>
+                                    <WrapPanel>
+                                        <Icon:PackIconMaterial Kind="PencilOutline"
+                                                               Style="{StaticResource gridButtonIcon}"/>
+
+                                    </WrapPanel>
+                                </Button.Content>
+
+
+                            </Button>
+
                             <Button Style="{StaticResource gridRemoveButton}"
                                     Command="{Binding DeleteSelectedFileCommand}"
                                     Margin="5 0 5 0">
@@ -61,7 +76,6 @@
 
 
                             </Button>
-
 
 
 

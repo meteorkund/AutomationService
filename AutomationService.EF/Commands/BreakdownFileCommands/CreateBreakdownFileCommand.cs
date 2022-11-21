@@ -24,6 +24,7 @@ namespace AutomationService.EF.Commands.BreakdownFileCommands
             {
                 BreakdownFileDTO breakdownDTO = new BreakdownFileDTO()
                 {
+                    Id= breakdownFile.Id,
                     FileName = breakdownFile.FileName,
                     FileExtension = breakdownFile.FileExtension,
                     Path = breakdownFile.Path,

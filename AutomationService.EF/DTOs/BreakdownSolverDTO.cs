@@ -10,5 +10,7 @@ namespace AutomationService.EF.DTOs
     {
         public int Id { get; set; }
         public string NameSurname { get; set; }
+        
+        public ICollection<BreakdownDTO> Breakdowns { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace AutomationService.WPF.Commands
             {
                 using (AutomationServiceDBContext context = _contextFactory.Create())
                 {
-                    var lastBreakdown = context.Employees.ToList().Last();
+                    var lastBreakdown = context.Breakdowns.Last();
                     lastBreakdownId = lastBreakdown.Id;
                 }
             }
@@ -47,6 +47,9 @@ namespace AutomationService.WPF.Commands
             BreakdownDetailsFormViewModel formViewModel = _addBreakdownViewModel.BreakdownDetailsFormViewModel;
 
             formViewModel.ErrorMessage = null;
+
+
+
 
             Breakdown breakdown = new Breakdown
             {
@@ -77,7 +80,7 @@ namespace AutomationService.WPF.Commands
                 Cause = formViewModel.Cause,
                 Service = formViewModel.Service,
 
-                Customer = new Customer(2, formViewModel.CompanyName, formViewModel.Country)
+                Customer = new Customer(1, formViewModel.CompanyName, formViewModel.Country)
 
 
             };
@@ -93,9 +96,10 @@ namespace AutomationService.WPF.Commands
                 _modalNavigationStore.Close();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                formViewModel.ErrorMessage = "Servis kaydı düzenlenmesi sırasında hata oluştu. Daha sonra tekrar deneyiniz.";
+                MessageBox.Show(ex.ToString());
+                formViewModel.ErrorMessage = "Servis kaydı düzenlenmesi sırasında hata oluştu.\n Daha sonra tekrar deneyiniz.";
             }
             finally
             {

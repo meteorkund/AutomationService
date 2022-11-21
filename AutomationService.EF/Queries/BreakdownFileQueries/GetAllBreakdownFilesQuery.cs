@@ -26,12 +26,13 @@ namespace AutomationService.EF.Queries.BreakdownFileQueries
                 IEnumerable<BreakdownFileDTO> breadownFileDTOs = await context.BreadownFiles.ToListAsync();
 
                 return breadownFileDTOs.Select(e => new BreakdownFile
-                {
+                { 
                     Id = e.Id,
                     BreakdownId = e.BreakdownId,
                     FileName = e.FileName,
                     FileExtension = e.FileExtension,
                     Path = e.Path,
+                    CreatedDate= e.CreatedDate,
                 });
 
 

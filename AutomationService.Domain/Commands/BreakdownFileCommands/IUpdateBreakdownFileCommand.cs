@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutomationService.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace AutomationService.Domain.Commands.BreakdownFileCommands
 {
-    public interface IDeleteBreakdownFileCommand
+    public interface IUpdateBreakdownFileCommand
     {
-        Task DeleteBreakdownFile(Guid id);
+        Task UpdateBreakdownFile(BreakdownFile breakdownFile);
     }
 }

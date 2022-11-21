@@ -3,6 +3,7 @@ using AutomationService.WPF.Commands.BreakdownFileCommands;
 using AutomationService.WPF.Stores;
 using AutomationService.WPF.ViewModels.BreakdownViewModels;
 using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -29,13 +30,13 @@ public class BreakdownFileListingViewModel : ViewModelBase
 
     readonly BreakdownFileListingItemViewModel _breakdownFileListingItemViewModel;
 
-   
 
-    public BreakdownFileListingViewModel(BreakdownFileStore breakdownFileStore,SelectedBreakdownFileStore selectedBreakdownFileStore, SelectedBreakdownStore selectedBreakdownStore)
+
+    public BreakdownFileListingViewModel(BreakdownFileStore breakdownFileStore, SelectedBreakdownFileStore selectedBreakdownFileStore, SelectedBreakdownStore selectedBreakdownStore)
     {
         _breakdownFileStore = breakdownFileStore;
         _selectedBreakdownFileStore = selectedBreakdownFileStore;
-        _selectedBreakdownStore= selectedBreakdownStore;
+        _selectedBreakdownStore = selectedBreakdownStore;
 
 
         _breakdownFileListingItemViewModels = new ObservableCollection<BreakdownFileListingItemViewModel>();
@@ -44,18 +45,26 @@ public class BreakdownFileListingViewModel : ViewModelBase
 
         _breakdownFileListingItemViewModel = new BreakdownFileListingItemViewModel(_breakdownFile, selectedBreakdownFileStore, breakdownFileStore);
 
+        _breakdownFileStore.BreakdownFilesAdded += BreakdownFileStore_BreakdownFilesAdded;
         _breakdownFileStore.BreakdownFilesLoaded += BreakdownFileStore_BreakdownFilesLoaded;
+        _breakdownFileStore.BreakdownFileUpdated += BreakdownFileStore_BreakdownFileUpdated;
         _breakdownFileStore.BreakdownFileDeleted += BreakdownFileStore_BreakdownFileDeleted;
 
         _selectedBreakdownStore.SelectedBreakdownChanged += SelectedBreakdownStore_SelectedBreakdownChanged;
 
     }
 
-    private void BreakdownFileStore_BreakdownFileDeleted(int id)
+    private void BreakdownFileStore_BreakdownFilesAdded(BreakdownFile breakdownFile)
     {
-        BreakdownFileListingItemViewModel itemViewModel = _breakdownFileListingItemViewModels.FirstOrDefault(b=>b.BreakdownFile?.Id== id);
+        AddBreakdownFile(breakdownFile);
+        OnPropertyChanged(nameof(GroupedByBreakdownFiles));
+    }
 
-        if(itemViewModel != null)
+    private void BreakdownFileStore_BreakdownFileDeleted(Guid id)
+    {
+        BreakdownFileListingItemViewModel itemViewModel = _breakdownFileListingItemViewModels.FirstOrDefault(b => b.BreakdownFile?.Id == id);
+
+        if (itemViewModel != null)
         {
             _breakdownFileListingItemViewModels.Remove(itemViewModel);
             OnPropertyChanged(nameof(GroupedByBreakdownFiles));
@@ -65,7 +74,8 @@ public class BreakdownFileListingViewModel : ViewModelBase
     private void SelectedBreakdownStore_SelectedBreakdownChanged()
     {
         OnPropertyChanged(nameof(GroupedByBreakdownFiles));
-;    }
+        ;
+    }
 
     private BreakdownFileListingItemViewModel _selectedBreakdownFile;
 
@@ -82,7 +92,7 @@ public class BreakdownFileListingViewModel : ViewModelBase
 
     public static BreakdownFileListingViewModel LoadViewModel(BreakdownFileStore breakdownFileStore, SelectedBreakdownFileStore selectedBreakdownFileStore, SelectedBreakdownStore selectedBreakdownStore)
     {
-        BreakdownFileListingViewModel viewModel = new BreakdownFileListingViewModel(breakdownFileStore, selectedBreakdownFileStore,selectedBreakdownStore);
+        BreakdownFileListingViewModel viewModel = new BreakdownFileListingViewModel(breakdownFileStore, selectedBreakdownFileStore, selectedBreakdownStore);
 
         viewModel.LoadBreakdownFilesCommand.Execute(null);
 
@@ -104,9 +114,20 @@ public class BreakdownFileListingViewModel : ViewModelBase
         _breakdownFileListingItemViewModels.Add(itemViewModel);
     }
 
+    private void BreakdownFileStore_BreakdownFileUpdated(BreakdownFile breakdownFile)
+    {
+        BreakdownFileListingItemViewModel breakdownFileViewModel = _breakdownFileListingItemViewModels.FirstOrDefault(e => e.BreakdownFile.Id == breakdownFile.Id);
+
+        if (breakdownFileViewModel != null)
+            breakdownFileViewModel.BreakdownFileUpdate(breakdownFile);
+    }
+
+
     protected override void Dispose()
     {
+        _breakdownFileStore.BreakdownFilesAdded -= BreakdownFileStore_BreakdownFilesAdded;
         _breakdownFileStore.BreakdownFilesLoaded -= BreakdownFileStore_BreakdownFilesLoaded;
+        _breakdownFileStore.BreakdownFileUpdated -= BreakdownFileStore_BreakdownFileUpdated;
         _breakdownFileStore.BreakdownFileDeleted -= BreakdownFileStore_BreakdownFileDeleted;
 
 
