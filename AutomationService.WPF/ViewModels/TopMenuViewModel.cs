@@ -18,7 +18,6 @@ public class TopMenuViewModel : ViewModelBase
 {
     public ICommand AddBreakdownCommand { get; }
     readonly AutomationServiceDBContextFactory _contextFactory;
-    readonly DepartmentListingViewModel _departmentListingViewModel;
     readonly BreakdownListingViewModel _breakdownListingViewModel;
     readonly DepartmentStore _departmentStore;
     public IEnumerable<Department> DepartmentListingItemViewModels => _departmentStore.Departments;

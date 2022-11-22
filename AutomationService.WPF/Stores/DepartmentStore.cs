@@ -15,7 +15,6 @@ namespace AutomationService.WPF.Stores
     public class DepartmentStore : ViewModelBase
     {
         readonly IGetAllDepartmentsQuery _getAllDepartments;
-        readonly Department _department;
 
         readonly List<Department> _departments;
         public IEnumerable<Department> Departments => _departments;

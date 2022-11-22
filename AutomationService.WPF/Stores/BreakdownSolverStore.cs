@@ -40,6 +40,8 @@ namespace AutomationService.WPF.Stores
             _breakdownSolvers.Clear();
 
             _breakdownSolvers.AddRange(breakdownSolversSorted);
+
+            BreakdownSolversLoaded?.Invoke();
         }
 
         private void BreakdownSolverStore_BreakdownSolversLoaded()
