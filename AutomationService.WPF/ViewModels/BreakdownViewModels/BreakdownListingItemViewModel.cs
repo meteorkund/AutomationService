@@ -39,10 +39,10 @@ public class BreakdownListingItemViewModel : ViewModelBase
         }
     }
 
-    public BreakdownListingItemViewModel(Breakdown breakdown, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore)
+    public BreakdownListingItemViewModel(Breakdown breakdown, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore, CustomerStore customerStore)
     {
         Breakdown = breakdown;
-        EditCommand = new OpenEditBreakdownCommand(this, breakdownStore, modalNavigationStore, breakdownSolverStore, departmentStore, sectorStore, employeeStore);
+        EditCommand = new OpenEditBreakdownCommand(this, breakdownStore, modalNavigationStore, breakdownSolverStore, departmentStore, sectorStore, employeeStore, customerStore);
         DeleteCommand = new DeleteBreadownCommand(this, breakdownStore);
     }
 

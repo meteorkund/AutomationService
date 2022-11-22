@@ -15,13 +15,15 @@ namespace AutomationService.WPF.Commands.ComboBoxItemsCommand
         readonly DepartmentStore  _departmentStore;
         readonly SectorStore _sectorStore;
         readonly EmployeeStore _employeeStore;
+        readonly CustomerStore _customerStore;
 
-        public LoadComboBoxItemsCommand(BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore)
+        public LoadComboBoxItemsCommand(BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore, CustomerStore customerStore)
         {
             _breakdownSolverStore = breakdownSolverStore;
             _departmentStore = departmentStore;
             _sectorStore = sectorStore;
             _employeeStore = employeeStore;
+            _customerStore = customerStore;
         }
 
         public override async void Execute(object? parameter)
@@ -32,6 +34,7 @@ namespace AutomationService.WPF.Commands.ComboBoxItemsCommand
                 await _departmentStore.LoadDepartments();
                 await _sectorStore.LoadSectors(); 
                 await _employeeStore.LoadEmployees();
+                await _customerStore.LoadCustomers();
             }
             catch
             {

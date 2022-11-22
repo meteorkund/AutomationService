@@ -16,7 +16,7 @@ public class OpenEditBreakdownCommand : CommandBase
     readonly ModalNavigationStore _modalNavigationStore;
     readonly BreakdownListingItemViewModel _breakdownListingItemViewModel;
 
-    public OpenEditBreakdownCommand(BreakdownListingItemViewModel employeeListingItemViewModel, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore)
+    public OpenEditBreakdownCommand(BreakdownListingItemViewModel employeeListingItemViewModel, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore, CustomerStore customerStore)
     {
         _breakdownListingItemViewModel = employeeListingItemViewModel;
         _breakdownStore = breakdownStore;
@@ -26,6 +26,7 @@ public class OpenEditBreakdownCommand : CommandBase
         _departmentStore = departmentStore;
         _sectorStore = sectorStore;
         _employeeStore = employeeStore;
+        _customerStore = customerStore;
 
     }
 

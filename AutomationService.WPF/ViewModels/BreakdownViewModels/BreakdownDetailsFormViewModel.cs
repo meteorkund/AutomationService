@@ -6,6 +6,7 @@ using AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.EmployeeViewModel
 using AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.SectorViewModels;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 
 namespace AutomationService.WPF.ViewModels.BreakdownViewModels;
@@ -28,49 +29,16 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
     public IEnumerable<DepartmentListingItemViewModel> DepartmentListingItemViewModels => _departmentListingViewModel.DepartmentListingItemViewModels;
     public IEnumerable<SectorListingItemViewModel> SectorListingItemViewModels => _sectorListingViewModel.SectorListingItemViewModels;
     public IEnumerable<EmployeeListingItemViewModel> EmployeeListingItemViewModels => _breakdownListingViewModel.EmployeeListingItemViewModels;
-    public IEnumerable<CustomerListingItemViewModel> CustomerListingItemViewModels => _customerListingViewModel.CustomerListingItemViewModels;
+
+    public IEnumerable<CustomerListingItemViewModel> CountryListing => _customerListingViewModel.CustomerListingItemViewModels;
+
+    public IEnumerable<CustomerListingItemViewModel> CompanyNameListing => _customerListingViewModel._customerListingItemViewModels.Where(x => x.Country == SelectedCountry).ToList();
+
 
 
 
     #region PROPERTIES
 
-    private string _country;
-
-    public string Country
-    {
-        get { return _country; }
-        set
-        {
-            _country = value;
-            OnPropertyChanged(nameof(Country));
-            OnPropertyChanged(nameof(CanSubmit));
-        }
-    }
-
-    private string _companyName;
-
-    public string CompanyName
-    {
-        get { return _companyName; }
-        set
-        {
-            _companyName = value;
-            OnPropertyChanged(nameof(CompanyName));
-            OnPropertyChanged(nameof(CanSubmit));
-        }
-    }
-
-    private string _creatorName;
-
-    public string CreatorName
-    {
-        get { return _creatorName; }
-        set
-        {
-            _creatorName = value;
-            OnPropertyChanged(nameof(CreatorName));
-        }
-    }
 
     private bool _isElectrical;
 
@@ -168,9 +136,6 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
 
     public bool HasErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
 
-    public bool CanSubmit => !string.IsNullOrEmpty(CompanyName) &&
-                             !string.IsNullOrEmpty(Country);
-
     public ICommand SubmitCommand { get; }
     public ICommand CancelCommand { get; }
 
@@ -248,17 +213,44 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
     }
 
 
-    private EmployeeListingItemViewModel _selectedCustomerItem;
+    private CustomerListingItemViewModel _selectedCompanyItem;
 
-    public EmployeeListingItemViewModel SelectedCustomerItem
+    public CustomerListingItemViewModel SelectedCompanyItem
     {
-        get { return _selectedCustomerItem; }
+        get { return _selectedCompanyItem; }
         set
         {
-            _selectedCustomerItem = value;
-            OnPropertyChanged(nameof(SelectedCustomerItem));
+            _selectedCompanyItem = value;
+            OnPropertyChanged(nameof(SelectedCompanyItem));
         }
     }
+
+    private CustomerListingItemViewModel _selectedCountryItem;
+
+    public CustomerListingItemViewModel SelectedCountryItem
+    {
+        get { return _selectedCountryItem; }
+        set
+        {
+            _selectedCountryItem = value;
+            SelectedCountry = _selectedCountryItem.Country;
+            OnPropertyChanged(nameof(SelectedCountryItem));
+
+        }
+    }
+
+    private string _selectedCountry;
+
+    public string SelectedCountry
+    {
+        get { return _selectedCountry; }
+        set
+        {
+            _selectedCountry = value;
+            OnPropertyChanged(nameof(CompanyNameListing));
+        }
+    }
+
 
 
     private int _selectedSectorValue;
@@ -294,12 +286,20 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         set { _selectedEmployeeValue = value; }
     }
 
-    private int _selectedCustomerValue;
+    private int _selectedCompanyValue;
 
-    public int SelectedCustomerValue
+    public int SelectedCompanyValue
     {
-        get { return _selectedCustomerValue; }
-        set { _selectedCustomerValue = value; }
+        get { return _selectedCompanyValue; }
+        set { _selectedCompanyValue = value; }
+    }
+
+    private int _selectedCountryValue;
+
+    public int SelectedCountryValue
+    {
+        get { return _selectedCountryValue; }
+        set { _selectedCountryValue = value; }
     }
 
 

@@ -16,7 +16,7 @@ namespace AutomationService.WPF.Commands
     public class AddBreakdownCommand : AsyncCommandBase
     {
         readonly ModalNavigationStore _modalNavigationStore;
-        readonly BreakdownStore _BreakdownStore;
+        readonly BreakdownStore _breakdownStore;
         readonly AddBreakdownViewModel _addBreakdownViewModel;
         readonly AutomationServiceDBContextFactory _contextFactory;
 
@@ -24,7 +24,7 @@ namespace AutomationService.WPF.Commands
         public AddBreakdownCommand(AddBreakdownViewModel addBreakdownViewModel, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory)
         {
             _modalNavigationStore = modalNavigationStore;
-            _BreakdownStore = breakdownStore;
+            _breakdownStore = breakdownStore;
             _addBreakdownViewModel = addBreakdownViewModel;
             _contextFactory = contextFactory;
 
@@ -58,9 +58,14 @@ namespace AutomationService.WPF.Commands
                      formViewModel.SelectedEmployeeItem.EmployeeId,
                      formViewModel.SelectedEmployeeItem.NameSurname),
 
-                BreakdownSolver = new(
+                BreakdownSolver = new BreakdownSolver(
                     formViewModel.SelectedBreakdownSolverItem.BreakdownSolverId,
                     formViewModel.SelectedBreakdownSolverItem.NameSurname),
+
+                Customer = new Customer(
+                    formViewModel.SelectedCompanyItem.CustomerId, 
+                    formViewModel.SelectedCompanyItem.CompanyName, 
+                    formViewModel.SelectedCountryItem.Country),
 
                 IsElectrical = formViewModel.IsElectrical,
                 IsMechanical = formViewModel.IsMechanical,
@@ -68,7 +73,7 @@ namespace AutomationService.WPF.Commands
                 Cause = formViewModel.Cause,
                 Service = formViewModel.Service,
 
-                Customer = new Customer(1, formViewModel.CompanyName, formViewModel.Country)
+                 CreatedDate = DateTime.Now,
 
 
             };
@@ -78,7 +83,7 @@ namespace AutomationService.WPF.Commands
 
             try
             {
-                await _BreakdownStore.Add(breakdown);
+                await _breakdownStore.Add(breakdown);
 
 
                 _modalNavigationStore.Close();

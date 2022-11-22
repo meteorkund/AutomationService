@@ -23,7 +23,7 @@ public class BreakdownsViewModel : ViewModelBase
     {
         _contextFactory = contextFactory;
 
-        BreakdownListingViewModel = BreakdownListingViewModel.LoadViewModel(breakdownStore, selectedBreakdownStore, modalNavigationStore, breakdownSolverStore, departmentStore, sectorStore, employeeStore, contextFactory);
+        BreakdownListingViewModel = BreakdownListingViewModel.LoadViewModel(breakdownStore, selectedBreakdownStore, modalNavigationStore, breakdownSolverStore, departmentStore, sectorStore, employeeStore, contextFactory,customerStore);
         BreakdownDetailsViewModel = new BreakdownDetailsViewModel(selectedBreakdownStore, breakdownFileStore, selectedBreakdownFileStore, contextFactory);
 
         TopMenuViewModel = new TopMenuViewModel(BreakdownListingViewModel, breakdownStore, modalNavigationStore, contextFactory, breakdownSolverStore, departmentStore, sectorStore, employeeStore, customerStore);

@@ -55,7 +55,8 @@ namespace AutomationService.WPF.HostBuilders
             services.GetRequiredService<DepartmentStore>(),
             services.GetRequiredService<SectorStore>(),
             services.GetRequiredService<EmployeeStore>(),
-            services.GetRequiredService<AutomationServiceDBContextFactory>()
+            services.GetRequiredService<AutomationServiceDBContextFactory>(),
+            services.GetRequiredService<CustomerStore>()
                 );
 
         }

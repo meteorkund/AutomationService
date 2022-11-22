@@ -27,8 +27,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
             BreakdownDetailsFormViewModel = new BreakdownDetailsFormViewModel(submitCommand, cancelCommand, breakdownSolverStore, departmentStore, sectorStore, employeeStore, customerStore)
             {
-                CompanyName = breakdown.Customer.CompanyName,
-                Country = breakdown.Customer.Country,
+  
                 IsElectrical = breakdown.IsElectrical,
                 IsMechanical = breakdown.IsMechanical,
                 Cause = breakdown.Cause,
@@ -38,6 +37,8 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
                 SelectedDepartmentValue = breakdown.Department.Id,
                 SelectedSectorValue = breakdown.Sector.Id,
                 SelectedEmployeeValue= breakdown.Employee.Id,
+                SelectedCompanyValue = breakdown.Customer.Id,
+                SelectedCountryValue = breakdown.Customer.Id,
             };
         }
     }

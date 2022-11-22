@@ -8,37 +8,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.CustomerViewModels
+namespace AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.CustomerViewModels;
+
+public class CustomerListingViewModel : ViewModelBase
 {
-    public class CustomerListingViewModel : ViewModelBase
+    public readonly ObservableCollection<CustomerListingItemViewModel> _customerListingItemViewModels;
+    readonly CustomerStore _customerStore;
+
+    public IEnumerable<CustomerListingItemViewModel> CustomerListingItemViewModels => _customerListingItemViewModels;
+
+    public CustomerListingViewModel(BreakdownDetailsFormViewModel breakdownDetailsFormViewModel, CustomerStore customerStore)
     {
-        readonly ObservableCollection<CustomerListingItemViewModel> _customerListingItemViewModels;
-        readonly CustomerStore _customerStore;
+        _customerStore = customerStore;
+        _customerListingItemViewModels = new ObservableCollection<CustomerListingItemViewModel>();
 
-        public IEnumerable<CustomerListingItemViewModel> CustomerListingItemViewModels => _customerListingItemViewModels.
+        CustomerStore_CustomerStoreLoaded();
+    }
 
-        public CustomerListingViewModel(BreakdownDetailsFormViewModel breakdownDetailsFormViewModel, CustomerStore customerStore)
+    private void CustomerStore_CustomerStoreLoaded()
+    {
+        _customerListingItemViewModels.Clear();
+        foreach (Customer customer in _customerStore.Customers)
         {
-            _customerStore = customerStore;
-            _customerListingItemViewModels = new ObservableCollection<CustomerListingItemViewModel>();
-
-            CustomerStore_CustomerStoreLoaded();
+            AddCustomer(customer);
         }
+    }
 
-        private void CustomerStore_CustomerStoreLoaded()
-        {
-            _customerListingItemViewModels.Clear();
-            foreach (Customer customer in _customerStore.Customers)
-            {
-                AddCustomer(customer);
-            }
-        }
+    private void AddCustomer(Customer customer)
+    {
+        CustomerListingItemViewModel itemViewModel = new CustomerListingItemViewModel(customer);
 
-        private void AddCustomer(Customer customer)
-        {
-            CustomerListingItemViewModel itemViewModel = new CustomerListingItemViewModel(customer);
-
-            _customerListingItemViewModels.Add(itemViewModel);
-        }
+        _customerListingItemViewModels.Add(itemViewModel);
     }
 }

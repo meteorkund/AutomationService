@@ -107,7 +107,9 @@
 
 
 
-                    <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 40 0 0">
+
+
+                    <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 30 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" SharedSizeGroup="label"/>
                             <ColumnDefinition Width="*" MaxWidth="340"/>
@@ -117,15 +119,19 @@
                             Style="{StaticResource VacationTextBlock}"
                             Grid.Column="0"
                             FontWeight="Bold"
-                            Text="FİRMA ADI" VerticalAlignment="Center"/>
+                            Text="ÜLKE" VerticalAlignment="Center"/>
 
-                        <TextBox
-                            Style="{StaticResource TextBoxStyle1}"
-                            KeyboardNavigation.TabIndex="2"
-                            MaxLength="30"
-                            Grid.Column="1"
-                            Margin="20 0 0 0"
-                            Text="{Binding CompanyName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Column="1"
+                                  Margin="20 0 0 0"
+                                  
+                                  ItemsSource="{Binding CountryListing}"
+                                  SelectedItem="{Binding SelectedCountryItem,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                  SelectedValue="{Binding SelectedCountryValue}"
+                                  SelectedIndex="{Binding SelectedIndexCommon}"
+                                  
+                                  SelectedValuePath="CustomerId"
+                                  DisplayMemberPath="Country"
+                                  IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
 
                     <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 10 0 0">
@@ -138,15 +144,19 @@
                             Style="{StaticResource VacationTextBlock}"
                             Grid.Column="0"
                             FontWeight="Bold"
-                            Text="ÜLKE" VerticalAlignment="Center"/>
+                            Text="FİRMA ADI" VerticalAlignment="Center"/>
 
-                        <TextBox
-                            Style="{StaticResource TextBoxStyle1}"
-                            KeyboardNavigation.TabIndex="2"
-                            MaxLength="20"
-                            Grid.Column="1"
-                            Margin="20 0 0 0"
-                            Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Column="1"
+                                  Margin="20 0 0 0"
+                                  
+                                  ItemsSource="{Binding CompanyNameListing}"
+                                  SelectedItem="{Binding SelectedCompanyItem,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                  SelectedValue="{Binding SelectedCompanyValue}"
+                                  SelectedIndex="{Binding SelectedIndexCommon}"
+                                  
+                                  SelectedValuePath="CustomerId"
+                                  DisplayMemberPath="CompanyName"
+                                  IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
 
                     <Grid Grid.Row="4" Grid.Column="1" Margin="0 10 0 0">
@@ -207,7 +217,7 @@
                                   SelectedValue="{Binding SelectedDepartmentValue}"
                                   SelectedIndex="{Binding SelectedIndexCommon}"
                                   
-                                  SelectedValuePath="Id"
+                                  SelectedValuePath="DepartmentId"
                                   DisplayMemberPath="DepartmentName"
                                   IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
@@ -232,7 +242,7 @@
                                   SelectedValue="{Binding SelectedSectorValue}"
                                   SelectedIndex="{Binding SelectedIndexCommon}"
                                   
-                                  SelectedValuePath="Id"
+                                  SelectedValuePath="SectorId"
                                   DisplayMemberPath="SectorName"
                                   IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
@@ -259,7 +269,7 @@
                                   SelectedValue="{Binding SelectedEmployeeValue}"
                                   SelectedIndex="{Binding SelectedIndexCommon}"
                                   
-                                  SelectedValuePath="Id"
+                                  SelectedValuePath="EmployeeId"
                                   DisplayMemberPath="NameSurname"
                                   IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
@@ -284,7 +294,7 @@
                                   SelectedValue="{Binding SelectedBreakdownSolverValue}"
                                   SelectedIndex="{Binding SelectedIndexCommon}"
                                   
-                                  SelectedValuePath="Id"
+                                  SelectedValuePath="BreakdownSolverId"
                                   DisplayMemberPath="NameSurname"
                                   IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
