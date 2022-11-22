@@ -9,6 +9,9 @@ namespace AutomationService.EF.DTOs
 {
     public class BreakdownDTO : BaseDTO
     {
+
+        public Guid Id { get; set; }
+
         public int CustomerId { get; set; }
         public int DepartmentId { get; set; }
         public int SectorId { get; set; }
@@ -30,5 +33,8 @@ namespace AutomationService.EF.DTOs
 
 
         public ICollection<BreakdownFileDTO>? BreadownFiles { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
     }
 }

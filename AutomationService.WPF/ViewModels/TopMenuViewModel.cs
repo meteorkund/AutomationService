@@ -23,13 +23,13 @@ public class TopMenuViewModel : ViewModelBase
     readonly DepartmentStore _departmentStore;
     public IEnumerable<Department> DepartmentListingItemViewModels => _departmentStore.Departments;
 
-    public TopMenuViewModel(BreakdownListingViewModel breakdownListingViewModel, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore)
+    public TopMenuViewModel(BreakdownListingViewModel breakdownListingViewModel, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore, CustomerStore customerStore)
     {
         _contextFactory = contextFactory;
         _departmentStore = departmentStore;
         _breakdownListingViewModel= breakdownListingViewModel;
 
-        AddBreakdownCommand = new OpenAddBreakdownCommand(breakdownStore, modalNavigationStore, contextFactory, breakdownSolverStore, departmentStore, sectorStore, employeeStore);
+        AddBreakdownCommand = new OpenAddBreakdownCommand(breakdownStore, modalNavigationStore, contextFactory, breakdownSolverStore, departmentStore, sectorStore, employeeStore, customerStore);
     }
 
 

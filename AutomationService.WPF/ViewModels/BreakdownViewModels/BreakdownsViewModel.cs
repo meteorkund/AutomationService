@@ -19,14 +19,14 @@ public class BreakdownsViewModel : ViewModelBase
 
     public TopMenuViewModel TopMenuViewModel { get; }
     public LeftMenuViewModel LeftMenuViewModel { get; }
-    public BreakdownsViewModel(BreakdownStore breakdownStore, SelectedBreakdownStore selectedBreakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory, BreakdownFileStore breakdownFileStore, SelectedBreakdownFileStore selectedBreakdownFileStore, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore)
+    public BreakdownsViewModel(BreakdownStore breakdownStore, SelectedBreakdownStore selectedBreakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory, BreakdownFileStore breakdownFileStore, SelectedBreakdownFileStore selectedBreakdownFileStore, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore, CustomerStore customerStore)
     {
         _contextFactory = contextFactory;
 
-        BreakdownListingViewModel = BreakdownListingViewModel.LoadViewModel(breakdownStore, selectedBreakdownStore, modalNavigationStore, breakdownSolverStore, departmentStore, sectorStore, employeeStore,contextFactory);
+        BreakdownListingViewModel = BreakdownListingViewModel.LoadViewModel(breakdownStore, selectedBreakdownStore, modalNavigationStore, breakdownSolverStore, departmentStore, sectorStore, employeeStore, contextFactory);
         BreakdownDetailsViewModel = new BreakdownDetailsViewModel(selectedBreakdownStore, breakdownFileStore, selectedBreakdownFileStore, contextFactory);
 
-        TopMenuViewModel = new TopMenuViewModel(BreakdownListingViewModel, breakdownStore, modalNavigationStore, contextFactory, breakdownSolverStore, departmentStore, sectorStore, employeeStore);
+        TopMenuViewModel = new TopMenuViewModel(BreakdownListingViewModel, breakdownStore, modalNavigationStore, contextFactory, breakdownSolverStore, departmentStore, sectorStore, employeeStore, customerStore);
 
         LeftMenuViewModel = new LeftMenuViewModel();
 

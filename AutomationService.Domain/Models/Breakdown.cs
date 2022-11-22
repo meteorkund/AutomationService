@@ -9,6 +9,8 @@ namespace AutomationService.Domain.Models
 {
     public class Breakdown : BaseEntity
     {
+        public Guid Id { get; set; }
+
         public int CustomerId { get; set; }
         public int DepartmentId { get; set; }
         public int SectorId { get; set; }
@@ -28,5 +30,9 @@ namespace AutomationService.Domain.Models
         public Sector Sector { get; set; }
         public BreakdownSolver BreakdownSolver { get; set; }
         public ICollection<BreakdownFile> BreakdownFiles { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        public DateTime UpdatedDate { get; set; }
     }
 }

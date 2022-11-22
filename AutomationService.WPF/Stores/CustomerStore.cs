@@ -28,9 +28,7 @@ namespace AutomationService.WPF.Stores
 
             _customers.Clear();
 
-            IEnumerable<Customer> sortedCustomers = customers.OrderBy(c => c.Country).ToArray();
-
-            _customers.AddRange(sortedCustomers);
+            _customers.AddRange(customers);
 
             CustomersLoaded?.Invoke();
         }

@@ -13,13 +13,13 @@ namespace AutomationService.WPF.Commands
     public class DeleteBreadownCommand : AsyncCommandBase
     {
 
-        readonly BreakdownStore _BreakdownStore;
+        readonly BreakdownStore _breakdownStore;
         readonly BreakdownListingItemViewModel _breakdownListingItemViewModel;
 
         public DeleteBreadownCommand(BreakdownListingItemViewModel customerListingItemViewModel, BreakdownStore breakdownStore)
         {
             _breakdownListingItemViewModel = customerListingItemViewModel;
-            _BreakdownStore = breakdownStore;
+            _breakdownStore = breakdownStore;
 
         }
 
@@ -34,11 +34,11 @@ namespace AutomationService.WPF.Commands
             {
                 _breakdownListingItemViewModel.IsDeleting = true;
 
-                Breakdown customer = _breakdownListingItemViewModel.Breakdown;
+                Breakdown breakdown = _breakdownListingItemViewModel.Breakdown;
 
                 try
                 {
-                    await _BreakdownStore.Delete(customer.Id);
+                    await _breakdownStore.Delete(breakdown.Id);
 
                 }
                 catch (Exception)

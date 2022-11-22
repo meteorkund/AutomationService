@@ -8,6 +8,6 @@ namespace AutomationService.Domain.Commands.BreakdownCommands
 {
     public interface IDeleteBreakdownCommand
     {
-        Task DeleteBreakdown(int id);
+        Task DeleteBreakdown(Guid id);
     }
 }

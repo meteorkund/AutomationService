@@ -49,6 +49,21 @@ namespace AutomationService.EF
                 };
             }
 
+            var breakdowns = ChangeTracker
+                .Entries<BreakdownDTO>();
+
+            foreach (var breakdown in breakdowns)
+            {
+                _ = breakdown.State switch
+                {
+                    EntityState.Added => breakdown.Entity.CreatedDate = DateTime.Now,
+                    EntityState.Modified => breakdown.Entity.UpdatedDate = DateTime.Now,
+                    _ => DateTime.Now
+                };
+            }
+
+
+
             return await base.SaveChangesAsync(cancellationToken);
         }
     }

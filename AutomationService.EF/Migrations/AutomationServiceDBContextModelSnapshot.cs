@@ -24,11 +24,9 @@ namespace AutomationService.EF.Migrations
 
             modelBuilder.Entity("AutomationService.EF.DTOs.BreakdownDTO", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("BreakdownSolverId")
                         .HasColumnType("int");
@@ -87,8 +85,8 @@ namespace AutomationService.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("BreakdownId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("BreakdownId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");

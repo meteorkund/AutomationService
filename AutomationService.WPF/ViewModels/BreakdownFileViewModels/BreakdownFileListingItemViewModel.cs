@@ -40,7 +40,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownFileViewModels
 
 
         public Guid BreakdownFileId => BreakdownFile.Id;
-        public int BreakdownId => BreakdownFile.BreakdownId;
+        public Guid BreakdownId => BreakdownFile.BreakdownId;
         public string FileName => BreakdownFile.FileName;
 
         public string FileExtension => BreakdownFile.FileExtension;

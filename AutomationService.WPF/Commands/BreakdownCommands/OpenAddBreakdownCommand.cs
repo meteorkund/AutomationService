@@ -17,10 +17,11 @@ namespace AutomationService.WPF.Commands
         readonly DepartmentStore _departmentStore;
         readonly SectorStore _sectorStore;
         readonly EmployeeStore _employeeStore;
+        readonly CustomerStore _customerStore;
 
         readonly AutomationServiceDBContextFactory _contextFactory;
 
-        public OpenAddBreakdownCommand(BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore)
+        public OpenAddBreakdownCommand(BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, AutomationServiceDBContextFactory contextFactory, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore, CustomerStore customerStore)
         {
             _modalNavigationStore = modalNavigationStore;
             _contextFactory = contextFactory;
@@ -30,11 +31,12 @@ namespace AutomationService.WPF.Commands
             _departmentStore = departmentStore;
             _sectorStore = sectorStore;
             _employeeStore = employeeStore;
+            _customerStore = customerStore;
         }
 
         public override void Execute(object? parameter)
         {
-            AddBreakdownViewModel addBreakdownViewModel = new AddBreakdownViewModel(_breakdownStore, _modalNavigationStore, _contextFactory, _breakdownSolverStore, _departmentStore, _sectorStore, _employeeStore);
+            AddBreakdownViewModel addBreakdownViewModel = new AddBreakdownViewModel(_breakdownStore, _modalNavigationStore, _contextFactory, _breakdownSolverStore, _departmentStore, _sectorStore, _employeeStore, _customerStore);
 
             _modalNavigationStore.CurrentViewModel = addBreakdownViewModel;
         }

@@ -26,6 +26,7 @@ namespace AutomationService.EF.Commands.BreakdownCommands
                 BreakdownDTO breakdownDTO = new BreakdownDTO()
                 {
                     Status = true,
+                    Id= breakdown.Id,
 
                     DepartmentId = breakdown.Department.Id,
                     SectorId = breakdown.Sector.Id,

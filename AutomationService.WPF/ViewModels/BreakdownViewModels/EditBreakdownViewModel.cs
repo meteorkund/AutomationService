@@ -13,10 +13,10 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 {
     public class EditBreakdownViewModel : ViewModelBase
     {
-        public int BreakdownId { get; }
+        public Guid BreakdownId { get; }
         public BreakdownDetailsFormViewModel BreakdownDetailsFormViewModel { get; }
 
-        public EditBreakdownViewModel(Breakdown breakdown, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore)
+        public EditBreakdownViewModel(Breakdown breakdown, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore, CustomerStore customerStore)
         {
             BreakdownId = breakdown.Id;
 
@@ -25,7 +25,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
             ICommand cancelCommand = new CloseModalCommand(modalNavigationStore);
 
 
-            BreakdownDetailsFormViewModel = new BreakdownDetailsFormViewModel(submitCommand, cancelCommand, breakdownSolverStore, departmentStore, sectorStore, employeeStore)
+            BreakdownDetailsFormViewModel = new BreakdownDetailsFormViewModel(submitCommand, cancelCommand, breakdownSolverStore, departmentStore, sectorStore, employeeStore, customerStore)
             {
                 CompanyName = breakdown.Customer.CompanyName,
                 Country = breakdown.Customer.Country,

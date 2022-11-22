@@ -168,7 +168,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         }
 
 
-        private void BreakdownStore_BreakdownDeleted(int id)
+        private void BreakdownStore_BreakdownDeleted(Guid id)
         {
             BreakdownListingItemViewModel itemViewModel = _breakdownListingItemViewModels.FirstOrDefault(e => e.Breakdown?.Id == id);
 

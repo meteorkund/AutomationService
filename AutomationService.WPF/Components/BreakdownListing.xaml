@@ -60,11 +60,11 @@
                         </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Header="KAYIT" IsReadOnly="True" Width="auto" Binding="{Binding BreakdownId}" ElementStyle="{StaticResource Centering}" />
                     <DataGridTextColumn Header="ÜLKE" IsReadOnly="True" Width="auto" Binding="{Binding Country}" />
                     <DataGridTextColumn Header="ŞİRKET" IsReadOnly="True" Width="auto" Binding="{Binding CompanyName}" />
                     <DataGridTextColumn Header="DEPARTMAN" IsReadOnly="True" Width="auto" Binding="{Binding Department}" />
-                    <DataGridTextColumn Header="BÖLÜM" IsReadOnly="True" Width="*" Binding="{Binding Sector}" />
+                    <DataGridTextColumn Header="BÖLÜM" IsReadOnly="True" Width="auto" Binding="{Binding Sector}" />
+                    <DataGridTextColumn Header="KAYIT AÇAN" IsReadOnly="True" Width="*" Binding="{Binding CreatorName}" />
 
                     <DataGridTemplateColumn Header="Seçenekler"
                                             IsReadOnly="True"

@@ -13,13 +13,13 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels;
 public class BreakdownListingItemViewModel : ViewModelBase
 {
     public Breakdown Breakdown { get; private set; }
-    public int BreakdownId => Breakdown.Id;
+    public Guid BreakdownId => Breakdown.Id;
     public bool Status => Breakdown.Status;
     public string CompanyName => Breakdown.Customer.CompanyName;
     public string Country => Breakdown.Customer.Country;
     public string Department => Breakdown.Department.DepartmentName;
     public string Sector => Breakdown.Sector.SectorName;
-
+    public string CreatorName => Breakdown.Employee.NameSurname;
 
 
 

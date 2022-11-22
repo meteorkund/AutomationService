@@ -10,7 +10,7 @@ namespace AutomationService.EF.DTOs
     public class BreakdownFileDTO
     {
         public Guid Id { get; set; }
-        public int BreakdownId { get; set; }
+        public Guid BreakdownId { get; set; }
 
         public string FileName { get; set; }
         public string FileExtension { get; set; }

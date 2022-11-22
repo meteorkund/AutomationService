@@ -28,18 +28,6 @@ namespace AutomationService.WPF.Commands
             _addBreakdownViewModel = addBreakdownViewModel;
             _contextFactory = contextFactory;
 
-            try
-            {
-                using (AutomationServiceDBContext context = _contextFactory.Create())
-                {
-                    var lastBreakdown = context.Breakdowns.Last();
-                    lastBreakdownId = lastBreakdown.Id;
-                }
-            }
-            catch
-            {
-                lastBreakdownId = 0;
-            }
         }
 
         public override async Task ExecuteAsync(object parameter)
@@ -53,7 +41,7 @@ namespace AutomationService.WPF.Commands
 
             Breakdown breakdown = new Breakdown
             {
-                Id = lastBreakdownId + 1,
+                Id = Guid.NewGuid(),
                 Status = true,
 
                 Department = new Department(

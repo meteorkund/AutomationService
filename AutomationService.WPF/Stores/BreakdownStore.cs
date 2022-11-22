@@ -24,7 +24,7 @@ namespace AutomationService.WPF.Stores
         public event Action BreakdownsLoaded;
         public event Action<Breakdown> BreakdownAdded;
         public event Action<Breakdown> BreakdownUpdated;
-        public event Action<int> BreakdownDeleted;
+        public event Action<Guid> BreakdownDeleted;
 
 
         public BreakdownStore(IGetAllBreakdownsQuery getAllBreakdownsQuery, ICreateBreakdownCommand createBreakdownCommand, IUpdateBreakdownCommand updateBreakdownCommand, IDeleteBreakdownCommand deleteBreakdownCommand)
@@ -70,7 +70,7 @@ namespace AutomationService.WPF.Stores
             BreakdownsLoaded?.Invoke();
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(Guid id)
         {
             await _deleteBreakdownCommand.DeleteBreakdown(id);
 
