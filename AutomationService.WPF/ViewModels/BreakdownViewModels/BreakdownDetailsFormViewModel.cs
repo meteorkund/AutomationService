@@ -31,8 +31,7 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
     public IEnumerable<EmployeeListingItemViewModel> EmployeeListingItemViewModels => _breakdownListingViewModel.EmployeeListingItemViewModels;
 
     public IEnumerable<CustomerListingItemViewModel> CountryListing => _customerListingViewModel.CustomerListingItemViewModels;
-
-    public IEnumerable<CustomerListingItemViewModel> CompanyNameListing => _customerListingViewModel._customerListingItemViewModels.Where(x => x.Country == SelectedCountry).ToList();
+    public IEnumerable<CustomerListingItemViewModel> CompanyNameListing => _customerListingViewModel.CustomerListingItemViewModels.Where(x => x.Country == SelectedCountry).ToList();
 
 
 

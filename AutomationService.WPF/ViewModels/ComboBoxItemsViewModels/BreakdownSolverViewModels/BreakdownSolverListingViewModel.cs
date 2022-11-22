@@ -14,37 +14,14 @@ namespace AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.BreakdownSolv
 {
     public class BreakdownSolverListingViewModel : ViewModelBase
     {
-        readonly ObservableCollection<BreakdownSolverListingItemViewModel> _breakdownSolverListingItemViewModels;
         readonly BreakdownSolverStore _breakdownSolverStore;
-        public IEnumerable<BreakdownSolverListingItemViewModel> BreakdownSolverListingItemViewModels => _breakdownSolverListingItemViewModels;
+        public IEnumerable<BreakdownSolverListingItemViewModel> BreakdownSolverListingItemViewModels => _breakdownSolverStore._breakdownSolverListingItemViewModels;
 
         public BreakdownSolverListingViewModel(BreakdownDetailsFormViewModel breakdownDetailsFormViewModel, BreakdownSolverStore breakdownSolverStore)
         {
             _breakdownSolverStore = breakdownSolverStore;
-            _breakdownSolverListingItemViewModels = new ObservableCollection<BreakdownSolverListingItemViewModel>();
-
-            BreakdownSolverStore_BreakdownSolversLoaded();
         }
 
-        private void BreakdownSolverStore_BreakdownSolversLoaded()
-        {
-            _breakdownSolverListingItemViewModels.Clear();
-            foreach (BreakdownSolver breakdownSolver in _breakdownSolverStore.BreakdownSolvers)
-            {
-                AddBreakdownSolver(breakdownSolver);
-            }
-        }
 
-        private void AddBreakdownSolver(BreakdownSolver breakdownSolver)
-        {
-            BreakdownSolverListingItemViewModel itemViewModel = new BreakdownSolverListingItemViewModel(breakdownSolver);
-
-            _breakdownSolverListingItemViewModels.Add(itemViewModel);
-        }
-
-        protected override void Dispose()
-        {
-            base.Dispose();
-        }
     }
 }

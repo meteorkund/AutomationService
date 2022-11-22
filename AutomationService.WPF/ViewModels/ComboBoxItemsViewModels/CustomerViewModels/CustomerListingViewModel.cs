@@ -12,32 +12,13 @@ namespace AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.CustomerViewM
 
 public class CustomerListingViewModel : ViewModelBase
 {
-    public readonly ObservableCollection<CustomerListingItemViewModel> _customerListingItemViewModels;
     readonly CustomerStore _customerStore;
-
-    public IEnumerable<CustomerListingItemViewModel> CustomerListingItemViewModels => _customerListingItemViewModels;
+    public IEnumerable<CustomerListingItemViewModel> CustomerListingItemViewModels => _customerStore._customerListingItemViewModels;
 
     public CustomerListingViewModel(BreakdownDetailsFormViewModel breakdownDetailsFormViewModel, CustomerStore customerStore)
     {
         _customerStore = customerStore;
-        _customerListingItemViewModels = new ObservableCollection<CustomerListingItemViewModel>();
-
-        CustomerStore_CustomerStoreLoaded();
     }
 
-    private void CustomerStore_CustomerStoreLoaded()
-    {
-        _customerListingItemViewModels.Clear();
-        foreach (Customer customer in _customerStore.Customers)
-        {
-            AddCustomer(customer);
-        }
-    }
 
-    private void AddCustomer(Customer customer)
-    {
-        CustomerListingItemViewModel itemViewModel = new CustomerListingItemViewModel(customer);
-
-        _customerListingItemViewModels.Add(itemViewModel);
-    }
 }

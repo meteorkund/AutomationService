@@ -15,44 +15,14 @@ namespace AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.EmployeeViewM
     public class EmployeeListingViewModel : ViewModelBase
     {
         readonly EmployeeStore _employeeStore;
+        public IEnumerable<EmployeeListingItemViewModel> EmployeeListingItemViewModels => _employeeStore._employeeListingItemViewModels;
 
-        readonly ObservableCollection<EmployeeListingItemViewModel> _employeeListingItemViewModels;
-        public IEnumerable<EmployeeListingItemViewModel> EmployeeListingItemViewModels => _employeeListingItemViewModels;
-
-        public ICommand LoadEmployeesCommand { get; }
 
         public EmployeeListingViewModel(BreakdownDetailsFormViewModel breakdownDetailsFormViewModel, EmployeeStore employeeStore)
         {
             _employeeStore = employeeStore;
-
-            _employeeListingItemViewModels = new ObservableCollection<EmployeeListingItemViewModel>();
-
-            LoadEmployeesCommand = new LoadEmployeesCommand(this, employeeStore);
-
-            EmployeeStore_EmployeesLoaded();
         }
 
 
-        private void EmployeeStore_EmployeesLoaded()
-        {
-            _employeeListingItemViewModels.Clear();
-            foreach (Employee employee in _employeeStore.Employees)
-            {
-                AddEmployees(employee);
-            }
-        }
-
-        private void AddEmployees(Employee employee)
-        {
-            EmployeeListingItemViewModel itemViewModel = new EmployeeListingItemViewModel(employee);
-
-            _employeeListingItemViewModels.Add(itemViewModel);
-        }
-
-        protected override void Dispose()
-        {
-            _employeeStore.EmployeesLoaded -= EmployeeStore_EmployeesLoaded;
-            base.Dispose();
-        }
     }
 }
