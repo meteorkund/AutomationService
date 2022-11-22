@@ -106,9 +106,6 @@
                     </Grid>
 
 
-
-
-
                     <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 30 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" SharedSizeGroup="label"/>
@@ -127,14 +124,14 @@
                                   ItemsSource="{Binding CountryListing}"
                                   SelectedItem="{Binding SelectedCountryItem,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   SelectedValue="{Binding SelectedCountryValue}"
-                                  SelectedIndex="{Binding SelectedIndexCommon}"
                                   
                                   SelectedValuePath="CustomerId"
                                   DisplayMemberPath="Country"
                                   IsSynchronizedWithCurrentItem="True"/>
                     </Grid>
 
-                    <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 10 0 0">
+                    <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 10 0 0" 
+                          Visibility="{Binding IsSelectedCountry, Converter={StaticResource BoolToVis}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" SharedSizeGroup="label"/>
                             <ColumnDefinition Width="*" MaxWidth="340"/>
@@ -147,12 +144,11 @@
                             Text="FİRMA ADI" VerticalAlignment="Center"/>
 
                         <ComboBox Grid.Column="1"
-                                  Margin="20 0 0 0"
+                                  Margin="20 0 0 0"                          
                                   
                                   ItemsSource="{Binding CompanyNameListing}"
                                   SelectedItem="{Binding SelectedCompanyItem,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   SelectedValue="{Binding SelectedCompanyValue}"
-                                  SelectedIndex="{Binding SelectedIndexCommon}"
                                   
                                   SelectedValuePath="CustomerId"
                                   DisplayMemberPath="CompanyName"
@@ -215,7 +211,6 @@
                                   ItemsSource="{Binding DepartmentListingItemViewModels}"
                                   SelectedItem="{Binding SelectedDepartmentItem,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   SelectedValue="{Binding SelectedDepartmentValue}"
-                                  SelectedIndex="{Binding SelectedIndexCommon}"
                                   
                                   SelectedValuePath="DepartmentId"
                                   DisplayMemberPath="DepartmentName"
@@ -240,7 +235,6 @@
                                   ItemsSource="{Binding SectorListingItemViewModels}"
                                   SelectedItem="{Binding SelectedSectorItem,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   SelectedValue="{Binding SelectedSectorValue}"
-                                  SelectedIndex="{Binding SelectedIndexCommon}"
                                   
                                   SelectedValuePath="SectorId"
                                   DisplayMemberPath="SectorName"
@@ -267,7 +261,6 @@
                                   ItemsSource="{Binding EmployeeListingItemViewModels}"
                                   SelectedItem="{Binding SelectedEmployeeItem,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   SelectedValue="{Binding SelectedEmployeeValue}"
-                                  SelectedIndex="{Binding SelectedIndexCommon}"
                                   
                                   SelectedValuePath="EmployeeId"
                                   DisplayMemberPath="NameSurname"
@@ -292,7 +285,6 @@
                                   ItemsSource="{Binding BreakdownSolverListingItemViewModels}"
                                   SelectedItem="{Binding SelectedBreakdownSolverItem,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   SelectedValue="{Binding SelectedBreakdownSolverValue}"
-                                  SelectedIndex="{Binding SelectedIndexCommon}"
                                   
                                   SelectedValuePath="BreakdownSolverId"
                                   DisplayMemberPath="NameSurname"

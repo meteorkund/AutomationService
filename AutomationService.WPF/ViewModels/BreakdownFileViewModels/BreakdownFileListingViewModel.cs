@@ -16,6 +16,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownFileViewModels;
 public class BreakdownFileListingViewModel : ViewModelBase
 {
     readonly ObservableCollection<BreakdownFileListingItemViewModel> _breakdownFileListingItemViewModels;
+    readonly BreakdownFileListingItemViewModel _breakdownFileListingItemViewModel;
 
 
     public IEnumerable<BreakdownFileListingItemViewModel> BreakdownFileListingItemViewModels => _breakdownFileListingItemViewModels;
@@ -28,11 +29,12 @@ public class BreakdownFileListingViewModel : ViewModelBase
     readonly BreakdownFile _breakdownFile;
     public ICommand LoadBreakdownFilesCommand { get; }
 
-    readonly BreakdownFileListingItemViewModel _breakdownFileListingItemViewModel;
 
 
 
-    public BreakdownFileListingViewModel(BreakdownFileStore breakdownFileStore, SelectedBreakdownFileStore selectedBreakdownFileStore, SelectedBreakdownStore selectedBreakdownStore)
+    public BreakdownFileListingViewModel(BreakdownFileStore breakdownFileStore,
+                                         SelectedBreakdownFileStore selectedBreakdownFileStore,
+                                         SelectedBreakdownStore selectedBreakdownStore)
     {
         _breakdownFileStore = breakdownFileStore;
         _selectedBreakdownFileStore = selectedBreakdownFileStore;

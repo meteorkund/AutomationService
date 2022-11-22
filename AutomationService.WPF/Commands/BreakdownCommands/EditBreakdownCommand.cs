@@ -34,6 +34,12 @@ public class EditBreakdownCommand : AsyncCommandBase
         Breakdown breakdown = new Breakdown
         {
             Id = _editBreakdownViewModel.BreakdownId,
+            DepartmentId = formViewModel.SelectedDepartmentValue,
+            SectorId = formViewModel.SelectedSectorValue,
+            CustomerId = formViewModel.SelectedCompanyValue,
+            EmployeeId = formViewModel.SelectedEmployeeValue,
+            BreakdownSolverId = formViewModel.SelectedEmployeeValue,
+
             Status = true,
 
             Department = new Department(
@@ -45,9 +51,17 @@ public class EditBreakdownCommand : AsyncCommandBase
                 formViewModel.SelectedSectorItem.SectorName),
 
             Customer = new Customer(
-                formViewModel.SelectedCompanyItem.CustomerId, 
-                formViewModel.SelectedCompanyItem.CompanyName, 
+                formViewModel.SelectedCompanyItem.CustomerId,
+                formViewModel.SelectedCompanyItem.CompanyName,
                 formViewModel.SelectedCountryItem.Country),
+
+            Employee = new Employee(
+                formViewModel.SelectedEmployeeItem.EmployeeId,
+                formViewModel.SelectedEmployeeItem.NameSurname),
+
+            BreakdownSolver = new BreakdownSolver(
+                formViewModel.SelectedBreakdownSolverItem.BreakdownSolverId,
+                formViewModel.SelectedBreakdownSolverItem.NameSurname),
 
             IsElectrical = formViewModel.IsElectrical,
             IsMechanical = formViewModel.IsMechanical,
@@ -55,7 +69,8 @@ public class EditBreakdownCommand : AsyncCommandBase
             Cause = formViewModel.Cause,
             Service = formViewModel.Service,
 
-
+            CreatedDate = _editBreakdownViewModel.CreatedDate,
+            UpdatedDate = DateTime.Now,
         };
 
         try

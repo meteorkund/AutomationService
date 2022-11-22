@@ -1,4 +1,5 @@
-﻿using AutomationService.EF;
+﻿using AutomationService.Domain.Models;
+using AutomationService.EF;
 using AutomationService.WPF.Commands;
 using AutomationService.WPF.Stores;
 using System;
@@ -18,10 +19,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         {
             ICommand submitCommand = new AddBreakdownCommand(this, breakdownStore, modalNavigationStore, contextFactory);
             ICommand cancelCommand = new CloseModalCommand(modalNavigationStore);
-            BreakdownDetailsFormViewModel = new BreakdownDetailsFormViewModel(submitCommand, cancelCommand, breakdownSolverStore, departmentStore, sectorStore, employeeStore, customerStore)
-            {
-                SelectedIndexCommon = 0,
-            };
+            BreakdownDetailsFormViewModel = new BreakdownDetailsFormViewModel(submitCommand, cancelCommand, breakdownSolverStore, departmentStore, sectorStore, employeeStore, customerStore);
         }
     }
 }

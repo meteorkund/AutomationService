@@ -25,7 +25,17 @@ namespace AutomationService.EF.Commands.BreakdownCommands
             {
                 var breakdownUpdate = await context.Breakdowns.FirstOrDefaultAsync(c => c.Id == breakdown.Id);
 
-                breakdownUpdate.Customer.CompanyName = breakdown.Customer.CompanyName;
+                breakdownUpdate.CustomerId = breakdown.CustomerId;
+                breakdownUpdate.DepartmentId = breakdown.DepartmentId;
+                breakdownUpdate.SectorId= breakdown.SectorId;
+                breakdownUpdate.BreakdownSolverId = breakdown.BreakdownSolverId;
+                breakdownUpdate.EmployeeId = breakdown.EmployeeId;
+
+                breakdownUpdate.IsElectrical= breakdown.IsElectrical;
+                breakdownUpdate.IsMechanical= breakdown.IsMechanical;
+                breakdownUpdate.Cause = breakdown.Cause;
+                breakdownUpdate.Service = breakdown.Service;
+
 
                 await context.SaveChangesAsync();
             }

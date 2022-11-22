@@ -8,43 +8,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationService.EF.Commands.BreakdownCommands
+namespace AutomationService.EF.Commands.BreakdownCommands;
+
+public class CreateBreakdownCommand : ICreateBreakdownCommand
 {
-    public class CreateBreakdownCommand : ICreateBreakdownCommand
+    readonly AutomationServiceDBContextFactory _contextFactory;
+
+    public CreateBreakdownCommand(AutomationServiceDBContextFactory contextFactory)
     {
-        readonly AutomationServiceDBContextFactory _contextFactory;
+        _contextFactory = contextFactory;
+    }
 
-        public CreateBreakdownCommand(AutomationServiceDBContextFactory contextFactory)
+    public async Task Create(Breakdown breakdown)
+    {
+        using (AutomationServiceDBContext context = _contextFactory.Create())
         {
-            _contextFactory = contextFactory;
-        }
-
-        public async Task Create(Breakdown breakdown)
-        {
-            using (AutomationServiceDBContext context = _contextFactory.Create())
+            BreakdownDTO breakdownDTO = new BreakdownDTO()
             {
-                BreakdownDTO breakdownDTO = new BreakdownDTO()
-                {
-                    Status = true,
-                    Id= breakdown.Id,
+                Status = true,
+                Id= breakdown.Id,
 
-                    DepartmentId = breakdown.Department.Id,
-                    SectorId = breakdown.Sector.Id,
-                    EmployeeId = breakdown.Employee.Id,
-                    CustomerId = breakdown.Customer.Id,
-                    BreakdownSolverId= breakdown.BreakdownSolver.Id,
+                DepartmentId = breakdown.Department.Id,
+                SectorId = breakdown.Sector.Id,
+                EmployeeId = breakdown.Employee.Id,
+                CustomerId = breakdown.Customer.Id,
+                BreakdownSolverId= breakdown.BreakdownSolver.Id,
 
-                    IsElectrical = breakdown.IsElectrical,
-                    IsMechanical = breakdown.IsMechanical,
+                IsElectrical = breakdown.IsElectrical,
+                IsMechanical = breakdown.IsMechanical,
 
-                    Cause = breakdown.Cause,
-                    Service = breakdown.Service,
+                Cause = breakdown.Cause,
+                Service = breakdown.Service,
+            };
 
-                };
-
-                context.Breakdowns.Add(breakdownDTO);
-                await context.SaveChangesAsync();
-            }
+            context.Breakdowns.Add(breakdownDTO);
+            await context.SaveChangesAsync();
         }
     }
 }

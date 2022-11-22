@@ -44,7 +44,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         public string ServiceDisplay => SelectedBreakdown?.Service;
 
         public string CreatorNameDisplay => SelectedBreakdown?.Employee?.NameSurname;
-        public string BreakdownSolverDisplay => SelectedBreakdown?.BreakdownSolver.NameSurname;
+        public string BreakdownSolverDisplay => SelectedBreakdown?.BreakdownSolver?.NameSurname;
 
         public string CreatedDateDisplay => SelectedBreakdown?.CreatedDate.ToString();
         public string UpdatedDateDisplay => SelectedBreakdown?.UpdatedDate.ToString();
@@ -54,7 +54,10 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
         public ICommand AddFileCommand { get; }
 
-        public BreakdownDetailsViewModel(SelectedBreakdownStore selectedBreakdownStore, BreakdownFileStore breakdownFileStore, SelectedBreakdownFileStore selectedBreakdownFileStore, AutomationServiceDBContextFactory contextFactory)
+        public BreakdownDetailsViewModel(SelectedBreakdownStore selectedBreakdownStore,
+                                         BreakdownFileStore breakdownFileStore,
+                                         SelectedBreakdownFileStore selectedBreakdownFileStore,
+                                         AutomationServiceDBContextFactory contextFactory)
         {
             _selectedBreakdownStore = selectedBreakdownStore;
             _selectedBreakdownFileStore = selectedBreakdownFileStore;

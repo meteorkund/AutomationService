@@ -36,6 +36,36 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
 
 
 
+    public BreakdownDetailsFormViewModel(ICommand submitCommand, ICommand cancelCommand, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore, CustomerStore customerStore)
+    {
+        SubmitCommand = submitCommand;
+        CancelCommand = cancelCommand;
+
+        _breakdownSolverStore = breakdownSolverStore;
+        _departmentStore = departmentStore;
+        _sectorStore = sectorStore;
+        _employeeStore = employeeStore;
+        _customerStore = customerStore;
+
+        _breakdownSolverListingViewModel = new BreakdownSolverListingViewModel(this, breakdownSolverStore);
+        _departmentListingViewModel = new DepartmentListingViewModel(this, departmentStore);
+        _sectorListingViewModel = new SectorListingViewModel(this, sectorStore);
+        _breakdownListingViewModel = new EmployeeListingViewModel(this, employeeStore);
+        _customerListingViewModel = new CustomerListingViewModel(this, customerStore);
+
+    }
+
+
+    #region COMMANDS
+    public ICommand SubmitCommand { get; }
+    public ICommand CancelCommand { get; }
+
+    public ICommand LoadComboBoxItemsCommand { get; }
+
+    public static RelayCommand UploadPhotoCommand { get; set; }
+
+    #endregion
+
     #region PROPERTIES
 
 
@@ -115,10 +145,6 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         }
     }
 
-
-
-
-
     private string _errorMessage;
 
     public string ErrorMessage
@@ -131,37 +157,17 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
             OnPropertyChanged(nameof(HasErrorMessage));
         }
     }
-    #endregion
 
     public bool HasErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
 
-    public ICommand SubmitCommand { get; }
-    public ICommand CancelCommand { get; }
+    public bool CanSubmit => SelectedCountryItem != null &&
+                             SelectedDepartmentItem != null &&
+                             SelectedSectorItem != null &&
+                             SelectedEmployeeItem != null;     
 
-    public ICommand LoadComboBoxItemsCommand { get; }
+    #endregion
 
-    public static RelayCommand UploadPhotoCommand { get; set; }
-
-    public BreakdownDetailsFormViewModel(ICommand submitCommand, ICommand cancelCommand, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore, CustomerStore customerStore)
-    {
-        SubmitCommand = submitCommand;
-        CancelCommand = cancelCommand;
-
-        _breakdownSolverStore = breakdownSolverStore;
-        _departmentStore = departmentStore;
-        _sectorStore = sectorStore;
-        _customerStore = customerStore;
-
-        _breakdownSolverListingViewModel = new BreakdownSolverListingViewModel(this, breakdownSolverStore);
-        _departmentListingViewModel = new DepartmentListingViewModel(this, departmentStore);
-        _sectorListingViewModel = new SectorListingViewModel(this, sectorStore);
-        _breakdownListingViewModel = new EmployeeListingViewModel(this, employeeStore);
-        _customerListingViewModel = new CustomerListingViewModel(this, customerStore);
-
-    }
-
-
-
+    #region SELECTED ITEMS
 
 
     private SectorListingItemViewModel _selectedSectorItem;
@@ -173,6 +179,7 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         {
             _selectedSectorItem = value;
             OnPropertyChanged(nameof(SelectedSectorItem));
+            OnPropertyChanged(nameof(CanSubmit));
         }
     }
 
@@ -185,6 +192,8 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         {
             _selectedDepartmentItem = value;
             OnPropertyChanged(nameof(SelectedDepartmentItem));
+            OnPropertyChanged(nameof(CanSubmit));
+
         }
     }
 
@@ -196,6 +205,7 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         {
             _selectedBreakdownSolverItem = value;
             OnPropertyChanged(nameof(SelectedBreakdownSolverItem));
+
         }
     }
 
@@ -208,6 +218,8 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         {
             _selectedEmployeeItem = value;
             OnPropertyChanged(nameof(SelectedEmployeeItem));
+            OnPropertyChanged(nameof(CanSubmit));
+
         }
     }
 
@@ -221,6 +233,7 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         {
             _selectedCompanyItem = value;
             OnPropertyChanged(nameof(SelectedCompanyItem));
+
         }
     }
 
@@ -233,25 +246,31 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         {
             _selectedCountryItem = value;
             SelectedCountry = _selectedCountryItem.Country;
+            if (IsSelectedCountry == false)
+                IsSelectedCountry = true;
             OnPropertyChanged(nameof(SelectedCountryItem));
+            OnPropertyChanged(nameof(CanSubmit));
+
 
         }
     }
 
-    private string _selectedCountry;
+    private bool _isSelectedCountry = false;
 
-    public string SelectedCountry
+    public bool IsSelectedCountry
     {
-        get { return _selectedCountry; }
+        get { return _isSelectedCountry; }
         set
         {
-            _selectedCountry = value;
-            OnPropertyChanged(nameof(CompanyNameListing));
+            _isSelectedCountry = value;
+            OnPropertyChanged(nameof(IsSelectedCountry));
         }
     }
 
 
+    #endregion
 
+    #region SELECTED VALUES
     private int _selectedSectorValue;
 
     public int SelectedSectorValue
@@ -303,13 +322,18 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
 
 
 
+    #endregion
 
 
-    private int _selectedIndexCommon;
-    public int SelectedIndexCommon
+
+    private string _selectedCountry;
+    public string SelectedCountry
     {
-        get { return _selectedIndexCommon; }
-        set { _selectedIndexCommon = value; }
+        get { return _selectedCountry; }
+        set
+        {
+            _selectedCountry = value;
+            OnPropertyChanged(nameof(CompanyNameListing));
+        }
     }
-
 }

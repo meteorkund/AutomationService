@@ -5,9 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:custom="clr-namespace:LoadingSpinnerControl;assembly=LoadingSpinnerControl"
-             xmlns:local="clr-namespace:AutomationService.WPF.Components"
+             xmlns:local="clr-namespace:AutomationService.WPF.Components" xmlns:converters="clr-namespace:AutomationService.WPF.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToHidden" TrueValue="Hidden" FalseValue="Visible"/>
+    </UserControl.Resources>
+    
+    
     <Grid Margin="25 25 25 25" Background="white">
         <Border Padding="20"
                 BorderBrush="Gray"
@@ -76,6 +82,8 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
+                    <!--#region TOP SIDE DISPLAY-->
+
                         <Border Grid.Column="0" 
                                 VerticalAlignment="Top"
                                 HorizontalAlignment="Left"
@@ -120,7 +128,9 @@
                            Background="#ff212121"/>
 
 
-                    <!--#region SOL DETAY-->
+                    <!--#endregion-->
+
+                    <!--#region LEFT SIDE DISPLAY-->
 
 
                     <Grid Grid.Row="2" Grid.Column="0" Margin="0 20 0 0">
@@ -198,8 +208,7 @@
 
                     <!--#endregion-->
 
-
-                    <!--#region SAĞ DETAY-->
+                    <!--#region RIGHT SIDE DISPLAY-->
 
                     <Grid Grid.Row="2" Grid.Column="1" Margin="0 20 0 0">
                         <Grid.ColumnDefinitions>
@@ -255,6 +264,7 @@
                                 Text="{Binding CreatedDateDisplay}"/>
                     </Grid>
 
+                    <!--<Grid Grid.Row="5" Grid.Column="1" Margin="0 20 0 0" Visibility="{Binding BreakdownStatusDisplay,Converter={StaticResource BoolToHidden}}">-->
                     <Grid Grid.Row="5" Grid.Column="1" Margin="0 20 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" SharedSizeGroup="labelSag"/>
@@ -274,7 +284,7 @@
 
                     <!--#endregion-->
 
-                    <!--#region ALT DETAY-->
+                    <!--#region BOTTOM SIDE DISPLAY-->
 
                     <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 40 0 0">
                         <Grid.ColumnDefinitions>

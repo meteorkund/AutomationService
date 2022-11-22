@@ -14,11 +14,15 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
     public class EditBreakdownViewModel : ViewModelBase
     {
         public Guid BreakdownId { get; }
+        public DateTime CreatedDate { get; }
+        public DateTime UpdatedDate { get; }
         public BreakdownDetailsFormViewModel BreakdownDetailsFormViewModel { get; }
 
         public EditBreakdownViewModel(Breakdown breakdown, BreakdownStore breakdownStore, ModalNavigationStore modalNavigationStore, BreakdownSolverStore breakdownSolverStore, DepartmentStore departmentStore, SectorStore sectorStore, EmployeeStore employeeStore, CustomerStore customerStore)
         {
             BreakdownId = breakdown.Id;
+            CreatedDate = breakdown.CreatedDate;
+            UpdatedDate = breakdown.UpdatedDate;
 
 
             ICommand submitCommand = new EditBreakdownCommand(this, breakdownStore, modalNavigationStore);
@@ -27,7 +31,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
             BreakdownDetailsFormViewModel = new BreakdownDetailsFormViewModel(submitCommand, cancelCommand, breakdownSolverStore, departmentStore, sectorStore, employeeStore, customerStore)
             {
-  
+
                 IsElectrical = breakdown.IsElectrical,
                 IsMechanical = breakdown.IsMechanical,
                 Cause = breakdown.Cause,
@@ -36,7 +40,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
                 SelectedBreakdownSolverValue = breakdown.BreakdownSolver.Id,
                 SelectedDepartmentValue = breakdown.Department.Id,
                 SelectedSectorValue = breakdown.Sector.Id,
-                SelectedEmployeeValue= breakdown.Employee.Id,
+                SelectedEmployeeValue = breakdown.Employee.Id,
                 SelectedCompanyValue = breakdown.Customer.Id,
                 SelectedCountryValue = breakdown.Customer.Id,
             };
