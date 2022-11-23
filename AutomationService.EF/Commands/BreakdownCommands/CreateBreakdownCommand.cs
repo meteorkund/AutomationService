@@ -26,12 +26,13 @@ public class CreateBreakdownCommand : ICreateBreakdownCommand
             BreakdownDTO breakdownDTO = new BreakdownDTO()
             {
                 Status = true,
-                Id= breakdown.Id,
+                Id = breakdown.Id,
 
                 DepartmentId = breakdown.Department.Id,
                 SectorId = breakdown.Sector.Id,
                 EmployeeId = breakdown.Employee.Id,
                 CustomerId = breakdown.Customer.Id,
+                BreakdownSolverId = 1,
 
                 IsElectrical = breakdown.IsElectrical,
                 IsMechanical = breakdown.IsMechanical,

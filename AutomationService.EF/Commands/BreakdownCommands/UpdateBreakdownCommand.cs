@@ -27,13 +27,21 @@ namespace AutomationService.EF.Commands.BreakdownCommands
 
                 breakdownUpdate.CustomerId = breakdown.CustomerId;
                 breakdownUpdate.DepartmentId = breakdown.DepartmentId;
-                breakdownUpdate.SectorId= breakdown.SectorId;
+                breakdownUpdate.SectorId = breakdown.SectorId;
                 breakdownUpdate.EmployeeId = breakdown.EmployeeId;
 
-                breakdownUpdate.IsElectrical= breakdown.IsElectrical;
-                breakdownUpdate.IsMechanical= breakdown.IsMechanical;
+                breakdownUpdate.IsElectrical = breakdown.IsElectrical;
+                breakdownUpdate.IsMechanical = breakdown.IsMechanical;
                 breakdownUpdate.Cause = breakdown.Cause;
+                breakdownUpdate.Service = breakdown.Service;
 
+                if (breakdown.Status == false)                
+                    breakdownUpdate.Status = false;
+
+                if (breakdownUpdate.BreakdownSolverId == 1)
+                    breakdownUpdate.SolvedDate = DateTime.Now;
+
+                breakdownUpdate.BreakdownSolverId = breakdown.BreakdownSolverId;
 
                 await context.SaveChangesAsync();
             }

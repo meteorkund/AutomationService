@@ -195,7 +195,7 @@
                     </Grid>
 
 
-                    <Grid Grid.Row="5" Grid.Column="0" Margin="0 20 0 0">
+                    <Grid Grid.Row="5" Grid.Column="0" Margin="0 20 0 0" Visibility="{Binding BreakdownStatusDisplay,Converter={StaticResource BoolToHidden}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" SharedSizeGroup="labelSol"/>
                             <ColumnDefinition Width="auto"/>
@@ -287,7 +287,7 @@
                         <TextBlock Style="{StaticResource dataBox}"
                                 Grid.Column="1"
                                 Margin="20 0 0 0"
-                                Text="{Binding UpdatedDateDisplay}"/>
+                                Text="{Binding SolvedDateDisplay}"/>
                     </Grid>
 
                     <Grid Grid.Row="6" Grid.Column="1" Margin="0 20 0 0" Visibility="{Binding BreakdownStatusDisplay,Converter={StaticResource BoolToHidden}}">

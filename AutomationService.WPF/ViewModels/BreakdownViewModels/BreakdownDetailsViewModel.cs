@@ -48,9 +48,9 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         public string BreakdownSolverDisplay => SelectedBreakdown?.BreakdownSolver?.NameSurname;
 
         public string CreatedDateDisplay => SelectedBreakdown?.CreatedDate.ToString();
-        public string UpdatedDateDisplay => SelectedBreakdown?.UpdatedDate.ToString();
+        public string SolvedDateDisplay => SelectedBreakdown?.SolvedDate.ToString();
 
-        public string PastTimeDisplay => UpdatedDateDisplay == "1.01.0001 00:00:00" ? "" : $"{days} gün, {hours} saat, {minutes} dakika";
+        public string PastTimeDisplay => SolvedDateDisplay == "1.01.0001 00:00:00" ? "" : $"{days} gün, {hours} saat, {minutes} dakika";
 
         int days, hours, minutes;
 
@@ -83,7 +83,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         private void PastTimeCalculator()
         {
 
-            TimeSpan timeSpan = (Convert.ToDateTime(UpdatedDateDisplay) - Convert.ToDateTime(CreatedDateDisplay));
+            TimeSpan timeSpan = (Convert.ToDateTime(SolvedDateDisplay) - Convert.ToDateTime(CreatedDateDisplay));
             days = timeSpan.Days;
             hours = timeSpan.Hours;
             minutes = timeSpan.Minutes;
@@ -108,7 +108,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
             OnPropertyChanged(nameof(BreakdownSolverDisplay));
 
             OnPropertyChanged(nameof(CreatedDateDisplay));
-            OnPropertyChanged(nameof(UpdatedDateDisplay));
+            OnPropertyChanged(nameof(SolvedDateDisplay));
             OnPropertyChanged(nameof(PastTimeDisplay));
         }
 

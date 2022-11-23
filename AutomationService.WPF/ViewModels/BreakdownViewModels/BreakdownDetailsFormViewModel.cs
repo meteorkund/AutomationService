@@ -30,7 +30,10 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
     public IEnumerable<SectorListingItemViewModel> SectorListingItemViewModels => _sectorListingViewModel.SectorListingItemViewModels;
     public IEnumerable<EmployeeListingItemViewModel> EmployeeListingItemViewModels => _breakdownListingViewModel.EmployeeListingItemViewModels;
 
-    public IEnumerable<CustomerListingItemViewModel> CountryListing => _customerListingViewModel.CustomerListingItemViewModels;
+    public IEnumerable<CustomerListingItemViewModel> CountryListing => _customerListingViewModel.CustomerListingItemViewModels
+                                                                       .GroupBy(x => x.Country)
+                                                                       .Select(c=>c.First())
+                                                                       .ToList();
     public IEnumerable<CustomerListingItemViewModel> CompanyNameListing => _customerListingViewModel.CustomerListingItemViewModels.Where(x => x.Country == SelectedCountry).ToList();
 
 
@@ -68,6 +71,18 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
 
     #region PROPERTIES
 
+
+
+    private bool _breakdownStatus;
+    public bool BreakdownStatus
+    {
+        get { return _breakdownStatus; }
+        set
+        {
+            _breakdownStatus = value;
+            OnPropertyChanged(nameof(BreakdownStatus));
+        }
+    }
 
     private bool _isElectrical;
 

@@ -1,4 +1,5 @@
-﻿using AutomationService.WPF.Stores;
+﻿using AutomationService.Domain.Models;
+using AutomationService.WPF.Stores;
 using AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.BreakdownSolverViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,15 +14,20 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
     {
         readonly BreakdownSolverStore _breakdownSolverStore;
         readonly BreakdownSolverListingViewModel _breakdownSolverListingViewModel;
+        readonly Breakdown _breakdown;
 
-        public IEnumerable<BreakdownSolverListingItemViewModel> BreakdownSolverListingItemViewModels => _breakdownSolverListingViewModel.BreakdownSolverListingItemViewModels;
+        public Breakdown CurrentBreakdown => _breakdown;
 
-        public SolveBreakdownFormViewModel(ICommand submitCommand, ICommand cancelCommand, BreakdownSolverStore breakdownSolverStore)
+        public IEnumerable<BreakdownSolverListingItemViewModel> BreakdownSolverListingItemViewModels => _breakdownSolverListingViewModel.BreakdownSolverListingItemViewModels.Where(x=>x.BreakdownSolverId != 1);
+
+        public SolveBreakdownFormViewModel(ICommand submitCommand, ICommand cancelCommand, BreakdownSolverStore breakdownSolverStore, Breakdown breakdown)
         {
             SubmitCommand = submitCommand;
             CancelCommand = cancelCommand;
 
-            _breakdownSolverListingViewModel = new BreakdownSolverListingViewModel(breakdownSolverStore);
+            _breakdown = breakdown;
+
+            _breakdownSolverListingViewModel = new BreakdownSolverListingViewModel(breakdownSolverStore);           
 
         }
 
@@ -80,6 +86,19 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
             {
                 _errorMessage = value;
                 OnPropertyChanged(nameof(ErrorMessage));
+                OnPropertyChanged(nameof(HasErrorMessage));
+            }
+        }
+
+        private string _errorMessageTryLater;
+
+        public string ErrorMessageTryLater
+        {
+            get { return _errorMessageTryLater; }
+            set
+            {
+                _errorMessageTryLater = value;
+                OnPropertyChanged(nameof(ErrorMessageTryLater));
                 OnPropertyChanged(nameof(HasErrorMessage));
             }
         }

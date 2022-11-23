@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AutomationService.EF.DTOs
 {
-    public class BreakdownDTO : BaseDTO
+    public class BreakdownDTO
     {
 
         public Guid Id { get; set; }
@@ -36,5 +36,6 @@ namespace AutomationService.EF.DTOs
 
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
+        public DateTime SolvedDate { get; set; }
     }
 }

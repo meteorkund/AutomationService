@@ -21,17 +21,19 @@ namespace AutomationService.EF.Queries.BreakdownSolverQueries
 
         public async Task<IEnumerable<BreakdownSolver>> GetAllAllBreakdownSolvers()
         {
-           using(AutomationServiceDBContext context = _contextFactory.Create())
+            using (AutomationServiceDBContext context = _contextFactory.Create())
             {
                 IEnumerable<BreakdownSolverDTO> breakdownSolverDTOs = await context.BreakdownSolvers.ToListAsync();
-                return breakdownSolverDTOs.Select(s => new BreakdownSolver(
-                    s.Id,
-                    s.NameSurname
-                    ));
-                
-                    
+                return breakdownSolverDTOs.Select(s => new BreakdownSolver
+                (
+                     s.Id,
+                     s.NameSurname
+                ));
 
-                
+
+
+
+
             }
         }
     }

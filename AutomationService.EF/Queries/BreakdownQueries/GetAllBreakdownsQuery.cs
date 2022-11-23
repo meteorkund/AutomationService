@@ -44,7 +44,9 @@ namespace AutomationService.EF.Queries.BreakdownQueries
                     Service = e.Service,
 
                     CreatedDate = e.CreatedDate,
-                    UpdatedDate = e.UpdatedDate,
+                    UpdatedDate= e.UpdatedDate,
+                    SolvedDate= e.SolvedDate,
+
 
                     Department = new Department(e.Department.Id, e.Department.DepartmentName),
                     Sector = new Sector(e.Sector.Id, e.Sector.SectorName),

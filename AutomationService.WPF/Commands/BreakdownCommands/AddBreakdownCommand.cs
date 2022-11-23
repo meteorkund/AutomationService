@@ -64,13 +64,14 @@ namespace AutomationService.WPF.Commands
                     formViewModel.SelectedCompanyItem.CompanyName, 
                     formViewModel.SelectedCountryItem.Country),
 
+                BreakdownSolverId = 1,
+
                 IsElectrical = formViewModel.IsElectrical,
                 IsMechanical = formViewModel.IsMechanical,
 
                 Cause = formViewModel.Cause,
 
                 CreatedDate = DateTime.Now,
-
 
             };
 

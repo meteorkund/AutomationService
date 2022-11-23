@@ -21,11 +21,15 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
         public SolveBreakdownFormViewModel SolveBreakdownFormViewModel { get; }
 
+        public Guid BreakdownId { get; }
+
         public SolveBreakdownViewModel(Breakdown breakdown, BreakdownStore breakdownStore, BreakdownSolverStore breakdownSolverStore, ModalNavigationStore modalNavigationStore)
         {
-            ICommand submitCommand = new SolveBreakdownCommand(this, breakdownStore);
+            BreakdownId = breakdown.Id;
+
+            ICommand submitCommand = new SolveBreakdownCommand(this, breakdownStore, modalNavigationStore);
             ICommand cancelCommand = new CloseModalCommand(modalNavigationStore);
-            SolveBreakdownFormViewModel = new SolveBreakdownFormViewModel(submitCommand, cancelCommand, breakdownSolverStore);
+            SolveBreakdownFormViewModel = new SolveBreakdownFormViewModel(submitCommand, cancelCommand, breakdownSolverStore, breakdown);
         }
 
     }

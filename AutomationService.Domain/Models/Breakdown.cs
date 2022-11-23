@@ -7,14 +7,14 @@ using AutomationService.Domain.Models.Common;
 
 namespace AutomationService.Domain.Models
 {
-    public class Breakdown : BaseEntity
+    public class Breakdown
     {
         public Guid Id { get; set; }
 
         public int CustomerId { get; set; }
         public int DepartmentId { get; set; }
         public int SectorId { get; set; }
-        public int BreakdownSolverId { get; set; }
+        public int? BreakdownSolverId { get; set; }
         public int EmployeeId { get; set; }
 
         public bool Status { get; set; }
@@ -34,5 +34,6 @@ namespace AutomationService.Domain.Models
         public DateTime CreatedDate { get; set; }
 
         public DateTime UpdatedDate { get; set; }
+        public DateTime SolvedDate { get; set; }
     }
 }

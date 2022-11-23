@@ -23,24 +23,34 @@ public class EditBreakdownCommand : AsyncCommandBase
         _modalNavigationStore = modalNavigationStore;
     }
 
+
     public override async Task ExecuteAsync(object parameter)
     {
         BreakdownDetailsFormViewModel formViewModel = _editBreakdownViewModel.BreakdownDetailsFormViewModel;
 
         formViewModel.ErrorMessage = null;
+        formViewModel.ErrorMessageTryLater = null;
         formViewModel.IsSubmitting = true;
 
+        bool isStatusTrue = true;
+        if (formViewModel.BreakdownStatus == false)
+            isStatusTrue = false;
+        
 
         Breakdown breakdown = new Breakdown
         {
+
+
             Id = _editBreakdownViewModel.BreakdownId,
+
+            Status = isStatusTrue,
+
             DepartmentId = formViewModel.SelectedDepartmentValue,
             SectorId = formViewModel.SelectedSectorValue,
             CustomerId = formViewModel.SelectedCompanyValue,
             EmployeeId = formViewModel.SelectedEmployeeValue,
             BreakdownSolverId = formViewModel.SelectedEmployeeValue,
 
-            Status = true,
 
             Department = new Department(
                 formViewModel.SelectedDepartmentItem.DepartmentId,
@@ -72,14 +82,15 @@ public class EditBreakdownCommand : AsyncCommandBase
         {
             await _breakdownStore.Update(breakdown);
 
-        }
+}
         catch (Exception)
         {
-            formViewModel.ErrorMessage = "Arıza güncelleme sırasında hata oluştu. Daha sonra tekrar deneyiniz.";
+            formViewModel.ErrorMessage = "Arıza güncelleme sırasında hata oluştu.";
+            formViewModel.ErrorMessageTryLater = "Daha sonra tekrar deneyiniz.";
         }
         finally
-        {
-            formViewModel.IsSubmitting = false;
-        }
+{
+    formViewModel.IsSubmitting = false;
+}
     }
 }
