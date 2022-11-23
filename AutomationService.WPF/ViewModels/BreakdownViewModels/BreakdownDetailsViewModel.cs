@@ -1,5 +1,6 @@
 ﻿using AutomationService.Domain.Models;
 using AutomationService.EF;
+using AutomationService.WPF.Commands.BreakdownCommands;
 using AutomationService.WPF.Commands.BreakdownFileCommands;
 using AutomationService.WPF.Stores;
 using AutomationService.WPF.ViewModels.BreakdownFileViewModels;
@@ -24,7 +25,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         readonly SelectedBreakdownStore _selectedBreakdownStore;
         readonly SelectedBreakdownFileStore _selectedBreakdownFileStore;
         readonly AutomationServiceDBContextFactory _contextFactory;
-        private Breakdown SelectedBreakdown => _selectedBreakdownStore.SelectedBreakdown;
+        public Breakdown SelectedBreakdown => _selectedBreakdownStore.SelectedBreakdown;
 
         readonly BreakdownFileListingViewModel _breakdownFileListingViewModel;
 
@@ -49,15 +50,22 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
         public string CreatedDateDisplay => SelectedBreakdown?.CreatedDate.ToString();
         public string UpdatedDateDisplay => SelectedBreakdown?.UpdatedDate.ToString();
 
+        public string PastTimeDisplay => UpdatedDateDisplay == "1.01.0001 00:00:00" ? "" : $"{days} gün, {hours} saat, {minutes} dakika";
+
+        int days, hours, minutes;
 
         public BreakdownFileListingViewModel BreakdownFileListingViewModel { get; set; }
 
         public ICommand AddFileCommand { get; }
+        public ICommand SolveBreakdownCommand { get; }
 
         public BreakdownDetailsViewModel(SelectedBreakdownStore selectedBreakdownStore,
                                          BreakdownFileStore breakdownFileStore,
                                          SelectedBreakdownFileStore selectedBreakdownFileStore,
-                                         AutomationServiceDBContextFactory contextFactory)
+                                         AutomationServiceDBContextFactory contextFactory,
+                                         BreakdownStore breakdownStore,
+                                         BreakdownSolverStore breakdownSolverStore,
+                                         ModalNavigationStore modalNavigationStore)
         {
             _selectedBreakdownStore = selectedBreakdownStore;
             _selectedBreakdownFileStore = selectedBreakdownFileStore;
@@ -65,21 +73,27 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
             BreakdownFileListingViewModel = BreakdownFileListingViewModel.LoadViewModel(breakdownFileStore, selectedBreakdownFileStore, selectedBreakdownStore);
 
             AddFileCommand = new AddBreakdownFilesCommand(breakdownFileStore, contextFactory, selectedBreakdownStore);
+            SolveBreakdownCommand = new OpenSolveBreakdownCommand(this, breakdownStore, breakdownSolverStore, modalNavigationStore);
 
             _breakdownFileListingViewModel = new BreakdownFileListingViewModel(breakdownFileStore, selectedBreakdownFileStore, selectedBreakdownStore);
 
             _selectedBreakdownStore.SelectedBreakdownChanged += SelectedBreakdownStore_SelectedCustomerChanged;
-
-
         }
-        protected override void Dispose()
+
+        private void PastTimeCalculator()
         {
-            _selectedBreakdownStore.SelectedBreakdownChanged -= SelectedBreakdownStore_SelectedCustomerChanged;
-            base.Dispose();
+
+            TimeSpan timeSpan = (Convert.ToDateTime(UpdatedDateDisplay) - Convert.ToDateTime(CreatedDateDisplay));
+            days = timeSpan.Days;
+            hours = timeSpan.Hours;
+            minutes = timeSpan.Minutes;
+
         }
 
         private void SelectedBreakdownStore_SelectedCustomerChanged()
         {
+            PastTimeCalculator();
+
             OnPropertyChanged(nameof(HasSelectedBreakdown));
             OnPropertyChanged(nameof(BreakdownStatusDisplay));
             OnPropertyChanged(nameof(CompanyNameDisplay));
@@ -95,6 +109,14 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
             OnPropertyChanged(nameof(CreatedDateDisplay));
             OnPropertyChanged(nameof(UpdatedDateDisplay));
+            OnPropertyChanged(nameof(PastTimeDisplay));
         }
+
+        protected override void Dispose()
+        {
+            _selectedBreakdownStore.SelectedBreakdownChanged -= SelectedBreakdownStore_SelectedCustomerChanged;
+            base.Dispose();
+        }
+
     }
 }

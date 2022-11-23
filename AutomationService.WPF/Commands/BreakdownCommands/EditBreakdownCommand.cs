@@ -28,7 +28,7 @@ public class EditBreakdownCommand : AsyncCommandBase
         BreakdownDetailsFormViewModel formViewModel = _editBreakdownViewModel.BreakdownDetailsFormViewModel;
 
         formViewModel.ErrorMessage = null;
-        //formViewModel.IsSubmitting = true;
+        formViewModel.IsSubmitting = true;
 
 
         Breakdown breakdown = new Breakdown
@@ -59,18 +59,13 @@ public class EditBreakdownCommand : AsyncCommandBase
                 formViewModel.SelectedEmployeeItem.EmployeeId,
                 formViewModel.SelectedEmployeeItem.NameSurname),
 
-            BreakdownSolver = new BreakdownSolver(
-                formViewModel.SelectedBreakdownSolverItem.BreakdownSolverId,
-                formViewModel.SelectedBreakdownSolverItem.NameSurname),
 
             IsElectrical = formViewModel.IsElectrical,
             IsMechanical = formViewModel.IsMechanical,
 
             Cause = formViewModel.Cause,
-            Service = formViewModel.Service,
 
             CreatedDate = _editBreakdownViewModel.CreatedDate,
-            UpdatedDate = DateTime.Now,
         };
 
         try
@@ -80,11 +75,11 @@ public class EditBreakdownCommand : AsyncCommandBase
         }
         catch (Exception)
         {
-            formViewModel.ErrorMessage = "Personel güncelleme sırasında hata oluştu. Daha sonra tekrar deneyiniz.";
+            formViewModel.ErrorMessage = "Arıza güncelleme sırasında hata oluştu. Daha sonra tekrar deneyiniz.";
         }
         finally
         {
-            //formViewModel.IsSubmitting = false;
+            formViewModel.IsSubmitting = false;
         }
     }
 }

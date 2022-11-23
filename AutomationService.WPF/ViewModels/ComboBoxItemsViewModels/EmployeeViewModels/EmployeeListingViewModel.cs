@@ -18,7 +18,7 @@ namespace AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.EmployeeViewM
         public IEnumerable<EmployeeListingItemViewModel> EmployeeListingItemViewModels => _employeeStore._employeeListingItemViewModels;
 
 
-        public EmployeeListingViewModel(BreakdownDetailsFormViewModel breakdownDetailsFormViewModel, EmployeeStore employeeStore)
+        public EmployeeListingViewModel(EmployeeStore employeeStore)
         {
             _employeeStore = employeeStore;
         }

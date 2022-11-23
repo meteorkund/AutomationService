@@ -35,9 +35,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
                 IsElectrical = breakdown.IsElectrical,
                 IsMechanical = breakdown.IsMechanical,
                 Cause = breakdown.Cause,
-                Service = breakdown.Service,
 
-                SelectedBreakdownSolverValue = breakdown.BreakdownSolver.Id,
                 SelectedDepartmentValue = breakdown.Department.Id,
                 SelectedSectorValue = breakdown.Sector.Id,
                 SelectedEmployeeValue = breakdown.Employee.Id,

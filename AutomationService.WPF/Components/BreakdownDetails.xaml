@@ -63,6 +63,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="auto"/>
 
@@ -80,6 +81,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                     <!--#region TOP SIDE DISPLAY-->
@@ -116,6 +118,13 @@
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
+
+                        <Button Grid.Column="2" Style="{StaticResource solveButton}" 
+                                HorizontalAlignment="Right"
+                                Content="Arıza Kapat"
+                                Command="{Binding SolveBreakdownCommand}">
+                            
+                        </Button>
 
 
 
@@ -264,8 +273,7 @@
                                 Text="{Binding CreatedDateDisplay}"/>
                     </Grid>
 
-                    <!--<Grid Grid.Row="5" Grid.Column="1" Margin="0 20 0 0" Visibility="{Binding BreakdownStatusDisplay,Converter={StaticResource BoolToHidden}}">-->
-                    <Grid Grid.Row="5" Grid.Column="1" Margin="0 20 0 0">
+                    <Grid Grid.Row="5" Grid.Column="1" Margin="0 20 0 0" Visibility="{Binding BreakdownStatusDisplay,Converter={StaticResource BoolToHidden}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" SharedSizeGroup="labelSag"/>
                             <ColumnDefinition Width="auto"/>
@@ -282,11 +290,28 @@
                                 Text="{Binding UpdatedDateDisplay}"/>
                     </Grid>
 
+                    <Grid Grid.Row="6" Grid.Column="1" Margin="0 20 0 0" Visibility="{Binding BreakdownStatusDisplay,Converter={StaticResource BoolToHidden}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="labelSag"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Style="{StaticResource columnHeader}"
+                                Grid.Column="0"
+                                FontWeight="Bold"
+                                Text="ARIZA KAPATMA SÜRESİ"/>
+
+                        <TextBlock Style="{StaticResource dataBox}"
+                                Grid.Column="1"
+                                Margin="20 0 0 0"
+                                Text="{Binding PastTimeDisplay}"/>
+                    </Grid>
+
                     <!--#endregion-->
 
                     <!--#region BOTTOM SIDE DISPLAY-->
 
-                    <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 40 0 0">
+                    <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 20 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" SharedSizeGroup="labelSol"/>
                             <ColumnDefinition Width="auto"/>
@@ -306,7 +331,7 @@
                                    Text="{Binding CauseDisplay}"/>
                     </Grid>
 
-                    <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 20 0 0">
+                    <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 20 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" SharedSizeGroup="labelSol"/>
                             <ColumnDefinition Width="auto"/>
@@ -326,9 +351,8 @@
                                    Text="{Binding ServiceDisplay}"/>
                     </Grid>
 
-                    <!--#endregion-->
 
-                    <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 40 0 0" MaxWidth="600">
+                    <Grid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 40 0 0" MaxWidth="600">
 
                         <Border Grid.Row="0"
                                 BorderBrush="Gray" 
@@ -345,7 +369,7 @@
 
                     </Grid>
 
-                    <Grid Grid.Row="9" Grid.Column="1">
+                    <Grid Grid.Row="10" Grid.Column="1">
 
                         <Button Grid.Row="1" 
                                 Content="Dosya Ekle"
@@ -356,7 +380,9 @@
 
                     </Grid>
 
+                    <!--#endregion-->
 
+                    
 
 
                 </Grid>

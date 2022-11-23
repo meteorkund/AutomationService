@@ -15,7 +15,7 @@ namespace AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.SectorViewMod
         readonly SectorStore _sectorStore;
         public IEnumerable<SectorListingItemViewModel> SectorListingItemViewModels => _sectorStore._sectorListingItemViewModels;
 
-        public SectorListingViewModel(BreakdownDetailsFormViewModel breakdownDetailsFormViewModel, SectorStore sectorStore)
+        public SectorListingViewModel(SectorStore sectorStore)
         {
             _sectorStore = sectorStore;
 

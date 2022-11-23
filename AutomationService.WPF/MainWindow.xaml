@@ -19,6 +19,10 @@
         <DataTemplate DataType="{x:Type vms:EditBreakdownViewModel}">
             <views:EditBreakdownView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vms:SolveBreakdownViewModel}">
+            <views:SolveBreakdownView/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>

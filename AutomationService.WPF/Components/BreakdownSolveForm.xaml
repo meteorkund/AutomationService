@@ -1,0 +1,193 @@
+﻿<UserControl x:Class="AutomationService.WPF.Components.BreakdownSolveForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AutomationService.WPF.Components"
+             xmlns:custom="clr-namespace:LoadingSpinnerControl;assembly=LoadingSpinnerControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+
+        <Style TargetType="TextBlock" x:Key="VacationTextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+    </UserControl.Resources>
+    
+    
+    <Grid>
+        <Border>
+            <Border.Background>
+                <ImageBrush ImageSource="/Assets/bgAddControl.jpg"/>
+            </Border.Background>
+            <Border>
+                <Border.BorderBrush>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="BlanchedAlmond" Offset="0"/>
+                        <GradientStop Color="#ffc671" Offset="0.75"/>
+                        <GradientStop Color="DarkSalmon" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0.05" EndPoint="1,1">
+                        <GradientStop Color="#CC424242" Offset="0.817"/>
+                        <GradientStop Color="#CCE4DEDE" Offset="0.353"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+
+                <!--#region BREAKDOWN INFOS -->
+                <Grid Grid.IsSharedSizeScope="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="50"/>
+
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="*" MaxWidth="250"/>
+                        <ColumnDefinition Width="*" MaxWidth="250"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
+                           Width="500" Height="100" Stroke="Black" StrokeThickness="3" HorizontalAlignment="Center" Margin="0 0 0 0"/>
+
+                    <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 0 0 0">
+                        <TextBlock  Text="ARIZA KAPATMA FORMU"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        TextAlignment="Center"
+                                        FontSize="30"
+                                        FontFamily="Segoe UI"
+                                        FontWeight="Bold"/>
+                    </Grid>
+
+
+                    <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 40 0 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="label"/>
+                            <ColumnDefinition Width="*" MaxWidth="200"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Style="{StaticResource VacationTextBlock}"
+                            Grid.Column="0"
+                            FontWeight="Bold"
+                            Text="ARIZAYI ÇÖZEN" VerticalAlignment="Center"/>
+
+                        <ComboBox Grid.Column="1"
+                                  Margin="20 0 0 0"
+                                  
+                                  ItemsSource="{Binding BreakdownSolverListingItemViewModels}"
+                                  SelectedItem="{Binding SelectedBreakdownSolverItem,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                  SelectedValue="{Binding SelectedBreakdownSolverValue}"
+                                  
+                                  SelectedValuePath="BreakdownSolverId"
+                                  DisplayMemberPath="NameSurname"
+                                  IsSynchronizedWithCurrentItem="True"/>
+                    </Grid>
+
+
+                    <Separator Grid.Row="3" Margin="0 20 0 20" Grid.ColumnSpan="2" Background="#ff212121" Grid.Column="1" />
+
+                    <Grid Grid.Row="4" Grid.Column="1" Margin="0 10 0 0" Grid.ColumnSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="label"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock                      
+                            Style="{StaticResource VacationTextBlock}"
+                            Grid.Column="0"
+                            FontWeight="Bold"
+                            Margin="0 5 0 0"
+                            Text="YAPILAN İŞLEM" VerticalAlignment="Top"/>
+
+                        <TextBox
+                            Style="{StaticResource TextBoxStyle1}"
+                            KeyboardNavigation.TabIndex="13"
+                            Width="350"
+                            Height="100"
+                            HorizontalAlignment="Left"
+                            VerticalContentAlignment="Top"
+                        Padding="2 5 0 0"
+                            Grid.Column="1"
+                            Margin="20 0 0 0"
+                            Text="{Binding Service, UpdateSourceTrigger=PropertyChanged}"
+                            TextAlignment="Justify"
+                            TextWrapping="Wrap" VerticalAlignment="Center"/>
+
+                    </Grid>
+
+
+                    <WrapPanel Grid.Row="5" 
+                           Grid.Column="2"
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Right"
+                           Margin="0 40 20 0">
+
+                        <Button 
+                        Margin="0 0 5 0"
+                        Content="KAYDET"
+                        Command="{Binding SubmitCommand}"
+                        IsEnabled="{Binding CanSubmit}" />
+
+                        <Button 
+                        Content="ÇIKIŞ"
+                        Style="{StaticResource ButtonSecondary}"
+                        Command="{Binding CancelCommand}"/>
+
+                    </WrapPanel>
+
+                    <custom:LoadingSpinner Grid.Row="12" Grid.Column="1"
+                                       Margin="20 20 0 0"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Thickness="2"
+                                       Diameter="25" IsLoading="{Binding IsSubmiting}"/>
+
+                    <TextBlock Grid.Row="5"
+                           Grid.Column="1"
+                           FontWeight="SemiBold"
+                           Text="{Binding SaveStatus}" 
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="60 20 35 0"                           
+                           Visibility="{Binding IsSaved, Converter={StaticResource BoolToVis}}"/>
+
+                    <TextBlock Grid.Row="6"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           FontSize="15"
+                           FontWeight="SemiBold"
+                           Foreground="DarkBlue"
+                           Text="{Binding ErrorMessage}"
+                           Visibility="{Binding HasErrorMessage, Converter={StaticResource BoolToVis}}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+
+                </Grid>
+                <!--#endregion-->
+
+
+            </Border>
+        </Border>
+    </Grid>
+
+</UserControl>

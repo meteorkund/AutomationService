@@ -32,13 +32,11 @@ public class CreateBreakdownCommand : ICreateBreakdownCommand
                 SectorId = breakdown.Sector.Id,
                 EmployeeId = breakdown.Employee.Id,
                 CustomerId = breakdown.Customer.Id,
-                BreakdownSolverId= breakdown.BreakdownSolver.Id,
 
                 IsElectrical = breakdown.IsElectrical,
                 IsMechanical = breakdown.IsMechanical,
 
                 Cause = breakdown.Cause,
-                Service = breakdown.Service,
             };
 
             context.Breakdowns.Add(breakdownDTO);

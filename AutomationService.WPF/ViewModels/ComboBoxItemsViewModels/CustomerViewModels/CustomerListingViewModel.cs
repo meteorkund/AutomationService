@@ -15,7 +15,7 @@ public class CustomerListingViewModel : ViewModelBase
     readonly CustomerStore _customerStore;
     public IEnumerable<CustomerListingItemViewModel> CustomerListingItemViewModels => _customerStore._customerListingItemViewModels;
 
-    public CustomerListingViewModel(BreakdownDetailsFormViewModel breakdownDetailsFormViewModel, CustomerStore customerStore)
+    public CustomerListingViewModel(CustomerStore customerStore)
     {
         _customerStore = customerStore;
     }

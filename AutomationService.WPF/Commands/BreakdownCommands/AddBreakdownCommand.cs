@@ -35,7 +35,8 @@ namespace AutomationService.WPF.Commands
             BreakdownDetailsFormViewModel formViewModel = _addBreakdownViewModel.BreakdownDetailsFormViewModel;
 
             formViewModel.ErrorMessage = null;
-
+            formViewModel.ErrorMessageTryLater = null;
+            formViewModel.IsSubmitting = false;
 
 
 
@@ -58,10 +59,6 @@ namespace AutomationService.WPF.Commands
                      formViewModel.SelectedEmployeeItem.EmployeeId,
                      formViewModel.SelectedEmployeeItem.NameSurname),
 
-                BreakdownSolver = new BreakdownSolver(
-                    formViewModel.SelectedBreakdownSolverItem.BreakdownSolverId,
-                    formViewModel.SelectedBreakdownSolverItem.NameSurname),
-
                 Customer = new Customer(
                     formViewModel.SelectedCompanyItem.CustomerId, 
                     formViewModel.SelectedCompanyItem.CompanyName, 
@@ -71,9 +68,8 @@ namespace AutomationService.WPF.Commands
                 IsMechanical = formViewModel.IsMechanical,
 
                 Cause = formViewModel.Cause,
-                Service = formViewModel.Service,
 
-                 CreatedDate = DateTime.Now,
+                CreatedDate = DateTime.Now,
 
 
             };
@@ -85,18 +81,19 @@ namespace AutomationService.WPF.Commands
             {
                 await _breakdownStore.Add(breakdown);
 
-
                 _modalNavigationStore.Close();
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                formViewModel.ErrorMessage = "Servis kaydı düzenlenmesi sırasında hata oluştu.\n Daha sonra tekrar deneyiniz.";
+                formViewModel.ErrorMessage = "Servis kaydı düzenlenmesi sırasında hata oluştu.";
+                formViewModel.ErrorMessageTryLater = "Daha sonra tekrar deneyiniz.";
             }
+
             finally
             {
-                //formViewModel.IsSubmitting = false;
+                formViewModel.IsSubmitting = false;
             }
         }
     }

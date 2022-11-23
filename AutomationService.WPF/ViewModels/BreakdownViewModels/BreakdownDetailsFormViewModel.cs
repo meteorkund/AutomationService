@@ -47,11 +47,11 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         _employeeStore = employeeStore;
         _customerStore = customerStore;
 
-        _breakdownSolverListingViewModel = new BreakdownSolverListingViewModel(this, breakdownSolverStore);
-        _departmentListingViewModel = new DepartmentListingViewModel(this, departmentStore);
-        _sectorListingViewModel = new SectorListingViewModel(this, sectorStore);
-        _breakdownListingViewModel = new EmployeeListingViewModel(this, employeeStore);
-        _customerListingViewModel = new CustomerListingViewModel(this, customerStore);
+        _breakdownSolverListingViewModel = new BreakdownSolverListingViewModel(breakdownSolverStore);
+        _departmentListingViewModel = new DepartmentListingViewModel(departmentStore);
+        _sectorListingViewModel = new SectorListingViewModel(sectorStore);
+        _breakdownListingViewModel = new EmployeeListingViewModel(employeeStore);
+        _customerListingViewModel = new CustomerListingViewModel(customerStore);
 
     }
 
@@ -133,17 +133,6 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         }
     }
 
-    private string _service;
-
-    public string Service
-    {
-        get { return _service; }
-        set
-        {
-            _service = value;
-            OnPropertyChanged(nameof(Service));
-        }
-    }
 
     private string _errorMessage;
 
@@ -158,12 +147,39 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         }
     }
 
+
+    private string _errorMessageTryLater;
+
+    public string ErrorMessageTryLater
+    {
+        get { return _errorMessageTryLater; }
+        set
+        {
+            _errorMessageTryLater = value;
+            OnPropertyChanged(nameof(ErrorMessageTryLater));
+            OnPropertyChanged(nameof(HasErrorMessage));
+        }
+    }
+
+    private bool _isSubmitting;
+
+    public bool IsSubmitting
+    {
+        get { return _isSubmitting; }
+        set
+        {
+            _isSubmitting = value;
+            OnPropertyChanged(nameof(IsSubmitting));
+        }
+    }
+
+
     public bool HasErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
 
     public bool CanSubmit => SelectedCountryItem != null &&
                              SelectedDepartmentItem != null &&
                              SelectedSectorItem != null &&
-                             SelectedEmployeeItem != null;     
+                             SelectedEmployeeItem != null;
 
     #endregion
 
@@ -197,17 +213,6 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         }
     }
 
-    private BreakdownSolverListingItemViewModel _selectedBreakdownSolverItem;
-    public BreakdownSolverListingItemViewModel SelectedBreakdownSolverItem
-    {
-        get { return _selectedBreakdownSolverItem; }
-        set
-        {
-            _selectedBreakdownSolverItem = value;
-            OnPropertyChanged(nameof(SelectedBreakdownSolverItem));
-
-        }
-    }
 
     private EmployeeListingItemViewModel _selectedEmployeeItem;
 
@@ -222,7 +227,6 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
 
         }
     }
-
 
     private CustomerListingItemViewModel _selectedCompanyItem;
 
@@ -285,14 +289,6 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
     {
         get { return _selectedDepartmentValue; }
         set { _selectedDepartmentValue = value; }
-    }
-
-    private int _selectedBreakdownSolverValue;
-
-    public int SelectedBreakdownSolverValue
-    {
-        get { return _selectedBreakdownSolverValue; }
-        set { _selectedBreakdownSolverValue = value; }
     }
 
 

@@ -17,7 +17,7 @@ namespace AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.BreakdownSolv
         readonly BreakdownSolverStore _breakdownSolverStore;
         public IEnumerable<BreakdownSolverListingItemViewModel> BreakdownSolverListingItemViewModels => _breakdownSolverStore._breakdownSolverListingItemViewModels;
 
-        public BreakdownSolverListingViewModel(BreakdownDetailsFormViewModel breakdownDetailsFormViewModel, BreakdownSolverStore breakdownSolverStore)
+        public BreakdownSolverListingViewModel(BreakdownSolverStore breakdownSolverStore)
         {
             _breakdownSolverStore = breakdownSolverStore;
         }

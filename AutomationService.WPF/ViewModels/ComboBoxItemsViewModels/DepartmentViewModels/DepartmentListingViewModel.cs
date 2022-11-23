@@ -13,7 +13,7 @@ public class DepartmentListingViewModel : ViewModelBase
 
     public IEnumerable<DepartmentListingItemViewModel> DepartmentListingItemViewModels => _departmentStore._departmentListingItemViewModels;
 
-    public DepartmentListingViewModel(BreakdownDetailsFormViewModel breakdownDetailsFormViewModel, DepartmentStore departmentStore)
+    public DepartmentListingViewModel(DepartmentStore departmentStore)
     {
         _departmentStore = departmentStore;
     }

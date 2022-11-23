@@ -15,7 +15,7 @@ namespace AutomationService.EF.DTOs
         public int CustomerId { get; set; }
         public int DepartmentId { get; set; }
         public int SectorId { get; set; }
-        public int BreakdownSolverId { get; set; }
+        public int? BreakdownSolverId { get; set; }
         public int EmployeeId { get; set; }
 
         public bool Status { get; set; }
