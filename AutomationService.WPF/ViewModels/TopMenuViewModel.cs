@@ -59,7 +59,7 @@ public class TopMenuViewModel : ViewModelBase
         }
     }
 
-    private bool _isCheckedRadioSolved = true;
+    private bool _isCheckedRadioSolved = false;
     public bool IsCheckedRadioSolved
     {
         get { return _isCheckedRadioSolved; }

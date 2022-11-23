@@ -31,6 +31,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
             BreakdownDetailsFormViewModel = new BreakdownDetailsFormViewModel(submitCommand, cancelCommand, breakdownSolverStore, departmentStore, sectorStore, employeeStore, customerStore)
             {
+                BreakdownStatus = breakdown.Status,
 
                 IsElectrical = breakdown.IsElectrical,
                 IsMechanical = breakdown.IsMechanical,

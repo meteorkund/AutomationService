@@ -35,8 +35,6 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
         readonly ModalNavigationStore _modalNavigationStore;
 
-        public IEnumerable<BreakdownListingItemViewModel> BreakdownListingItemViewModels => _breakdownListingItemViewModels;
-
         public BreakdownListingItemViewModel SelectedBreakdownListingItemViewModel
         {
             get
@@ -86,6 +84,7 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
             get { return _employeeCollection; }
             set { _employeeCollection = value; }
         }
+
 
         public TopMenuViewModel TopMenuViewModel { get; }
 
@@ -147,6 +146,13 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
 
 
 
+        private bool FilterByStatus(object emp)
+        {
+            var empDetail = emp as BreakdownListingItemViewModel;
+
+            return empDetail.Status.Equals(true);
+
+        }
 
         private void BreakdownStore_BreakdownsLoaded()
         {
@@ -155,6 +161,8 @@ namespace AutomationService.WPF.ViewModels.BreakdownViewModels
             {
                 AddBreakdown(breakdown);
             }
+
+            EmployeeCollection.Filter = FilterByStatus;
         }
         private void BreakdownStore_BreakdownAdded(Breakdown breakdown)
         {

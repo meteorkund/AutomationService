@@ -32,7 +32,7 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
 
     public IEnumerable<CustomerListingItemViewModel> CountryListing => _customerListingViewModel.CustomerListingItemViewModels
                                                                        .GroupBy(x => x.Country)
-                                                                       .Select(c=>c.First())
+                                                                       .Select(c => c.First())
                                                                        .ToList();
     public IEnumerable<CustomerListingItemViewModel> CompanyNameListing => _customerListingViewModel.CustomerListingItemViewModels.Where(x => x.Country == SelectedCountry).ToList();
 
@@ -265,8 +265,7 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         {
             _selectedCountryItem = value;
             SelectedCountry = _selectedCountryItem.Country;
-            if (IsSelectedCountry == false)
-                IsSelectedCountry = true;
+            IsSelectedCountry = true;
             OnPropertyChanged(nameof(SelectedCountryItem));
             OnPropertyChanged(nameof(CanSubmit));
 
@@ -274,7 +273,7 @@ public class BreakdownDetailsFormViewModel : ViewModelBase
         }
     }
 
-    private bool _isSelectedCountry = false;
+    private bool _isSelectedCountry;
 
     public bool IsSelectedCountry
     {

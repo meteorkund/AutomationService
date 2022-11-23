@@ -81,6 +81,7 @@ public class EditBreakdownCommand : AsyncCommandBase
         try
         {
             await _breakdownStore.Update(breakdown);
+            _modalNavigationStore.Close();
 
 }
         catch (Exception)
