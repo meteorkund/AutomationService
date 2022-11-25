@@ -39,13 +39,22 @@ public partial class App : Application
             MessageBox.Show("UYGULAMA ZATEN ÇALIŞIYOR!", "HATA", MessageBoxButton.OK, MessageBoxImage.Error);
             Application.Current.Shutdown();
         }
+
         else
         {
+            if (AppControl.DateTimeResponse("18.03.2023"))
+            {
+                MessageBox.Show("YAZILIM DESTEK SÜRESİ DOLMUŞTUR.","HATA",MessageBoxButton.OK,MessageBoxImage.Error);
+                Current.Shutdown();
+            }
+            else
+            {
             _host.Start();
 
             MainWindow = _host.Services.GetRequiredService<MainWindow>();
             MainWindow.Show();
             base.OnStartup(e);
+            }
         }
     }
 
