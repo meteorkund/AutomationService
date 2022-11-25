@@ -38,7 +38,6 @@ namespace AutomationService.WPF.Commands.ComboBoxItemsCommand
             }
             catch
             {
-                MessageBox.Show("VERİLER YÜKLENİRKEN HATAYLA KARŞILAŞILDI!");
             }
         }
     }

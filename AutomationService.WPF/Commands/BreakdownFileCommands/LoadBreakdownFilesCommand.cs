@@ -26,7 +26,6 @@ namespace AutomationService.WPF.Commands.BreakdownFileCommands
             }
             catch
             {
-                MessageBox.Show("DOSYALAR YÜKLENİRKEN HATAYLA KARŞILAŞILDI!");
             }
         }
     }

@@ -16,9 +16,10 @@ namespace AutomationService.WPF.HostBuilders
         {
             hostBuilder.ConfigureServices((context, services) =>
             {
-                string connectionString = "Server=YAZILIM-ORKUN\\SQLEXPRESS;Database=AutomationServiceDB; User Id=sa; Password=1q2w3e4r; Encrypt=False; Trusted_Connection=True;";
+                var connectionString = $"DataSource=\\\\Desktop-1pm23j9\\testing\\arizaData.db";
 
-                services.AddSingleton<DbContextOptions>(new DbContextOptionsBuilder().UseSqlServer(connectionString).Options);
+
+                services.AddSingleton<DbContextOptions>(new DbContextOptionsBuilder().UseSqlite(connectionString).Options);
                 services.AddSingleton<AutomationServiceDBContextFactory>();
             });
 

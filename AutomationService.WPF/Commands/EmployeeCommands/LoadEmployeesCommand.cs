@@ -26,7 +26,6 @@ namespace AutomationService.WPF.Commands.EmployeeCommands
             }
             catch
             {
-                MessageBox.Show("PERSONELLER YÜKLENİRKEN HATAYLA KARŞILAŞILDI!");
             }
         }
     }

@@ -21,11 +21,10 @@ namespace AutomationService.EF
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            //ChangeTracker : Entityler üzerinden yapılan değişiklerin ya da yeni eklenen verinin yakalanmasını sağlayan propertydir. Update operasyonlarında Track edilen verileri yakalayıp elde etmemizi sağlar.
 
             var datas = ChangeTracker
                  .Entries<BaseDTO>();
-            
+
 
             foreach (var data in datas)
             {
@@ -37,7 +36,7 @@ namespace AutomationService.EF
                 };
             }
 
-            var breakdownFiles= ChangeTracker
+            var breakdownFiles = ChangeTracker
                 .Entries<BreakdownFileDTO>();
 
             foreach (var breakdownFile in breakdownFiles)

@@ -12,8 +12,10 @@ namespace AutomationService.EF
     {
         public AutomationServiceDBContext CreateDbContext(string[] args)
         {
+            var connectionString = $"DataSource=\\\\Desktop-1pm23j9\\testing\\arizaData.db";
+
             return new AutomationServiceDBContext(new DbContextOptionsBuilder()
-                .UseSqlServer("Server=YAZILIM-ORKUN\\SQLEXPRESS;Database=AutomationServiceDB; User Id=sa; Password=1q2w3e4r; Encrypt=False; Trusted_Connection=True;")
+                .UseSqlite(connectionString)
                 .Options);
         }
     }

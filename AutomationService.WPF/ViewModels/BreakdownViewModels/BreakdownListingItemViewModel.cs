@@ -20,8 +20,9 @@ public class BreakdownListingItemViewModel : ViewModelBase
     public string Department => Breakdown.Department.DepartmentName;
     public string Sector => Breakdown.Sector.SectorName;
     public string CreatorName => Breakdown.Employee.NameSurname;
+    public string CreatedDate => Breakdown.CreatedDate.ToString();
 
-
+    
 
     public ICommand EditCommand { get; }
     public ICommand DeleteCommand { get; }

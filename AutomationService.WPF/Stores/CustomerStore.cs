@@ -1,4 +1,5 @@
 ﻿using AutomationService.Domain.Models;
+using AutomationService.Domain.Models.Common;
 using AutomationService.Domain.Queries.CustomerQueries;
 using AutomationService.WPF.ViewModels;
 using AutomationService.WPF.ViewModels.ComboBoxItemsViewModels.CustomerViewModels;
@@ -34,6 +35,8 @@ namespace AutomationService.WPF.Stores
         public async Task LoadCustomers()
         {
             IEnumerable<Customer> customers = await _getAllCustomers.GetAllCustomers();
+
+            var sutomersSorted = customers.OrderBy(s => s.Country).ToList();
 
             _customers.Clear();
 

@@ -73,7 +73,8 @@ public class AddBreakdownFilesCommand : CommandBase
                     BreakdownId = _selectedBreakdownStore.SelectedBreakdown.Id,
                     FileName = newFileNameNoExtension,
                     FileExtension = fileExtension,
-                    Path = destFile
+                    Path = destFile,
+                    CreatedDate = DateTime.Now,
                 };
 
                 try

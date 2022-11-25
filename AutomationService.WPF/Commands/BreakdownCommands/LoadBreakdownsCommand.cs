@@ -31,9 +31,8 @@ namespace AutomationService.WPF.Commands
                 await _breakdownStore.LoadBreakdowns();
 
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.ToString());
                 _breakdownListingViewModel.ErrorMessage = "Servis kayıtları yüklenirken bir hatayla karşılaşıldı! \n Lütfen uygulamayı yeniden başlatın.";
             }
             finally
